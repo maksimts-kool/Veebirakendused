@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vormid HTML keeles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Matemaatika teadmiste küsimustik</h1>
+    <form name="kysimustik2">
+        <table>
+            <tr>
+                <td>Nimi</td>
+                <td>
+                    <input type="text" id="nimi2" name="nimi" placeholder="Eesnimi">
+                </td>
+            </tr>
+            <tr>
+                <td>Rühm</td>
+                <td>
+                    <select name="ryhm" id="ryhm2">
+                        <option value="">...</option>
+                        <option value="TARpv24">TARpv24</option>
+                        <option value="LOGITpv24">LOGITpv24</option>
+                        <option value="VLOGpv24">VLOGpv24</option>
+                        <option value="TITpv24">TITpv24</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>2+2*2</td>
+                <td>
+                    <input type="radio" name="kysimus1" id="vastus11">
+                    <label for="vastus11">9</label>
+                    <br>
+                    <input type="radio" name="kysimus1" id="vastus22">
+                    <label for="vastus22">6</label>
+                    <br>
+                    <input type="radio" name="kysimus1" id="vastus33">
+                    <label for="vastus33">8</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Millist koosneb kera</td>
+                <td>
+                    <input type="checkbox" name="kysimus2" id="keravastus11">
+                    <label for="keravastus11">Keskpunktist</label>
+                    <br>
+                    <input type="checkbox" name="kysimus2" id="keravastus22">
+                    <label for="keravastus22">Pinnast</label>
+                    <br>
+                    <input type="checkbox" name="kysimus2" id="keravastus33">
+                    <label for="keravastus33">Kolmnurgast</label>
+                    <br>
+                    <input type="checkbox" name="kysimus2" id="keravastus44">
+                    <label for="keravastus44">Läbimõõdust</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Millal on Piipäev<br>Vali 0 ja 15 vahel</td>
+                <td>
+                    <input type="range" id="pi2" name="pi" min="0" max="15">
+                </td>
+            </tr>
+            <!-- Uued küsimused -->
+            <tr>
+                <td>Kui palju on naturaalarve vahemikus 1–100?</td>
+                <td>
+                    <input type="number" id="numbrid" name="numbrid" min="0" max="100">
+                </td>
+            </tr>
+            <tr>
+                <td>Kirjelda, miks ruutjuur on oluline</td>
+                <td>
+                    <textarea id="hobune" name="hobune" placeholder=""></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Millal on sinu sünnipäev</td>
+                <td>
+                    <input type="date" id="synni" name="synni" min="1900-01-01" max="2025-12-31">
+                </td>
+            </tr>
+            <tr>
+                <td>Vali laimi värv</td>
+                <td>
+                    <input type="color" id="varv" name="varv" value="#ffffff">
+                </td>
+            </tr>
+            <tr>
+                <td>Laadi üles vastus pilt</td>
+                <td>
+                    <input type="file" id="fail" name="fail" accept="image/*">
+                </td>
+            </tr>
+            <tr>
+                <td>Sisesta oma e‑mail</td>
+                <td>
+                    <input type="email" id="email" name="email" placeholder="nimi@example.ee">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="reset" id="loobu2" value="Loobu">
+                    <input type="button" id="salvesta2" value="Salvesta">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
