@@ -52,12 +52,6 @@ textarea {
   resize: vertical;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-  transform: scale(1.2);
-  margin: 5px 8px 5px 0;
-}
-
 input[type="submit"],
 input[type="reset"] {
   background: #007bff;
