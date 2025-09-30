@@ -1,126 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 
 <head>
     <meta charset="UTF-8">
-    <title>Vormid HTML keeles</title>
+    <title>Õpilase registreerimisvorm</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Matemaatika teadmiste küsimustik</h1>
-    <form name="kysimustik2">
+    <h1>ÕPILASE REGISTREERIMISVORM</h1>
+
+    <form id="regvorm">
+        <!-- Isikuandmed -->
         <fieldset>
-            <legend>Õpilase andmed</legend>
-            <table>
-                <tr>
-                    <td>Nimi</td>
-                    <td>
-                        <input type="text" id="nimi2" name="nimi" placeholder="Eesnimi">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Rühm</td>
-                    <td>
-                        <select name="ryhm" id="ryhm2">
-                            <option value="">...</option>
-                            <option value="TARpv24">TARpv24</option>
-                            <option value="LOGITpv24">LOGITpv24</option>
-                            <option value="VLOGpv24">VLOGpv24</option>
-                            <option value="TITpv24">TITpv24</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+            <legend>Isikuandmed</legend>
+
+            <label for="eesnimi">Eesnimi</label><br>
+            <input type="text" id="eesnimi" name="eesnimi" maxlength="30" placeholder="nt Mario" required><br><br>
+
+            <label for="perenimi">Perenimi</label><br>
+            <input type="text" id="perenimi" name="perenimi" maxlength="30" placeholder="nt Metshein" required><br><br>
+
+            <label for="synnikuup">Sünnikuupäev</label><br>
+            <input type="date" id="synnikuup" name="synnikuup" min="1900-01-01" max="2025-12-31" required><br><br>
+
+            <label>Sugu</label><br>
+            <input type="radio" id="naine" name="sugu" value="Naine" required>
+            <label for="naine">Naine</label>
+            <input type="radio" id="mees" name="sugu" value="Mees">
+            <label for="mees">Mees</label>
+            <input type="radio" id="muu" name="sugu" value="Muu">
+            <label for="muu">Muu</label>
         </fieldset>
 
+        <!-- Kontakt -->
         <fieldset>
-            <legend>Matemaatika küsimused</legend>
-            <table>
-                <tr>
-                    <td>2 + 2 * 2</td>
-                    <td>
-                        <input type="radio" name="kysimus1" id="vastus11">
-                        <label for="vastus11">9</label>
-                        <br>
-                        <input type="radio" name="kysimus1" id="vastus22">
-                        <label for="vastus22">6</label>
-                        <br>
-                        <input type="radio" name="kysimus1" id="vastus33">
-                        <label for="vastus33">8</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Millist koosneb kera</td>
-                    <td>
-                        <input type="checkbox" id="keravastus11" name="kysimus2">
-                        <label for="keravastus11">Keskpunktist</label>
-                        <br>
-                        <input type="checkbox" id="keravastus22" name="kysimus2">
-                        <label for="keravastus22">Pinnast</label>
-                        <br>
-                        <input type="checkbox" id="keravastus33" name="kysimus2">
-                        <label for="keravastus33">Kolmnurgast</label>
-                        <br>
-                        <input type="checkbox" id="keravastus44" name="kysimus2">
-                        <label for="keravastus44">Läbimõõdust</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Millal on Piipäev?<br>Vali 0 ja 15 vahel</td>
-                    <td>
-                        <input type="range" id="pi2" name="pi" min="0" max="15">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kui palju on naturaalarve vahemikus 1–100?</td>
-                    <td>
-                        <input type="number" id="numbrid" name="numbrid" min="0" max="100">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kirjelda, miks ruutjuur on oluline</td>
-                    <td>
-                        <textarea id="hobune" name="hobune" placeholder=""></textarea>
-                    </td>
-                </tr>
-            </table>
+            <legend>Kontakt</legend>
+
+            <label for="email">E-post</label><br>
+            <input type="email" id="email" name="email" maxlength="100" placeholder="nt nimi@kool.ee" required><br><br>
+
+            <label for="telefon">Mobiltelefon</label><br>
+            <input type="tel" id="telefon" name="telefon" placeholder="+37251234567" pattern="^\+372\d{7,8}$"
+                required><br><br>
+
+            <label for="aadress">Aadress</label><br>
+            <textarea id="aadress" name="aadress" rows="3" placeholder="Tänav, maja, korter"></textarea><br><br>
+
+            <label for="linn">Linn / asula</label><br>
+            <input type="text" id="linn" name="linn" maxlength="30" placeholder="nt Tallinn"><br><br>
+
+            <label for="posti">Postiindeks</label><br>
+            <input type="text" id="posti" name="posti" pattern="^\d{5}$" placeholder="nt 10111"><br><br>
+
+            <label for="riik">Riik</label><br>
+            <input type="text" id="riik" name="riik" value="Eesti" readonly>
         </fieldset>
 
+        <!-- Muu info -->
         <fieldset>
-            <legend>Sinu andmed</legend>
-            <table>
-                <tr>
-                    <td>Millal on sinu sünnipäev</td>
-                    <td>
-                        <input type="date" id="synni" name="synni" min="1900-01-01" max="2025-12-31">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Vali laimi värv</td>
-                    <td>
-                        <input type="color" id="varv" name="varv" value="#ffffff">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Laadi üles vastus pilt</td>
-                    <td>
-                        <input type="file" id="fail" name="fail" accept="image/*">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sisesta oma e‑mail</td>
-                    <td>
-                        <input type="email" id="email" name="email" placeholder="nimi@example.ee">
-                    </td>
-                </tr>
-            </table>
+            <legend>Muu info</legend>
+
+            <p>Huvialad</p>
+            <input type="checkbox" id="joonistamine" name="hobi" value="Joonistamine">
+            <label for="joonistamine">Joonistamine</label>
+            <input type="checkbox" id="laulmine" name="hobi" value="Laulmine">
+            <label for="laulmine">Laulmine</label>
+            <input type="checkbox" id="tantsimine" name="hobi" value="Tantsimine">
+            <label for="tantsimine">Tantsimine</label>
+            <input type="checkbox" id="kokkamine" name="hobi" value="Kokkamine">
+            <label for="kokkamine">Kokkamine</label><br><br>
+
+            <input type="checkbox" id="muuHobi" name="hobi" value="Muu">
+            <label for="muuHobi">Muu:</label>
+            <input type="text" id="muuText" name="muuText" maxlength="30" placeholder="täpsusta"><br><br>
+
+            <label for="veebileht">Isiklik veebileht</label><br>
+            <input type="url" id="veebileht" name="veebileht" placeholder="https://example.ee"><br><br>
+
+            <label for="teema">Eelistatud teemavärv</label><br>
+            <input type="color" id="teema" name="teema" value="#0000ff"><br><br>
+
+            <label for="dokument">Dokumendid</label><br>
+            <input type="file" id="dokument" name="dokument" accept=".pdf,image/*">
         </fieldset>
 
+        <!-- Nõustumine -->
         <fieldset>
-            <legend>Nupud</legend>
-            <input type="reset" id="loobu2" value="Loobu">
-            <input type="button" id="salvesta2" value="Salvesta">
+            <legend>Nõustumine</legend>
+            <input type="checkbox" id="noustun" name="noustun" required>
+            <label for="noustun">
+                Kinnitan, et esitatud andmed on õiged ja luban nende töötlemist vastavalt kooli tingimustele.
+            </label>
+        </fieldset>
+
+        <!-- Nupud -->
+        <fieldset>
+            <input type="submit" value="Saada">
+            <input type="reset" value="Tühista">
         </fieldset>
     </form>
 </body>
