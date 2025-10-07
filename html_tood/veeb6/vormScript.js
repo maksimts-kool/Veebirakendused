@@ -37,15 +37,20 @@ function meesjanaine() {
     let mees = document.getElementById("mees")
     let naine = document.getElementById("naine")
     let laps = document.getElementById("laps")
+    let pilt = document.getElementById("pilt")
     if (mees.checked) {
         v2.innerHTML = mees.value
+        pilt.src = "images/Hea.png"
     } else if (naine.checked) {
         v2.innerHTML = naine.value
+        pilt.src = "images/Kuri.png"
     }
     else if (laps.checked) {
         v2.innerHTML = laps.value
+        pilt.src = "images/Normal.png"
     } else {
         v2.innerHTML = "Palun valige sugu!"
+
     }
 }
 
@@ -83,22 +88,28 @@ function valikeel() {
     let c = document.getElementById("c")
     let js = document.getElementById("js")
     let cpp = document.getElementById("cpp")
+    let pilt2 = document.getElementById("pilt2")
 
     let valik = ""
     if (java.checked) {
         valik += java.value + ", "
+        pilt2.src = "images/Hea.png"
     }
     if (js.checked) {
         valik += js.value + ", "
+        pilt2.src = "images/Hea.png"
     }
     if (c.checked) {
         valik += c.value + ", "
+        pilt2.src = "images/Kuri.png"
     }
     if (py.checked) {
         valik += py.value + ", "
+        pilt2.src = "images/Kuri.png"
     }
     if (cpp.checked) {
         valik += cpp.value + " "
+        pilt2.src = "images/Normal.png"
     }
     v5.innerText = "Te oskate: " + valik
 
