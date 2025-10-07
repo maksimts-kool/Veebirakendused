@@ -1,0 +1,91 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: #eef3ff;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  color: #2b3a67;
+}
+
+form {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 25px 40px;
+  border: 3px solid #495bcc;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  table-layout: fixed;
+}
+
+th {
+  background: #dce1ff;
+  color: #1e2d5a;
+  padding: 10px;
+  border: 2px solid #495bcc;
+  text-align: left;
+}
+
+td {
+  border: 1px solid #999;
+  padding: 10px 8px;
+  word-break: break-word;
+}
+
+td[colspan="2"] {
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background: #f7f8ff;
+}
+
+tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="url"],
+input[type="file"],
+input[type="color"],
+input[type="number"],
+textarea,
+select {
+  background: #f9f9f9;
+  border: 1px solid #666;
+  border-radius: 4px;
+  padding: 6px;
+  width: 95%;
+  box-sizing: border-box;
+}
+
+button {
+  background: #495bcc;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2f3fab;
+}
+
+input[type="range"] {
+  width: 70%;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Muusika küsitlusvorm</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="kysimusscript.js" defer></script>
+</head>
+
+<body>
+    <h1>MUUSIKA KÜSITLUSVORM</h1>
+
+    <form id="regvorm">
+        <table>
+            <tr>
+                <th>Küsimus / valikud</th>
+                <th>Vastus</th>
+            </tr>
+
+            <tr>
+                <td>Milliseid muusikuid/ansambleid sa tead?</td>
+                <td>
+                    <label><input type="checkbox" name="muusika" value="Pop" id="v1" onchange="muusikaF()">
+                        Pop</label><br>
+                    <label><input type="checkbox" name="muusika" value="Retro" id="v2" onchange="muusikaF()">
+                        Retro</label><br>
+                    <label><input type="checkbox" name="muusika" value="Hip-Hop" id="v3" onchange="muusikaF()">
+                        Hip-Hop</label><br>
+                    <label><input type="checkbox" name="muusika" value="Rock" id="v4" onchange="muusikaF()">
+                        Rock</label><br>
+                    <label><input type="checkbox" name="muusika" value="Räpp" id="v5" onchange="muusikaF()">
+                        Räpp</label>
+                    <div id="vastus"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Mida arvad muusika kuulamisest koolis?</td>
+                <td>
+                    <textarea id="arvamus" name="arvamus" rows="3" oninput="arvamusF()"></textarea>
+                    <div id="arvamusVastus"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Mitu tundi päevas sa kuulad muusikat?</td>
+                <td>
+                    0
+                    <input type="range" id="muusikaRange" min="0" max="10" step="1" onchange="muusikaRangeF()">
+                    10
+                    <div id="rangeVastus"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Kas sa kuulad raadiot?</td>
+                <td>
+                    <label><input type="radio" name="raadiokul" value="Jah" id="jah"
+                            onchange="raadiokulF()">Jah</label><br>
+                    <label><input type="radio" name="raadiokul" value="Ei" id="ei" onchange="raadiokulF()">Ei</label>
+                    <div id="raadioVastus"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Milliseid raadiojaamu oskad nimetada?</td>
+                <td>
+                    <input type="text" id="raadiojaam" name="raadiojaam" oninput="raadiojaamF()">
+                    <div id="raadiojaamVastus"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Millist muusikat sa kõige rohkem kuulad?</td>
+                <td>
+                    <label><input type="radio" name="muusikakul" value="Pop" id="v1p" onchange="muusikakulF()">
+                        Pop</label><br>
+                    <label><input type="radio" name="muusikakul" value="Retro" id="v2p" onchange="muusikakulF()">
+                        Retro</label><br>
+                    <label><input type="radio" name="muusikakul" value="Hip-Hop" id="v3p" onchange="muusikakulF()">
+                        Hip-Hop</label><br>
+                    <label><input type="radio" name="muusikakul" value="Rock" id="v4p" onchange="muusikakulF()">
+                        Rock</label><br>
+                    <label><input type="radio" name="muusikakul" value="Räpp" id="v5p" onchange="muusikakulF()">
+                        Räpp</label>
+                    <div id="muusikakulVastus"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="button" onclick="saada()">Saada</button>
+                    <button type="button" onclick="puhasta()">Puhasta</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="kokkuvote"></div>
+</body>
+
+</html>
