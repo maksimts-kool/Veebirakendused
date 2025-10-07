@@ -49,7 +49,7 @@ function raadiokulF() {
 
 function raadiojaamF() {
     let jaam = document.getElementById("raadiojaam").value
-    document.getElementById("raadiojaamVastus").innerText = "Sinu raadiojaamad: " + jaam;
+    document.getElementById("raadiojaamVastus").innerText = "Sinu nimetatud jaamad: " + jaam;
 }
 
 function muusikakulF() {
@@ -71,7 +71,7 @@ function muusikakulF() {
     else if (rapp.checked)
         valik = rapp.value;
 
-    document.getElementById("muusikakulVastus").innerText = "Kuulad enim: " + valik;
+    document.getElementById("muusikakulVastus").innerText = "Sinu vastus: " + valik;
 }
 
 function saada() {
