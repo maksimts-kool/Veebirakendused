@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vormist lugemine JS abil</title>
+    <script src="vormScript.js"></script>
+</head>
+
+<body>
+    <form>
+        <label for="nimi">Kirjuta oma nimi</label>
+        <input type="text" id="nimi" placeholder="Eesnimi" oninput="nimiLugemine()">
+        <div id="vastus1"></div>
+        <br>
+        <br>
+        <input type="radio" name="sugu" id="naine" value="Sa oled naine" onchange="meesjanaine()">
+        <label for="naine">Naine</label>
+        <input type="radio" name="sugu" id="mees" value="Sa oled mees" onchange="meesjanaine()">
+        <label for="mees">Mees</label>
+        <input type="radio" name="sugu" id="laps" value="Sa oled laps" onchange="meesjanaine()">
+        <label for="laps">Laps</label>
+        <br>
+        <img src="blank" alt="" id="pilt">
+        <div id="vastus2"></div>
+        <br>
+        <br>
+        <label for="varv">Vali oma lemmikvärv:</label>
+        <input type="color" id="varv" onchange="varvida()">
+        <br>
+        <br>
+        <label for="slider">Hinda ennast matemaatikas:</label>
+        0<input type="range" id="slider" min="0" max="100" onchange="sliderLiigub()">100
+        <div id="vastus3"></div>
+        <br>
+        <br>
+        <label for="koht2">Vali oma sünnikoht</label>
+        <select name="koht2" id="koht2" onchange="koht()">
+            <option value="">...</option>
+            <option value="Tallinn">Tallinn</option>
+            <option value="Tartu">Tartu</option>
+            <option value="Narva">Narva</option>
+            <option value="Pärnu">Pärnu</option>
+            <option value="Jõgeva">Jõgeva</option>
+        </select>
+        <div id="vastus4"></div>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Tee oma valik</legend>
+            <input type="checkbox" name="valik" id="java" value="Java" onchange="valikeel()">
+            <label for="java">Java</label>
+            <br>
+            <input type="checkbox" name="valik" id="js" value="JavaScript" onchange="valikeel()">
+            <label for="js">JavaScript</label>
+            <br>
+            <input type="checkbox" name="valik" id="py" value="Python" onchange="valikeel()">
+            <label for="py">Python</label>
+            <br>
+            <input type="checkbox" name="valik" id="c" value="C#" onchange="valikeel()">
+            <label for="c">C#</label>
+            <br>
+            <input type="checkbox" name="valik" id="cpp" value="C++" onchange="valikeel()">
+            <label for="cpp">C++</label>
+            <br>
+            <img src="blank" alt="" id="pilt2">
+            <div id="vastus5"></div>
+        </fieldset>
+        <br>
+        <br>
+
+        <input type="button" value="Puhasta" onclick="puhasta()">
+    </form>
+</body>
+
+</html>

@@ -6,6 +6,7 @@
     <title>Maksim veebirakenduste koduleht</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="aeg.js"></script>
 </head>
 
 <body>
@@ -21,6 +22,7 @@
             <li><a href="tehtud_tood.html">Tehtud tööd</a></li>
             <li><a href="meedia.html">Meedia</a></li>
             <li><a href="minust.html">Minust</a></li>
+            <li><a href="./wp">Wordpress</a></li>
         </ul>
     </nav>
 
@@ -36,6 +38,23 @@
         <section>
             <h2>Näidis pilt</h2>
             <img src="2111292.png" alt="GitHubi logo">
+        </section>
+        <section>
+            <h2>Aeg</h2>
+            <button onclick="naitaKuupaeva()">TÄNA ON (Kuupäev)</button>
+            <button onclick="naitaKellaaega()">TÄNA ON (Kellaaeg)</button>
+            <button onclick="naitaKoos()">TÄNA ON (Kuupäev ja kellaaeg)</button>
+
+            <p id="valjund"></p>
+            <p id="valjund2"></p>
+
+            <h3>Minu sünnipäevani</h3>
+            <label for="synnip2ev">Sisesta oma sünnipäev:</label>
+
+            <input type="date" id="synnip2ev">
+            <button onclick="minuSynnipaevani()">Arvuta</button>
+
+            <p id="synnipaevavaljund"></p>
         </section>
     </main>
 

@@ -103,6 +103,31 @@ section img {
     border-radius: 8px;
 }
 
+/* --- Input --- */
+input[type="date"] {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    margin-right: 6px;
+}
+
+/* --- Buttons --- */
+button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    margin: 6px 4px 14px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
 /* --- Footer --- */
 footer {
     background: #1c33ba;
