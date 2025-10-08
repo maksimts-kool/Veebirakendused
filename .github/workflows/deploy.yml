@@ -20,5 +20,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /htdocs/  # путь к папке на сервере
-          local-dir: ./dist/           # путь к локальной папке (например, после сборки)
+          local-dir: ./           # путь к локальной папке (например, после сборки)
           protocol: ftps              # можно ftps или ftp
