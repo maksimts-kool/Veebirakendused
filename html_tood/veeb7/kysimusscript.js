@@ -106,15 +106,13 @@ function saada() {
     else if (rapp.checked)
         lemmik = "Räpp";
 
-    let text = "<h2>KOKKUVÕTE</h2>";
-    text += "<p>" + muusika + "</p>";
-    text += "<p>Arvamus koolimuusikast: " + (arvamus || "—") + "</p>";
-    text += "<p>Kuulamise aeg päevas: " + tunnid + " tundi</p>";
-    text += "<p>Kuulad raadiot: " + (raadio || "—") + "</p>";
-    text += "<p>Raadiojaamad: " + (jaamad || "—") + "</p>";
-    text += "<p>Lemmikmuusika: " + (lemmik || "—") + "</p>";
-
-    document.getElementById("kokkuvote").innerHTML = text;
+    document.getElementById("kokku-muusika").innerText = muusika || "—"; // || - или
+    document.getElementById("kokku-arvamus").innerText = arvamus || "—";
+    document.getElementById("kokku-tunnid").innerText = tunnid + " tundi" || "—";
+    document.getElementById("kokku-raadio").innerText = raadio || "—";
+    document.getElementById("kokku-jaamad").innerText = jaamad || "—";
+    document.getElementById("kokku-lemmik").innerText = lemmik || "—";
+    document.getElementById("kokkuvote").style.display = "block";
 }
 
 function puhasta() {
@@ -126,5 +124,6 @@ function puhasta() {
     document.getElementById("raadioVastus").innerText = "";
     document.getElementById("raadiojaamVastus").innerText = "";
     document.getElementById("muusikakulVastus").innerText = "";
-    document.getElementById("kokkuvote").innerHTML = "";
+
+    document.getElementById("kokkuvote").style.display = "none";
 }
