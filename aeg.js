@@ -1,58 +1,31 @@
-function naitaKuupaeva() {
+function naitaKuupaevaJaKellaega() {
     const now = new Date();
-    const kuupaev = now.toLocaleDateString("et-EE");
-    document.getElementById("valjund").innerText = "Kuupäev: " + kuupaev;
-    document.getElementById("valjund2").innerText = "";
-    console.log("Kuupäev:", kuupaev);
+
+    const kuupaev = now.toLocaleDateString();
+    const kellaaeg = now.toLocaleTimeString();
+    const kokku = now.toLocaleString();
+
+    document.getElementById("kuupaev").innerText = "Kuupäev: " + kuupaev;
+    document.getElementById("kellaaeg").innerText = "Kellaaeg: " + kellaaeg;
+    document.getElementById("kokku").innerText = "Kuupäev ja kellaaeg: " + kokku;
+
+    console.log("Kuupäev:" + kuupaev);
+    console.log("Kellaaeg:" + kellaaeg);
+    console.log("Kuupäev ja kellaaeg:" + kokku);
 }
 
-function naitaKellaaega() {
-    const now = new Date();
-    const kellaaeg = now.toLocaleTimeString("et-EE");
-    document.getElementById("valjund").innerText = "Kellaaeg: " + kellaaeg;
-    document.getElementById("valjund2").innerText = "";
-    console.log("Kellaaeg:", kellaaeg);
-}
+function arvutaSynnipaevani() {
+    const tana = new Date();
+    const synniP = new Date(tana.getFullYear(), 6, 15);
 
-function naitaKoos() {
-    const now = new Date();
-    const koos1 = now.toLocaleDateString("et-EE");
-    const koos2 = now.toLocaleTimeString("et-EE");
-    document.getElementById("valjund").innerText = "Kuupäev: " + koos1;
-    document.getElementById("valjund2").innerText = "Kellaaeg: " + koos2;
-    console.log("Kuupäev:", koos1);
-    console.log("Kellaaeg:", koos2);
-}
-
-function minuSynnipaevani() {
-    const synnip2evInput = document.getElementById("synnip2ev").value;
-
-    if (!synnip2evInput) {
-        document.getElementById("synnipaevavaljund").innerText =
-            "Palun sisesta oma sünnipäev.";
-        return;
+    if (synniP < tana) {
+        synniP.setFullYear(tana.getFullYear() + 1);
     }
 
-    const now = new Date();
-    const sisestatud = new Date(synnip2evInput);
-    let synnipaev = new Date(
-        now.getFullYear(),
-        sisestatud.getMonth(),
-        sisestatud.getDate()
-    );
+    const vaheMs = synniP - tana;
+    const paevad = Math.ceil(vaheMs / (1000 * 60 * 60 * 24));
 
-    if (synnipaev < now) {
-        synnipaev = new Date(
-            now.getFullYear() + 1,
-            sisestatud.getMonth(),
-            sisestatud.getDate()
-        );
-    }
+    document.getElementById("vahe").innerText = "Minu sünnipäevani on jäänud: " + paevad + " päeva.";
 
-    const vaheMillis = synnipaev - now;
-    const paevad = Math.ceil(vaheMillis / (1000 * 60 * 60 * 24));
-
-    document.getElementById("synnipaevavaljund").innerText =
-        "Sünnipäevani on jäänud " + paevad + " päeva!";
-    console.log("Sünnipäevani on jäänud:", paevad, "päeva");
+    console.log("Minu sünnipäevani on:" + paevad + "päeva");
 }

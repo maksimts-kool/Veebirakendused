@@ -41,20 +41,13 @@
         </section>
         <section>
             <h2>Aeg</h2>
-            <button onclick="naitaKuupaeva()">TÄNA ON (Kuupäev)</button>
-            <button onclick="naitaKellaaega()">TÄNA ON (Kellaaeg)</button>
-            <button onclick="naitaKoos()">TÄNA ON (Kuupäev ja kellaaeg)</button>
+            <button onclick="naitaKuupaevaJaKellaega()">TÄNA ON</button>
+            <p id="kuupaev"></p>
+            <p id="kellaaeg"></p>
+            <p id="kokku"></p>
 
-            <p id="valjund"></p>
-            <p id="valjund2"></p>
-
-            <h3>Minu sünnipäevani</h3>
-            <label for="synnip2ev">Sisesta oma sünnipäev:</label>
-
-            <input type="date" id="synnip2ev">
-            <button onclick="minuSynnipaevani()">Arvuta</button>
-
-            <p id="synnipaevavaljund"></p>
+            <button onclick="arvutaSynnipaevani()">Minu sünnipäevani</button>
+            <p id="vahe"></p>
         </section>
     </main>
 
