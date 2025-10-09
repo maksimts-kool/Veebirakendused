@@ -26,6 +26,7 @@ function arvutaSynnipaevani() {
     const paevad = Math.ceil(vaheMs / (1000 * 60 * 60 * 24));
 
     document.getElementById("vahe").innerText = "Minu sünnipäevani on jäänud: " + paevad + " päeva.";
+    document.getElementById("teade").innerText = "Minu sünnipäeva kuupäev on: 15.06"
 
     console.log("Minu sünnipäevani on:" + paevad + "päeva");
 }
