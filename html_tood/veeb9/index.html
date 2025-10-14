@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS poodi veebikalkulaator</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="juhuslikPilt()">
+    <h1>Poodi veebikalkulaator</h1>
+    <table>
+        <tr>
+            <td>
+                <input type="button" value="random pilt" onclick="juhuslikPilt()">
+                <br>
+                <img src="blank" alt="" id="pilt">
+            </td>
+            <td id="vastus">
+                Vastus:
+            </td>
+            <td>
+                <label><input type="radio" name="valikud" value="pildid/1.png" onchange="teeOmaValiku()">Sai</label>
+                <label><input type="radio" name="valikud" value="pildid/2.png" onchange="teeOmaValiku()">Leib</label>
+                <label><input type="radio" name="valikud" value="pildid/3.png" onchange="teeOmaValiku()">Muffin</label>
+                <label><input type="radio" name="valikud" value="pildid/4.png" onchange="teeOmaValiku()">Tee</label>
+                <label><input type="radio" name="valikud" value="pildid/5.png" onchange="teeOmaValiku()">Kook</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="kogus">Mitu tk soovid osta?</label>
+                <input type="number" id="kogus" name="kogus" min="1" max="100" value="1" onchange="arvutaPildiHind()">
+            </td>
+            <td id="summatekst">Summa:</td>
+            <td id="summa"></td>
+        </tr>
+    </table>
+</body>
