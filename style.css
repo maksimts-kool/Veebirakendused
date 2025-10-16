@@ -142,13 +142,15 @@ footer strong {
 }
 
 .grid-item {
+    position: relative;
     display: block;
     background: #ffffff;
     border: 2px solid #ccc;
     border-radius: 6px;
-    padding: 15px;
+    padding: 25px 15px 15px 15px;
     color: #333;
     text-decoration: none;
+    overflow: hidden;
 }
 
 .grid-item h3 {
@@ -173,4 +175,19 @@ footer strong {
 
 .grid-item a:hover {
     color: #1c33ba;
+}
+
+.hindeline-badge {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: #ff0019;
+    color: white;
+    padding: 4px 12px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
 }
