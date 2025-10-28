@@ -1,0 +1,47 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fff9e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #754400;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1100px;
+}
+
+.opilane {
+    background-color: #fffdf4;
+    border-radius: 12px;
+    padding: 15px 22px;
+    border: 2px solid #ff8c00;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 17px;
+    color: #f57c00;
+    text-align: center;
+}
+
+.opilane:hover {
+    background-color: #fff3d9;
+}
+
+.info {
+    margin-top: 10px;
+    border-top: 1px solid #ff8c00;
+    padding-top: 8px;
+    text-align: left;
+    color: #333;
+    font-size: 15px;
+    font-weight: normal;
+}
