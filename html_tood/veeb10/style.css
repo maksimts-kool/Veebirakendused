@@ -1,0 +1,22 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background: #f9f9fb;
+    padding: 30px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #2a4d69;
+}
+
+#vastus,
+#vastus2 {
+    background: rgba(198, 219, 254, 0.547);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+hr {
+    border: 0.5px solid #ccc;
+}
