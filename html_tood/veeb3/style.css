@@ -4,6 +4,7 @@ table#lihtne {
     height: 400px;
     border-collapse: collapse;
 }
+
 table#lihtne td {
     border: 1px solid #000000;
     text-align: center;
@@ -15,6 +16,7 @@ table#keeruline {
     height: 400px;
     border-collapse: collapse;
 }
+
 table#keeruline td {
     border: 1px solid #000000;
     text-align: center;
@@ -26,6 +28,7 @@ table#keeruline2 {
     height: 400px;
     border-collapse: collapse;
 }
+
 table#keeruline2 td {
     border: 1px solid #000000;
     text-align: center;
@@ -37,6 +40,7 @@ table#vkeeruline {
     height: 400px;
     border-collapse: collapse;
 }
+
 table#vkeeruline td {
     border: 1px solid #000000;
     text-align: center;
@@ -48,6 +52,7 @@ table#vkeeruline2 {
     height: 400px;
     border-collapse: collapse;
 }
+
 table#vkeeruline2 td {
     border: 1px solid #000000;
     text-align: center;
@@ -59,6 +64,7 @@ table#vkeeruline3 {
     height: 400px;
     border-collapse: collapse;
 }
+
 table#vkeeruline3 td {
     border: 1px solid #000000;
     text-align: center;
@@ -72,12 +78,15 @@ table#vkeeruline4 {
 table#lihtne tr:nth-child(1) td:nth-child(1) {
     background-color: #ff4343;
 }
+
 table#lihtne tr:nth-child(1) td:nth-child(2) {
     background-color: #82ff43;
 }
+
 table#lihtne tr:nth-child(2) td:nth-child(1) {
     background-color: #ffc343;
 }
+
 table#lihtne tr:nth-child(2) td:nth-child(2) {
     background-color: #ff43e0;
 }
@@ -85,9 +94,11 @@ table#lihtne tr:nth-child(2) td:nth-child(2) {
 table#keeruline tr:nth-child(1) td:nth-child(1) {
     background-color: #ff4343;
 }
+
 table#keeruline tr:nth-child(1) td:nth-child(2) {
     background-color: #82ff43;
 }
+
 table#keeruline tr:nth-child(2) td:nth-child(1) {
     background-color: #ffc343;
 }
@@ -95,12 +106,15 @@ table#keeruline tr:nth-child(2) td:nth-child(1) {
 table#keeruline2 tr:nth-child(1) td:nth-child(1) {
     background-color: #ff4343;
 }
+
 table#keeruline2 tr:nth-child(2) td:nth-child(1) {
     background-color: #82ff43;
 }
+
 table#keeruline2 tr:nth-child(2) td:nth-child(2) {
     background-color: #ffc343;
 }
+
 table#keeruline2 tr:nth-child(2) td:nth-child(3) {
     background-color: #ff43e0;
 }
@@ -108,33 +122,43 @@ table#keeruline2 tr:nth-child(2) td:nth-child(3) {
 table#vkeeruline tr:nth-child(1) td:nth-child(1) {
     background-color: #ff4343;
 }
+
 table#vkeeruline tr:nth-child(1) td:nth-child(2) {
     background-color: #82ff43;
 }
+
 table#vkeeruline tr:nth-child(1) td:nth-child(3) {
     background-color: #ffc343;
 }
+
 table#vkeeruline tr:nth-child(2) td:nth-child(1) {
     background-color: #ff43e0;
 }
+
 table#vkeeruline tr:nth-child(2) td:nth-child(2) {
     background-color: #7843ff;
 }
+
 table#vkeeruline tr:nth-child(3) td:nth-child(1) {
     background-color: #43ffbd;
 }
+
 table#vkeeruline tr:nth-child(3) td:nth-child(2) {
     background-color: #ff7b43;
 }
+
 table#vkeeruline tr:nth-child(4) td:nth-child(1) {
     background-color: #954193;
 }
+
 table#vkeeruline tr:nth-child(4) td:nth-child(2) {
     background-color: #ae2828;
 }
+
 table#vkeeruline tr:nth-child(5) td:nth-child(1) {
     background-color: #27a7b1;
 }
+
 table#vkeeruline tr:nth-child(5) td:nth-child(2) {
     background-color: #139c02;
 }
@@ -143,34 +167,42 @@ table#vkeeruline4 tr:nth-child(1) td:nth-child(1) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(2) td:nth-child(2) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(3) td:nth-child(3) {
-     background-color: #ff4343;
+    background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(4) td:nth-child(4) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(5) td:nth-child(5) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(5) td:nth-child(1) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(4) td:nth-child(2) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(2) td:nth-child(4) {
     background-color: #ff4343;
     border: 1px solid #000000;
 }
+
 table#vkeeruline4 tr:nth-child(1) td:nth-child(5) {
     background-color: #ff4343;
     border: 1px solid #000000;
