@@ -44,6 +44,7 @@
             });
 
             $("img").click(huppa);
+            $("#menuNupp").click(menunupp);
         }
         function pildiKoordinaat(event, ui) {
             let koht = ui.offset;
@@ -51,6 +52,20 @@
         }
         function huppa() {
             $(this).effect("bounce", { times: 3, distance: 50 }, 500);
+        }
+        let menuNähtav = true;
+        function menunupp() {
+            if (menuNähtav) {
+                $("nav").animate({ top: "-200px", opacity: 0 }, 600, function () {
+                    $(this).hide();
+                });
+                $("#menuNupp").text("Näita menüüd");
+                menuNähtav = false;
+            } else {
+                $("nav").show().animate({ top: "0", opacity: 1 }, 600);
+                $("#menuNupp").text("Peida menüü");
+                menuNähtav = true;
+            }
         }
     </script>
 </head>
@@ -71,7 +86,7 @@
             <li><a href="./wp">Wordpress</a></li>
         </ul>
     </nav>
-
+    <button id="menuNupp">Peida menüü</button>
     <main>
         <section>
             <h2>Tervitus</h2>
@@ -116,6 +131,10 @@
                 </li>
                 <li>
                     Lisatud jQuery UI efekt "bounce" – kui vajutada pildile, see hüppab kolm korda.
+                </li>
+                <li>
+                    Võib muuda menüüd – kui vajutada menüü nupule, see peidab või näitab nav menüüd,
+                    kasutades animate() funktsiooni.
                 </li>
             </ul>
         </section>
