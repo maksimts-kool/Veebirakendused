@@ -6,6 +6,50 @@
     <title>Muusika küsitlusvorm</title>
     <link rel="stylesheet" href="style.css">
     <script src="kysimusscript.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#regvorm").on("submit", function (event) {
+                event.preventDefault();
+                let onViga = false;
+
+                $(".error").remove();
+
+                if ($('input[name="muusika"]:checked').length == 0) {
+                    $("#vastus").after('<span class="error">Palun vali vähemalt üks muusikastiil.</span>');
+                    onViga = true;
+                }
+
+                let arvamus = $("#arvamus").val();
+                if (arvamus.length < 5) {
+                    $("#arvamusVastus").after('<span class="error">Sisesta vähemalt 5 tähemärki.</span>');
+                    onViga = true;
+                }
+
+                if ($('input[name="raadiokul"]:checked').length == 0) {
+                    $("#raadioVastus").after('<span class="error">Palun märgi, kas sa kuulad raadiot.</span>');
+                    onViga = true;
+                }
+
+                let kuuladRaadiot = $('input[name="raadiokul"]:checked').val() == "Jah";
+                let raadiojaam = $("#raadiojaam").val();
+                if (kuuladRaadiot && raadiojaam.length < 2) {
+                    $("#raadiojaamVastus").after('<span class="error">Palun nimeta vähemalt üks raadiojaam.</span>');
+                    onViga = true;
+                }
+
+                if ($('input[name="muusikakul"]:checked').length == 0) {
+                    $("#muusikakulVastus").after('<span class="error">Palun vali lemmikmuusika.</span>');
+                    onViga = true;
+                }
+
+                if (!onViga) {
+                    saada();
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -90,7 +134,7 @@
 
             <tr>
                 <td colspan="2">
-                    <button type="button" onclick="saada()">Saada</button>
+                    <button type="submit">Saada</button>
                     <button type="button" onclick="puhasta()">Puhasta</button>
                 </td>
             </tr>

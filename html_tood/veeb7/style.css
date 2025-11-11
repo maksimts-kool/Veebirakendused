@@ -32,6 +32,12 @@ form {
   margin-top: 0;
 }
 
+.error {
+  color: red;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
