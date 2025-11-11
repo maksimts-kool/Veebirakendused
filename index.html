@@ -2,16 +2,62 @@
 <html lang="et">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Maksim veebirakenduste koduleht</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"
+        integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+
     <script src="aeg.js"></script>
+
+    <script>
+        function sinine() {
+            $(this).css("color", "#1c33ba");
+        }
+        function red() {
+            $(this).css("color", "red");
+        }
+
+        function Peida() {
+            $(this).siblings().hide(1000);
+        }
+
+        function Naita() {
+            $(this).siblings().show(1000);
+        }
+
+        function stardiLeht() {
+            $("section h2").mouseenter(red);
+            $("section h2").mouseleave(sinine);
+
+            $("section h2").click(Peida);
+            $("section h2").dblclick(Naita);
+
+            $("img").draggable({
+                containment: "parent",
+                drag: pildiKoordinaat,
+            });
+
+            $("img").click(huppa);
+        }
+        function pildiKoordinaat(event, ui) {
+            let koht = ui.offset;
+            $("#xy").html("Pilt asub: X: " + koht.left.toFixed(0) + " Y: " + koht.top.toFixed(0));
+        }
+        function huppa() {
+            $(this).effect("bounce", { times: 3, distance: 50 }, 500);
+        }
+    </script>
 </head>
 
-<body>
+<body onload="stardiLeht()">
     <header>
-        <img src="generated-image(2).png" alt="Logo">
+        <img src="generated-image(2).png" alt="Logo" />
         <h1>Maksim veebirakenduste koduleht</h1>
     </header>
 
@@ -30,31 +76,54 @@
         <section>
             <h2>Tervitus</h2>
             <p>
-                See on minu veebirakenduste kursuse koduleht. Siit leiad infot, töid
-                ja meedia sisu.
+                See on minu veebirakenduste kursuse koduleht. Siit leiad infot, töid ja
+                meedia sisu.
             </p>
         </section>
 
         <section>
             <h2>Näidis pilt</h2>
-            <img src="2111292.png" alt="GitHubi logo">
+            <img src="2111292.png" alt="GitHubi logo" />
+            <div id="xy"></div>
         </section>
+
         <section>
             <h2>Aeg</h2>
             <button onclick="naitaKuupaevaJaKellaega()">TÄNA ON</button>
             <p id="kuupaev"></p>
             <p id="kellaaeg"></p>
             <p id="kokku"></p>
-
             <button onclick="arvutaSynnipaevani()">Minu sünnipäevani</button>
             <p id="teade"></p>
             <p id="vahe"></p>
+        </section>
+
+        <section>
+            <h2>Siin kasutatakse jQuery</h2>
+            <ul>
+                <li>
+                    Pealkirja hiire sündmused: mouseenter() ja mouseleave() – teksti värv muutub punaseks või siniseks.
+                </li>
+                <li>
+                    Sektsioonide sisu saab peita ja näidata, kasutades hide() ja show() funktsioone.
+                </li>
+                <li>
+                    Pildi saab hiirega liigutada draggable() ja see ei lähe
+                    sektsioonist välja (containment: "parent").
+                </li>
+                <li>
+                    Pildi asukoht (koordinaadid X ja Y) kuvatakse sektsiooni allosas.
+                </li>
+                <li>
+                    Lisatud jQuery UI efekt "bounce" – kui vajutada pildile, see hüppab kolm korda.
+                </li>
+            </ul>
         </section>
     </main>
 
     <footer>
         <p>
-            <strong>Kontakteeri minuga:</strong> maksimtsitkool@gmail.com <br>
+            <strong>Kontakteeri minuga:</strong> maksimtsitkool@gmail.com <br />
             &copy; Maksim Tsikvasvili
         </p>
     </footer>
