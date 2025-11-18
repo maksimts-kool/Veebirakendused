@@ -1,0 +1,113 @@
+header {
+    padding: 60px;
+    text-align: center;
+    background: #0b9fe9;
+    color: white;
+}
+
+/* Style the links inside the pill navigation menu */
+a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+/* Change the color of links on mouse-over */
+a:hover {
+    background-color: #aab3d9;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 130px;
+    background-color: #f1f1f1;
+    height: 100%;
+    /* Full height */
+    position: fixed;
+    /* Make it stick, even on scroll */
+    overflow: auto;
+    /* Enable scrolling if the sidenav has too much content */
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+div.flex-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 140px;
+}
+
+div.flex-container>div {
+    margin: 10px;
+    padding: 20px;
+    flex: 1;
+}
+
+button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    margin: 6px 4px 14px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    display: flex;
+    background-color: rgb(12, 70, 127);
+    padding: 5px;
+    gap: 5px;
+}
+
+.container div {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.container div:nth-child(1) {
+    background-color: #b3e5fc;
+}
+
+.container div:nth-child(2) {
+    background-color: #c3b3fc;
+}
+
+.container div:nth-child(3) {
+    background-color: #fcb3fc;
+}
+
+.container div:nth-child(4) {
+    background-color: #b7fcb3;
+}
+
+.container div:nth-child(5) {
+    background-color: #fcb3ba;
+}

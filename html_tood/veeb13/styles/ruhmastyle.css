@@ -1,0 +1,44 @@
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 20px;
+    border: 3px solid #01ae2f;
+}
+
+td {
+    padding: 15px;
+    border: 1px solid #999;
+}
+
+#pilt {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+#summatekst,
+#valitudtekst {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+#summa {
+    font-weight: bold;
+    font-size: 18px;
+    color: #4CAF50;
+}
