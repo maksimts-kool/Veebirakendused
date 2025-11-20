@@ -1,25 +1,27 @@
 <div class="content-card">
+    
 <body onload="algneSeadistus()">
+    
     <h1>Poodi veebikalkulaator</h1>
     <table>
         <tr>
             <td>
-                <label><input type="radio" name="valikud" value="Images/1.png" onchange="muudaPiltiJaArvuta()"
+                <label><input type="radio" name="valikud" value="content/post1/1.png" onchange="muudaPiltiJaArvuta()"
                         checked>Sai</label>
-                <label><input type="radio" name="valikud" value="Images/2.png"
+                <label><input type="radio" name="valikud" value="content/post1/2.png"
                         onchange="muudaPiltiJaArvuta()">Leib</label>
-                <label><input type="radio" name="valikud" value="Images/3.png"
+                <label><input type="radio" name="valikud" value="content/post1/3.png"
                         onchange="muudaPiltiJaArvuta()">Muffin</label>
-                <label><input type="radio" name="valikud" value="Images/4.png"
+                <label><input type="radio" name="valikud" value="content/post1/4.png"
                         onchange="muudaPiltiJaArvuta()">Tee</label>
-                <label><input type="radio" name="valikud" value="Images/5.png"
+                <label><input type="radio" name="valikud" value="content/post1/5.png"
                         onchange="muudaPiltiJaArvuta()">Kook</label>
             </td>
             <td>
                 <div id="valitudtekst">Valitud pilt:</div>
             </td>
             <td>
-                <img src="Images/1.png" alt="" id="pilt">
+                <img src="content/post1/1.png" alt="" id="pilt">
             </td>
         </tr>
         <tr>
@@ -43,3 +45,6 @@
     </table>
 </body>
 </div>
+
+<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">

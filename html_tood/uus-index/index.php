@@ -1,9 +1,9 @@
 <?php
 $posts = [
-    ["id" => "post1", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP."],
-    ["id" => "post2", "title" => "", "desc" => ""],
+    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "A simple web-based calculator built with HTML, CSS, and JavaScript."],
+    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP."],
     ["id" => "post3", "title" => "", "desc" => ""],
-    ["id" => "post4", "title" => "", "desc" => ""],
+    ["id" => "post4", "title" => "Git Käsud", "desc" => "A comprehensive guide to essential Git commands for version control."],
 ];
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $posts = [
 </header>
 
 <div class="logo-area">
-  <img src="logo.png" class="main-logo" alt="Logo">
+  <img id="mainLogo" src="logo.png" class="main-logo" alt="Logo">
 </div>
 
 <div class="container">

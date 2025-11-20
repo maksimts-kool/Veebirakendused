@@ -29,15 +29,15 @@ function arvutaKogusJaTarne() {
   let source = document.getElementById("pilt").getAttribute("src");
   let hind = 0;
 
-  if (source === "Images/1.png") {
+  if (source === "content/post1/1.png") {
     hind = hind1;
-  } else if (source === "Images/2.png") {
+  } else if (source === "content/post1/2.png") {
     hind = hind2;
-  } else if (source === "Images/3.png") {
+  } else if (source === "content/post1/3.png") {
     hind = hind3;
-  } else if (source === "Images/4.png") {
+  } else if (source === "content/post1/4.png") {
     hind = hind4;
-  } else if (source === "Images/5.png") {
+  } else if (source === "content/post1/5.png") {
     hind = hind5;
   }
 

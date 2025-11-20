@@ -1,3 +1,4 @@
+<div class="content-card">
 <?php
 echo "<h2>GIT käsud</h2>";
 echo "<dl>";
@@ -47,3 +48,5 @@ echo "git clone git@github.com:maksimts-kool/veebPHP.git";
 echo "</pre>";
 echo "</li>";
 echo "</ol>";
+?>
+</div>
