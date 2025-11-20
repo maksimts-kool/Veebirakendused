@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #eeeeee;
+    color: #222;
+}
+
+/* HEADER */
+.topbar {
+    background: #1774c0;
+    color: white;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.topbar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.site-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* LOGO BELOW HEADER */
+.logo-area {
+    background: #1774c0;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-logo {
+    height: 400px;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 0 20px white)
+        drop-shadow(0 0 40px white)
+        drop-shadow(0 0 60px white);
+}
+
+.main-logo.shrink {
+    height: 200px;
+}
+
+/* PAGE CONTAINER */
+.container {
+    padding: 20px;
+}
+
+/* SECTION TITLE */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* POST GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* POST CARDS */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.post.selected {
+    border: 2px solid #1774c0;
+}
+
+/* CONTENT AREA CARD */
+.content-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* CONTENT HEADINGS */
+.content-card h1,
+.content-card h2,
+.content-card h3 {
+    margin-top: 10px;
+    color: #1774c0;
+}
+
+.content-card h1 {
+    font-size: 32px;
+}
+
+.content-card h2 {
+    font-size: 26px;
+}
+
+.content-card h3 {
+    font-size: 20px;
+}
+
+/* CONTENT PARAGRAPHS */
+.content-card p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* CONTENT IMAGES */
+.content-card img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+/* CONTENT CODE BLOCKS */
+.content-card pre {
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 14px;
+}
+
+.content-card code {
+    color: #ffeb3b;
+}
+
+/* CONTENT SECTIONS */
+.content-card .section {
+    padding: 20px;
+    background: #fafafa;
+    border-left: 4px solid #1774c0;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.content-card .inner-section {
+    background: #ebebeb;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid #1774c0;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+/* SECTION TEXT */
+.content-card .section p {
+    margin: 10px 0 0 0;
+    line-height: 1.6;
+}
+
+/* LISTS */
+.content-card ul,
+.content-card ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+.footer {
+    background: #1774c0;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: 40px;
+}
+
+/* LIST VIEW (optional, for all-posts.php) */
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.list-card {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.list-thumb {
+    width: 160px;
+    height: 100px;
+    background: #dcdcdc;
+    border-radius: 12px;
+}
