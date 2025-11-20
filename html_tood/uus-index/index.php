@@ -1,10 +1,14 @@
 <?php
 $posts = [
-    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "A simple web-based calculator built with HTML, CSS, and JavaScript."],
-    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP."],
-    ["id" => "post3", "title" => "", "desc" => ""],
-    ["id" => "post4", "title" => "Git Käsud", "desc" => "A comprehensive guide to essential Git commands for version control."],
+    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "A simple web-based calculator built with HTML, CSS, and JavaScript.", "date" => "2025-11-19"],
+    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP.", "date" => "2025-11-19"],
+    ["id" => "post3", "title" => "", "desc" => "", "date" => "2025-11-19"],
+    ["id" => "post4", "title" => "Git Käsud", "desc" => "A comprehensive guide to essential Git commands for version control.", "date" => "2025-11-19"],
+    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "", "date" => "2025-11-20"],
 ];
+usort($posts, function($a, $b) {
+    return strtotime($b["date"]) - strtotime($a["date"]);
+});
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,9 +42,10 @@ $posts = [
   <div class="grid">
     <?php foreach ($posts as $post) { ?>
       <div class="card post" onclick="loadPost('<?php echo $post['id']; ?>')">
-        <h3><?php echo $post['title']; ?></h3>
-        <p><?php echo $post['desc']; ?></p>
-      </div>
+    <h3><?php echo $post['title']; ?></h3>
+    <p><?php echo $post['desc']; ?></p>
+    <small><?php echo $post['date']; ?></small>
+</div>
     <?php } ?>
   </div>
 
