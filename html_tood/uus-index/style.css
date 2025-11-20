@@ -92,8 +92,20 @@ body {
 .content-card h1,
 .content-card h2,
 .content-card h3 {
-    margin-top: 0;
+    margin-top: 10px;
     color: #1774c0;
+}
+
+.content-card h1 {
+    font-size: 32px;
+}
+
+.content-card h2 {
+    font-size: 26px;
+}
+
+.content-card h3 {
+    font-size: 20px;
 }
 
 /* CONTENT PARAGRAPHS */
@@ -133,10 +145,13 @@ body {
     margin-bottom: 20px;
 }
 
-/* SECTION TITLE */
-.content-card .section h3 {
-    margin-top: 0;
-    color: #1774c0;
+.content-card .inner-section {
+    background: #ebebeb;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid #1774c0;
+    border-radius: 12px;
+    font-size: 16px;
 }
 
 /* SECTION TEXT */

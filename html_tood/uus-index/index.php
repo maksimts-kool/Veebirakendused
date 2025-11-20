@@ -4,7 +4,7 @@ $posts = [
     ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP.", "date" => "2025-11-19"],
     ["id" => "post3", "title" => "", "desc" => "", "date" => "2025-11-19"],
     ["id" => "post4", "title" => "Git Käsud", "desc" => "A comprehensive guide to essential Git commands for version control.", "date" => "2025-11-19"],
-    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "", "date" => "2025-11-20"],
+    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Explore various text manipulation functions in PHP.", "date" => "2025-11-20"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -25,7 +25,7 @@ usort($posts, function($a, $b) {
   <div class="site-name">Maksim Tsikavsvili</div>
   <nav>
     <a href="index.php">Home</a>
-    <a href="index.php">Vana Index</a>
+    <a href="https://maksimtsikvasvili24.thkit.ee">Vana Index</a>
   </nav>
 </header>
 
