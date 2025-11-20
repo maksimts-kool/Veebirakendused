@@ -1,10 +1,10 @@
 <?php
 $posts = [
-    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "A simple web-based calculator built with HTML, CSS, and JavaScript.", "date" => "2025-11-19"],
-    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP.", "date" => "2025-11-19"],
-    ["id" => "post3", "title" => "", "desc" => "", "date" => "2025-11-19"],
-    ["id" => "post4", "title" => "Git Käsud", "desc" => "A comprehensive guide to essential Git commands for version control.", "date" => "2025-11-19"],
-    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Explore various text manipulation functions in PHP.", "date" => "2025-11-20"],
+    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "Lihtne veebipõhine kalkulaator, mis on loodud HTML, CSS ja JavaScripti abil.", "date" => "2025-11-19"],
+    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "PHP ajafunktsioonide õppimine.", "date" => "2025-11-19"],
+    ["id" => "post3", "title" => "Ilus pilt ja aeg", "desc" => "Ilus pilt ja kellaaja kuvamine.", "date" => "2025-11-19"],
+    ["id" => "post4", "title" => "Git Käsud", "desc" => "Kohustuslike Git käskude põhjalik juhend versioonihalduseks.", "date" => "2025-11-19"],
+    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Erinevate tekstimanipulatsiooni funktsioonide uurimine PHP-s.", "date" => "2025-11-20"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
