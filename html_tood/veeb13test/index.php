@@ -1,9 +1,9 @@
 <?php
 $posts = [
-    ["id" => "post1", "title" => "This is an Article Title", "desc" => "This is a short description of the article."],
-    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP."],
-    ["id" => "ruhmaleht", "title" => "This is an Article Title", "desc" => "This is a short description of the article."],
-    ["id" => "post4", "title" => "This is an Article Title", "desc" => "This is a short description of the article."],
+    ["id" => "post1", "title" => "Ajafunktsioonid PHP-s", "desc" => "Learn about date and time functions in PHP."],
+    ["id" => "post2", "title" => "", "desc" => ""],
+    ["id" => "post3", "title" => "", "desc" => ""],
+    ["id" => "post4", "title" => "", "desc" => ""],
 ];
 ?>
 <!DOCTYPE html>
@@ -21,6 +21,7 @@ $posts = [
   <div class="site-name">Maksim Tsikavsvili</div>
   <nav>
     <a href="index.php">Home</a>
+    <a href="index.php">Vana Index</a>
   </nav>
 </header>
 

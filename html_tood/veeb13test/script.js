@@ -1,7 +1,7 @@
 let activePost = null;
 
 function loadPost(id) {
-    fetch("content/" + id + ".php")
+    fetch("content/" + id + "/index.php")
         .then(res => res.text())
         .then(html => {
             document.getElementById("content-area").innerHTML = html;
