@@ -41,3 +41,11 @@ function loadPost(id) {
             });
         });
 }
+
+function filterPosts(category) {
+    document.querySelectorAll(".card.post").forEach(card => {
+        const c = card.getAttribute("data-category");
+        card.style.display =
+            category == "Kõik" || c == category ? "block" : "none";
+    });
+}
