@@ -1,10 +1,11 @@
 <?php
 $posts = [
-    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "Lihtne veebipõhine kalkulaator, mis on loodud HTML, CSS ja JavaScripti abil.", "date" => "2025-11-19"],
-    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "PHP ajafunktsioonide õppimine.", "date" => "2025-11-19"],
-    ["id" => "post3", "title" => "Ilus pilt ja aeg", "desc" => "Ilus pilt ja kellaaja kuvamine.", "date" => "2025-11-19"],
-    ["id" => "post4", "title" => "Git Käsud", "desc" => "Kohustuslike Git käskude põhjalik juhend versioonihalduseks.", "date" => "2025-11-19"],
-    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Erinevate tekstimanipulatsiooni funktsioonide uurimine PHP-s.", "date" => "2025-11-20"],
+    ["id" => "post1", "title" => "Veebikalkulaator", "desc" => "Lihtne veebipõhine kalkulaator, mis on loodud HTML, CSS ja JavaScripti abil.", "date" => "2025-11-19", "category" => "Määratlemata"],
+    ["id" => "post2", "title" => "Ajafunktsioonid PHP-s", "desc" => "PHP ajafunktsioonide õppimine.", "date" => "2025-11-19", "category" => "Funktsioonid"],
+    ["id" => "post3", "title" => "Ilus pilt ja aeg", "desc" => "Ilus pilt ja kellaaja kuvamine.", "date" => "2025-11-19", "category" => "Määratlemata"],
+    ["id" => "post4", "title" => "Git Käsud", "desc" => "Kohustuslike Git käskude põhjalik juhend versioonihalduseks.", "date" => "2025-11-19", "category" => "Määratlemata"],
+    ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Erinevate tekstimanipulatsiooni funktsioonide uurimine PHP-s.", "date" => "2025-11-20", "category" => "Funktsioonid"],
+    ["id" => "matem-funk", "title" => "Matemaatilised funktsioonid", "desc" => "Erinevate matemaatiliste funktsioonide uurimine PHP-s.", "date" => "2025-11-25", "category" => "Funktsioonid"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -25,8 +26,22 @@ usort($posts, function($a, $b) {
   <div class="site-name">Maksim Tsikavsvili</div>
   <nav>
     <a href="index.php">Home</a>
+
+    <span class="nav-split">|</span>
+
+    <div class="dropdown">
+        <span>Kategooriad</span>
+        <div class="dropdown-content">
+            <button onclick="filterPosts('Kõik')">Kõik</button>
+            <button onclick="filterPosts('Funktsioonid')">Funktsioonid</button>
+            <button onclick="filterPosts('Määratlemata')">Määratlemata</button>
+        </div>
+    </div>
+
+    <span class="nav-split">|</span>
+
     <a href="https://maksimtsikvasvili24.thkit.ee">Vana Index</a>
-  </nav>
+</nav>
 </header>
 
 <div class="logo-area">
@@ -41,9 +56,12 @@ usort($posts, function($a, $b) {
 
   <div class="grid">
     <?php foreach ($posts as $post) { ?>
-      <div class="card post" onclick="loadPost('<?php echo $post['id']; ?>')">
+      <div class="card post"
+     data-category="<?php echo $post['category']; ?>"
+     onclick="loadPost('<?php echo $post['id']; ?>')">
     <h3><?php echo $post['title']; ?></h3>
     <p><?php echo $post['desc']; ?></p>
+    <small class="post-category"><?php echo $post['category']; ?></small><br>
     <small><?php echo $post['date']; ?></small>
 </div>
     <?php } ?>
