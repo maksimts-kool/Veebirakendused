@@ -6,6 +6,7 @@ $posts = [
     ["id" => "post4", "title" => "Git Käsud", "desc" => "Kohustuslike Git käskude põhjalik juhend versioonihalduseks.", "date" => "2025-11-19", "category" => "Määratlemata"],
     ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Erinevate tekstimanipulatsiooni funktsioonide uurimine PHP-s.", "date" => "2025-11-20", "category" => "Funktsioonid"],
     ["id" => "matem-funk", "title" => "Matemaatilised funktsioonid", "desc" => "Erinevate matemaatiliste funktsioonide uurimine PHP-s.", "date" => "2025-11-25", "category" => "Funktsioonid"],
+    ["id" => "too-pilt", "title" => "Töö pildifailidega", "desc" => "Pildifailide töötlemine ja manipuleerimine PHP-s.", "date" => "2025-11-25", "category" => "Funktsioonid"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
