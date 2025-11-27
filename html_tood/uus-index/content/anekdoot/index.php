@@ -1,3 +1,4 @@
+<div id="anekdoot">
 <?php include("pais.php"); ?>
 
 <section>
@@ -8,3 +9,4 @@
 </section>
 
 <?php include("jalus.php"); ?>
+</div>
