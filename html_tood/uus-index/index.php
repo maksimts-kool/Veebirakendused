@@ -7,6 +7,9 @@ $posts = [
     ["id" => "post5", "title" => "Tekstifunktsioonid", "desc" => "Erinevate tekstimanipulatsiooni funktsioonide uurimine PHP-s.", "date" => "2025-11-20", "category" => "Funktsioonid"],
     ["id" => "matem-funk", "title" => "Matemaatilised funktsioonid", "desc" => "Erinevate matemaatiliste funktsioonide uurimine PHP-s.", "date" => "2025-11-25", "category" => "Funktsioonid"],
     ["id" => "too-pilt", "title" => "Töö pildifailidega", "desc" => "Pildifailide töötlemine ja manipuleerimine PHP-s.", "date" => "2025-11-25", "category" => "Funktsioonid"],
+    ["id" => "mobiilimall", "title" => "Mobiilseadmete mall", "desc" => "Responsiivse veebimalli loomine mobiilseadmete jaoks.", "date" => "2025-11-27", "category" => "Mobillimall"],
+    ["id" => "anekdoot", "title" => "Anekdootide kogu", "desc" => "Kogumik naljakaid anekdoote erinevatel teemadel.", "date" => "2025-11-27", "category" => "Mobillimall"],
+    ["id" => "mobillimalliKonspekt", "title" => "Mobiilimalli konspekt", "desc" => "Konspekt mobiilimalli loomisest ja rakendamisest.", "date" => "2025-11-27", "category" => "Mobillimall"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -35,6 +38,7 @@ usort($posts, function($a, $b) {
         <div class="dropdown-content">
             <button onclick="filterPosts('Kõik')">Kõik</button>
             <button onclick="filterPosts('Funktsioonid')">Funktsioonid</button>
+            <button onclick="filterPosts('Mobillimall')">Mobillimall</button>
             <button onclick="filterPosts('Määratlemata')">Määratlemata</button>
         </div>
     </div>

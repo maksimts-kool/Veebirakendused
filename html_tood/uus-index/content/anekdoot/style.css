@@ -1,0 +1,83 @@
+/* === Üldine lehe kujundus === */
+
+
+/* === Päis ja pealkiri === */
+#anekdoot header {
+    background: linear-gradient(135deg, #0077aa, #0099cc);
+    color: #fff;
+    text-align: center;
+    padding: 30px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#anekdoot header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+/* === Menüü === */
+#anekdoot nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+
+#anekdoot nav li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+#anekdoot nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#anekdoot nav a:hover {
+    color: #ffd700;
+}
+
+/* === Põhisisu === */
+#anekdoot main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 70vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* === Sisu kaart === */
+#anekdoot section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px auto;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+}
+
+#anekdoot section+section {
+    margin-top: 25px;
+}
+
+#anekdoot section:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+#anekdoot section h3 {
+    color: #0077aa;
+    margin-top: 0;
+}
+
+/* === Jalus === */
+#anekdoot footer {
+    background: linear-gradient(135deg, #0077aa, #0099cc);
+    padding: 15px 20px;
+    font-size: 0.95em;
+    color: #ffffff;
+    text-align: right;
+    border-top: 1px solid #ccc;
+}
