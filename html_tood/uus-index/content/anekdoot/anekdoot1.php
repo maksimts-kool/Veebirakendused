@@ -9,24 +9,24 @@
 <div class="anekdoodid-grid">
 
   <section class="anekdoot">
-    <h3>Anekdoot 1</h3>
+    <h3>Õpetaja Anekdoot</h3>
     <p>Õpetaja küsib: "Juku, miks sa hilinesid?"<br>
     Juku vastab: "Kell oli liiga kiire!"</p>
   </section>
 
   <section class="anekdoot">
-    <h3>Anekdoot 2</h3>
+    <h3>Mari Anekdoot</h3>
     <p>Mari küsib: "Kas sul on kontrolltöö hirmus?"<br>
     Juku ütleb: "Pole hullu — ma unustasin vihiku!"</p>
   </section>
 
   <section class="anekdoot">
-    <h3>Anekdoot 3</h3>
+    <h3>Arvuti Anekdoot</h3>
     <p>Arvuti naljatas hiirele: "Ära nii palju kliki, ma juba värisen!"</p>
   </section>
 
   <section class="anekdoot">
-    <h3>Anekdoot 4</h3>
+    <h3>Isa Anekdoot</h3>
     <p>Isa ütleb pojale: "Õpi hästi, muidu saad minust õpetaja!"</p>
   </section>
 

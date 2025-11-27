@@ -9,18 +9,18 @@
 <div class="anekdoodid-grid">
 
   <section class="anekdoot">
-    <h3>Anekdoot 1</h3>
+    <h3>Õpetaja Anekdoot #2</h3>
     <p>Õpetaja ütleb: "Õpi ajalugu, Juku, muidu kordub see kontrolltöö!"</p>
   </section>
 
   <section class="anekdoot">
-    <h3>Anekdoot 2</h3>
+    <h3>Mari Anekdoot #2</h3>
     <p>Arvuti küsis inimese käest: "Kas tahad uuendust?"<br>
     Inimene: "Ainult kui see ei riku midagi ära!"</p>
   </section>
 
   <section class="anekdoot">
-    <h3>Anekdoot 3</h3>
+    <h3>Doktor Anekdoot</h3>
     <p>Doktor küsib: "Kuidas uni on?"<br>
     Patsient vastab: "Vahepeal magan nii hästi, et töö jääb unarusse!"</p>
   </section>
