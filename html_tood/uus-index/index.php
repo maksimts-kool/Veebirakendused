@@ -10,6 +10,7 @@ $posts = [
     ["id" => "mobiilimall", "title" => "Mobiilseadmete mall", "desc" => "Responsiivse veebimalli loomine mobiilseadmete jaoks.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "anekdoot", "title" => "Anekdootide kogu", "desc" => "Kogumik naljakaid anekdoote erinevatel teemadel.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "mobillimalliKonspekt", "title" => "Mobiilimalli konspekt", "desc" => "Konspekt mobiilimalli loomisest ja rakendamisest.", "date" => "2025-11-27", "category" => "Mobillimall"],
+    ["id" => "php-ab", "title" => "", "desc" => "", "date" => "2025-11-27", "category" => "Määratlemata"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
