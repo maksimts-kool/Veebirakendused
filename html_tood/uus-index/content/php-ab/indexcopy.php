@@ -37,7 +37,8 @@
             $paring->execute();
             if ($paring->fetch()) {
                 echo "<h2>".$pealkiri."</h2>";
-                echo "<div>".$kirjeldus.", ".$kuupaev;
+                echo "<div>".$kuupaev."</div>";
+                echo "<img src='$kirjeldus' alt='Tuju pilt'>";
             } else {
                 echo "<p>Uudist ei leitud.</p>";
             }

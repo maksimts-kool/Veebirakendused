@@ -20,7 +20,7 @@ if (isset($_REQUEST['kustuta'])) {
     <a href="content/php-ab/lisaUudis.php">
         <button>Lisa uus uudis</button>
     </a>
-    <a href="content/php-ab/index copy.php">
+    <a href="content/php-ab/indexcopy.php">
         <button>Vaata teine tabel</button>
     </a>
 </div>
