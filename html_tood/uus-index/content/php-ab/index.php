@@ -48,7 +48,7 @@ if (isset($_REQUEST['kustuta'])) {
     echo "<tr class='$class'>";
     echo "<td>$id</td>";
     echo "<td>$pealkiri</td>";
-    echo "<td><img href='$kirjeldus'></td>";
+    echo "<td><img src='$kirjeldus'></td>";
     echo "<td>$kuupaev</td>";
     echo "<td><a href='?kustuta=$id'>Kustuta</a></td>";
     echo "</tr>";
