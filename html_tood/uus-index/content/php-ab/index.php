@@ -17,8 +17,11 @@ if (isset($_REQUEST['kustuta'])) {
     <body>
         <h1>Uudiste tabeli sisu</h1>
         <div style="text-align:center;">
-    <a href="lisaUudis.php">
+    <a href="content/php-ab/lisaUudis.php">
         <button>Lisa uus uudis</button>
+    </a>
+    <a href="content/php-ab/index copy.php">
+        <button>Vaata teine tabel</button>
     </a>
 </div>
         <table>

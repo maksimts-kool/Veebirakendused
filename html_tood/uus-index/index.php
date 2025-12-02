@@ -10,7 +10,7 @@ $posts = [
     ["id" => "mobiilimall", "title" => "Mobiilseadmete mall", "desc" => "Responsiivse veebimalli loomine mobiilseadmete jaoks.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "anekdoot", "title" => "Anekdootide kogu", "desc" => "Kogumik naljakaid anekdoote erinevatel teemadel.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "mobillimalliKonspekt", "title" => "Mobiilimalli konspekt", "desc" => "Konspekt mobiilimalli loomisest ja rakendamisest.", "date" => "2025-11-27", "category" => "Mobillimall"],
-    ["id" => "php-ab", "title" => "", "desc" => "", "date" => "2025-11-27", "category" => "Määratlemata"],
+    ["id" => "php-ab", "title" => "XAMPP Andmebaasi loomine PHPs", "desc" => "", "date" => "2025-12-02", "category" => "Määratlemata"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -62,15 +62,32 @@ usort($posts, function($a, $b) {
 
   <div class="grid">
     <?php foreach ($posts as $post) { ?>
-      <div class="card post"
-     data-category="<?php echo $post['category']; ?>"
-     onclick="loadPost('<?php echo $post['id']; ?>')">
-    <h3><?php echo $post['title']; ?></h3>
-    <p><?php echo $post['desc']; ?></p>
-    <small class="post-category"><?php echo $post['category']; ?></small><br>
-    <small><?php echo $post['date']; ?></small>
-</div>
-    <?php } ?>
+
+  <?php if ($post['id'] === 'php-ab') { ?>
+    <!-- php-ab opens in new tab -->
+    <div class="card post" data-category="<?php echo $post['category']; ?>">
+      <a href="content/php-ab/index.php" target="_blank" class="post-link">
+        <h3><?php echo $post['title']; ?></h3>
+        <p><?php echo $post['desc']; ?></p>
+        <small class="post-category"><?php echo $post['category']; ?></small><br>
+        <small><?php echo $post['date']; ?></small>
+      </a>
+    </div>
+
+  <?php } else { ?>
+    <!-- all other posts open inside index -->
+    <div class="card post"
+         data-category="<?php echo $post['category']; ?>"
+         onclick="loadPost('<?php echo $post['id']; ?>')">
+      <h3><?php echo $post['title']; ?></h3>
+      <p><?php echo $post['desc']; ?></p>
+      <small class="post-category"><?php echo $post['category']; ?></small><br>
+      <small><?php echo $post['date']; ?></small>
+    </div>
+
+  <?php } ?>
+
+<?php } ?>
   </div>
 
   <div id="content-area"></div>

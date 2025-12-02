@@ -9,8 +9,8 @@
     <body>
         <h1>Uudiste loend</h1>
         <div style="text-align:center;">
-            <a href="lisaUudis.php">
-                <button>Lisa uus uudis</button>
+            <a href="../../lisaUudis.php">
+                <button>Tagasi</button>
             </a>
         </div>
         <div id="menyy">
