@@ -27,7 +27,7 @@ if (isset($_REQUEST['nimi'])) {
 <h1>Lisa uus uudis</h1>
 
 <div style="text-align:center;">
-    <a href="../../index.php">
+    <a href="index.php">
         <button>Tagasi</button>
     </a>
 </div>

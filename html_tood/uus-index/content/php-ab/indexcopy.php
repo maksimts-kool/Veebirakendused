@@ -9,7 +9,7 @@
     <body>
         <h1>Uudiste loend</h1>
         <div style="text-align:center;">
-            <a href="../../lisaUudis.php">
+            <a href="index.php">
                 <button>Tagasi</button>
             </a>
         </div>
@@ -38,7 +38,7 @@
             if ($paring->fetch()) {
                 echo "<h2>".$pealkiri."</h2>";
                 echo "<div>".$kuupaev."</div>";
-                echo "<img src='$kirjeldus' alt='Tuju pilt'>";
+                echo "<img src='$kirjeldus' alt='pilt'>";
             } else {
                 echo "<p>Uudist ei leitud.</p>";
             }
