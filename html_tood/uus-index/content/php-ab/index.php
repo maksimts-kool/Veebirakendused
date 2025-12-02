@@ -1,11 +1,34 @@
-<?php require('config.php'); 
+<?php
+require('config.php'); 
+
 if (isset($_REQUEST['kustuta'])) {
+
+    $correct_user = "admin";
+$correct_pass = "phpantihacker";
+
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="Admin Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo "Access denied";
+    exit;
+}
+
+if ($_SERVER['PHP_AUTH_USER'] !== $correct_user ||
+    $_SERVER['PHP_AUTH_PW'] !== $correct_pass) {
+    header('WWW-Authenticate: Basic realm="Admin Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo "Wrong username or password";
+    exit;
+}
+
     $id = $_REQUEST['kustuta'];
     $paring = $connect->prepare("DELETE FROM uudised WHERE uudisId = ?");
     $paring->bind_param("i", $id);
     $paring->execute();
     $paring->close();
+
     header("Location: index.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>

@@ -17,6 +17,25 @@ if (isset($_REQUEST['nimi'])) {
     header("Location: index.php");
 }
 ?>
+<?php
+$correct_user = "admin";
+$correct_pass = "phpantihacker";
+
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="Admin Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo "Access denied";
+    exit;
+}
+
+if ($_SERVER['PHP_AUTH_USER'] !== $correct_user ||
+    $_SERVER['PHP_AUTH_PW'] !== $correct_pass) {
+    header('WWW-Authenticate: Basic realm="Admin Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo "Wrong username or password";
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
