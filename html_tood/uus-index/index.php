@@ -10,7 +10,8 @@ $posts = [
     ["id" => "mobiilimall", "title" => "Mobiilseadmete mall", "desc" => "Responsiivse veebimalli loomine mobiilseadmete jaoks.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "anekdoot", "title" => "Anekdootide kogu", "desc" => "Kogumik naljakaid anekdoote erinevatel teemadel.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "mobillimalliKonspekt", "title" => "Mobiilimalli konspekt", "desc" => "Konspekt mobiilimalli loomisest ja rakendamisest.", "date" => "2025-11-27", "category" => "Mobillimall"],
-    ["id" => "php-ab", "title" => "XAMPP Andmebaasi loomine PHPs", "desc" => "", "date" => "2025-12-02", "category" => "Määratlemata"],
+    ["id" => "php-ab", "title" => "XAMPP Andmebaasi loomine PHPs", "desc" => "", "date" => "2025-12-02", "category" => "XAMPP"],
+    ["id" => "php-ab2", "title" => "Teadete haldussüsteem", "desc" => "Andmebaasipõhine teadete lisamine, muutmine ja kustutamine.", "date" => "2025-12-04", "category" => "XAMPP"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -38,6 +39,7 @@ usort($posts, function($a, $b) {
         <span>Kategooriad</span>
         <div class="dropdown-content">
             <button onclick="filterPosts('Kõik')">Kõik</button>
+            <button onclick="filterPosts('XAMPP')">XAMPP</button>
             <button onclick="filterPosts('Funktsioonid')">Funktsioonid</button>
             <button onclick="filterPosts('Mobillimall')">Mobillimall</button>
             <button onclick="filterPosts('Määratlemata')">Määratlemata</button>
@@ -63,10 +65,10 @@ usort($posts, function($a, $b) {
   <div class="grid">
     <?php foreach ($posts as $post) { ?>
 
-  <?php if ($post['id'] === 'php-ab') { ?>
-    <!-- php-ab opens in new tab -->
+  <?php if ($post['id'] === 'php-ab' || $post['id'] === 'php-ab2') { ?>
+    <!-- php-ab and php-ab2 open in new tab -->
     <div class="card post" data-category="<?php echo $post['category']; ?>">
-      <a href="content/php-ab/index.php" target="_blank" class="post-link">
+      <a href="content/<?php echo $post['id']; ?>/index.php" target="_blank" class="post-link">
         <h3><?php echo $post['title']; ?></h3>
         <p><?php echo $post['desc']; ?></p>
         <small class="post-category"><?php echo $post['category']; ?></small><br>

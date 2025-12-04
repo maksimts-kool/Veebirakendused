@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    padding: 30px;
+    background: #f0f2f5;
+    min-height: 100vh;
+}
+
+.teade {
+    background: #28a745;
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+#menyykiht {
+    float: left;
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    padding-bottom: 500px;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+#menyykiht h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.5em;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+}
+
+#menyykiht ul {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+#menyykiht li {
+    margin: 8px 0;
+}
+
+#menyykiht a {
+    color: #667eea;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+
+#menyykiht a:hover {
+    background: #667eea;
+    color: #fff;
+}
+
+#menyykiht > a {
+    border-top: 2px solid #667eea;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+#sisukiht {
+    float: left;
+    background: #fff;
+    padding: 25px;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.1);
+    min-width: 500px;
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+#sisukiht h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#sisukiht a {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 10px 5px 0 0;
+    text-decoration: none;
+    color: #fff;
+}
+
+#sisukiht a[href*='kustutusid'] {
+    background: #dc3545;
+}
+
+#sisukiht a[href*='kustutusid']:hover {
+    background: #c82333;
+}
+
+#sisukiht a[href*='muutmine'] {
+    background: #667eea;
+}
+
+#sisukiht a[href*='muutmine']:hover {
+    background: #5568d3;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+input[type="submit"] {
+    background: #667eea;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background: #5568d3;
+}
+
+dt {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #555;
+}
+
+dd {
+    margin: 8px 0 15px 0;
+}
+
+#jalusekiht {
+    clear: left;
+    margin-top: 50px;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.1);
+}
