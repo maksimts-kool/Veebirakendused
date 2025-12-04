@@ -1,145 +1,112 @@
 <?php
-require('config.php');
+require("config.php");
+$k = $yhendus->prepare("SELECT nimetus, kirjeldus, hind, pilt FROM hinnakiri ORDER BY hind DESC LIMIT 3");
+$k->bind_result($n, $kirj, $h, $pilt);
+$k->execute();
+$tooted = [];
+while($k->fetch()) $tooted[] = ['n'=>$n, 'k'=>$kirj, 'h'=>$h, 'pilt'=>$pilt];
 
-$teade = "";
+$g = $yhendus->prepare("SELECT failinimi FROM galerii LIMIT 3");
+$g->bind_result($f);
+$g->execute();
+$pildid = [];
+while($g->fetch()) $pildid[] = $f;
 
-// Uue teate lisamine
-if (isset($_REQUEST["uusleht"])) {
-  $kask = $yhendus->prepare("INSERT INTO lehed (pealkiri, sisu) VALUES (?, ?)");
-  $kask->bind_param("ss", $_REQUEST["pealkiri"], $_REQUEST["sisu"]);
-  $kask->execute();
-  header("Location: ".$_SERVER["PHP_SELF"]."?teade=lisatud");
-  $yhendus->close();
-  exit();
-}
 
-// Teate kustutamine
-if (isset($_REQUEST["kustutusid"])) {
-  $kask = $yhendus->prepare("DELETE FROM lehed WHERE id=?");
-  $kask->bind_param("i", $_REQUEST["kustutusid"]);
-  $kask->execute();
-  $teade = "Teade kustutatud!";
-}
-
-// Teate muutmine
-if (isset($_REQUEST["muutmisid"])) {
-  $kask = $yhendus->prepare("UPDATE lehed SET pealkiri=?, sisu=? WHERE id=?");
-  $kask->bind_param(
-    "ssi",
-    $_REQUEST["pealkiri"],
-    $_REQUEST["sisu"],
-    $_REQUEST["muutmisid"]
-  );
-  $kask->execute();
-  $teade = "Teade muudetud!";
-}
-
-if (isset($_REQUEST["teade"]) && $_REQUEST["teade"] == "lisatud") {
-  $teade = "Teade lisatud!";
-}
 ?>
 <!DOCTYPE html>
-<html lang="et">
-  <head>
-    <title>Teated lehel</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <?php if ($teade): ?>
-      <div class="teade"><?= htmlspecialchars($teade) ?></div>
-    <?php endif; ?>
-    <div id="menyykiht">
-        <h2>Teated</h2>
-        <ul>
-          <?php
-             $kask = $yhendus->prepare(
-               "SELECT id, pealkiri FROM lehed"
-             );
-             $kask->bind_result($id, $pealkiri);
-             $kask->execute();
-             while ($kask->fetch()) {
-               echo "<li><a href='".$_SERVER["PHP_SELF"].
-                    "?id=$id'>".htmlspecialchars($pealkiri)."</a></li>";
-             }
-          ?>
-        </ul>
-        <a href="<?=$_SERVER['PHP_SELF']?>?lisamine=jah">Lisa ...</a>
-    </div>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+<title>Toidupood</title>
+</head>
+<body>
+<nav>
+<div class="logo">Toidupood</div>
+<div>
+<a href="hinnakiri.php">Tooted</a>
+<a href="galerii.php">Galerii</a>
+<a href="admin.php">Admin</a>
+</div>
+</nav>
 
-    <?php if (isset($_REQUEST["id"]) || isset($_REQUEST["lisamine"])): ?>
-    <div id="sisukiht">
-       <?php
-         // Ühe teate kuvamine või muutmine
-         if (isset($_REQUEST["id"])) {
-            $kask = $yhendus->prepare("SELECT id, pealkiri, sisu FROM lehed WHERE id=?");
-            $kask->bind_param("i", $_REQUEST["id"]);
-            $kask->bind_result($id, $pealkiri, $sisu);
-            $kask->execute();
+<section class="hero">
+<h1>Kes me oleme?</h1>
+<p>Teie naabruskonna toidupood, mis pakub värskeid tooteid, suupisteid, jooke ja igapäevaseid tarbevahendeid. Oleme siin, et teenindada teid kvaliteetsete kaupade ja sõbraliku teenindusega.</p>
+</section>
 
-            if ($kask->fetch()) {
-             if (isset($_REQUEST["muutmine"])) {
-                echo "
-                   <form action='".$_SERVER["PHP_SELF"]."'>
-                     <input type='hidden' name='muutmisid' value='$id'/>
-                     <h2>Teate muutmine</h2>
-                     <dl>
-                       <dt>Pealkiri:</dt>
-                       <dd>
-                         <input type='text' name='pealkiri' value='".
-                                    htmlspecialchars($pealkiri)."'/>
-                       </dd>
-                       <dt>Teate sisu:</dt>
-                       <dd>
-                         <textarea rows='20' cols='30' name='sisu'>".
-                            htmlspecialchars($sisu)."</textarea>
-                       </dd>
-                     </dl>                      
-                     <input type='submit' value='Muuda' />
-                   </form>
-                ";
-             } else {
-              echo "<h2>".htmlspecialchars($pealkiri)."</h2>";
-              echo htmlspecialchars($sisu);
-              echo "<br /><a href='".$_SERVER["PHP_SELF"].
-                   "?kustutusid=$id'>kustuta</a> ";
-              echo "<a href='".$_SERVER["PHP_SELF"].
-                   "?id=$id&amp;muutmine=jah'>muuda</a>";
-             }
-            } else {
-              echo "Vigased andmed.";
-            }
-         }
+<section class="gallery-section">
+<h2>Galerii</h2>
+<div class="image-gallery">
+<?php foreach($pildid as $pilt): ?>
+<div class="gallery-item">
+<img src="uploads/<?=$pilt?>" alt="Gallery image">
+</div>
+<?php endforeach; ?>
+</div>
 
-         // Uue teate lisamise vorm
-         if (isset($_REQUEST["lisamine"])) {
-           ?>
-             <form action="<?=$_SERVER["PHP_SELF"]?>">
-              <input type="hidden" name="uusleht" value="jah" />
-              <h2>Uue teate lisamine</h2>
-              <dl>
-                <dt>Pealkiri:</dt>
-                <dd>
-                 <input type="text" name="pealkiri" />
-                </dd>
-                <dt>Teate sisu:</dt>
-                <dd>
-                  <textarea rows="20" cols="30" name="sisu"></textarea>
-                </dd>
-               </dl>
-               <input type="submit" value="Sisesta" />
-             </form>
-           <?php
-         }
-       ?>
-    </div>
-    <?php endif; ?>
+<div style="text-align: center; margin: 40px 0;">
+<a href="galerii.php" class="btn">Vaata galeriid</a>
+</div>
+</section>
 
-    <div id="jalusekiht">
-       Lehe tegi Maksim
-    </div>
-  </body>
+<section class="menu-section">
+<h2>Tooted</h2>
+
+
+<div class="products">
+<?php foreach($tooted as $t): ?>
+<div class="product-card">
+<div class="product-image">
+<img src="<?=$t['pilt'] ? 'uploads/'.$t['pilt'] : 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop'?>" alt="<?=htmlspecialchars($t['n'])?>">
+</div>
+<h3><?=htmlspecialchars($t['n'])?></h3>
+<p><?=htmlspecialchars($t['k'])?></p>
+<span class="price">€<?=$t['h']?></span>
+</div>
+<?php endforeach; ?>
+</div>
+
+<div style="text-align: center; margin: 40px 0;">
+<a href="hinnakiri.php" class="btn">Vaata tooteid</a>
+</div>
+</section>
+
+<section class="team">
+<h2>Meie tiim</h2>
+<div class="team-member">
+<div class="team-icon">👨‍💼</div>
+<h3>Maksim Tsikvasvili</h3>
+<p>Poodi Juhataja</p>
+</div>
+</section>
+
+<section class="events">
+<h2>Teenused</h2>
+<div class="services-list">
+<div class="service-item">
+<div class="service-title">🥬 Värske kaup</div>
+<div class="service-desc">Iga päev värske</div>
+</div>
+<div class="service-item">
+<div class="service-title">⚡ Kiire ostlemine</div>
+<div class="service-desc">Kiire teenindus</div>
+</div>
+<div class="service-item">
+<div class="service-title">🏠 Igapäevased asjad</div>
+<div class="service-desc">Kõik vajalik</div>
+</div>
+<div class="service-item">
+<div class="service-title">😊 Sõbralik teenindus</div>
+<div class="service-desc">Alati abivalmis</div>
+</div>
+</div>
+</section>
+
+<footer>
+<p>&copy; 2024 Toidupood. Kõik õigused kaitstud.</p>
+</footer>
+
+</body>
 </html>
-<?php
-  $yhendus->close();
-?>

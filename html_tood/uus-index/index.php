@@ -11,7 +11,7 @@ $posts = [
     ["id" => "anekdoot", "title" => "Anekdootide kogu", "desc" => "Kogumik naljakaid anekdoote erinevatel teemadel.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "mobillimalliKonspekt", "title" => "Mobiilimalli konspekt", "desc" => "Konspekt mobiilimalli loomisest ja rakendamisest.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "php-ab", "title" => "XAMPP Andmebaasi loomine PHPs", "desc" => "", "date" => "2025-12-02", "category" => "XAMPP"],
-    ["id" => "php-ab2", "title" => "Teadete haldussüsteem", "desc" => "Andmebaasipõhine teadete lisamine, muutmine ja kustutamine.", "date" => "2025-12-04", "category" => "XAMPP"],
+    ["id" => "php-ab2", "title" => "Toidupood", "desc" => "Toidupood kasutades andmebaasi", "date" => "2025-12-04", "category" => "XAMPP"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
