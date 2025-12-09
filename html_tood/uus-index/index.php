@@ -10,6 +10,10 @@ $posts = [
     ["id" => "mobiilimall", "title" => "Mobiilseadmete mall", "desc" => "Responsiivse veebimalli loomine mobiilseadmete jaoks.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "anekdoot", "title" => "Anekdootide kogu", "desc" => "Kogumik naljakaid anekdoote erinevatel teemadel.", "date" => "2025-11-27", "category" => "Mobillimall"],
     ["id" => "mobillimalliKonspekt", "title" => "Mobiilimalli konspekt", "desc" => "Konspekt mobiilimalli loomisest ja rakendamisest.", "date" => "2025-11-27", "category" => "Mobillimall"],
+    ["id" => "php-ab", "title" => "XAMPP Andmebaasi loomine PHPs", "desc" => "", "date" => "2025-12-02", "category" => "XAMPP"],
+    ["id" => "php-ab2", "title" => "Toidupood", "desc" => "Toidupood kasutades andmebaasi", "date" => "2025-12-04", "category" => "XAMPP"],
+    ["id" => "valimised", "title" => "Presidenti valimised", "desc" => "Lisa, Kustuta, lisa punkte, näita ja peida presiednte", "date" => "2025-12-04", "category" => "XAMPP"],
+    
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -17,68 +21,87 @@ usort($posts, function($a, $b) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Maksim Tsikavsvili</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Maksim Tsikavsvili</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="site-name">Maksim Tsikavsvili</div>
-  <nav>
-    <a href="index.php">Home</a>
+    <header class="topbar">
+        <div class="site-name">Maksim Tsikavsvili</div>
+        <nav>
+            <a href="index.php">Home</a>
 
-    <span class="nav-split">|</span>
+            <span class="nav-split">|</span>
 
-    <div class="dropdown">
-        <span>Kategooriad</span>
-        <div class="dropdown-content">
-            <button onclick="filterPosts('Kõik')">Kõik</button>
-            <button onclick="filterPosts('Funktsioonid')">Funktsioonid</button>
-            <button onclick="filterPosts('Mobillimall')">Mobillimall</button>
-            <button onclick="filterPosts('Määratlemata')">Määratlemata</button>
-        </div>
+            <div class="dropdown">
+                <span>Kategooriad</span>
+                <div class="dropdown-content">
+                    <button onclick="filterPosts('Kõik')">Kõik</button>
+                    <button onclick="filterPosts('XAMPP')">XAMPP</button>
+                    <button onclick="filterPosts('Funktsioonid')">Funktsioonid</button>
+                    <button onclick="filterPosts('Mobillimall')">Mobillimall</button>
+                    <button onclick="filterPosts('Määratlemata')">Määratlemata</button>
+                </div>
+            </div>
+
+            <span class="nav-split">|</span>
+
+            <a href="https://maksimtsikvasvili24.thkit.ee">Vana Index</a>
+        </nav>
+    </header>
+
+    <div class="logo-area">
+        <img id="mainLogo" src="logo.png" class="main-logo" alt="Logo">
     </div>
 
-    <span class="nav-split">|</span>
+    <div class="container">
 
-    <a href="https://maksimtsikvasvili24.thkit.ee">Vana Index</a>
-</nav>
-</header>
+        <div class="section-header">
+            <h2>Tööd</h2>
+        </div>
 
-<div class="logo-area">
-  <img id="mainLogo" src="logo.png" class="main-logo" alt="Logo">
-</div>
+        <div class="grid">
+            <?php foreach ($posts as $post) { ?>
 
-<div class="container">
+            <?php if ($post['id'] === 'php-ab' || $post['id'] === 'php-ab2') { ?>
+            <!-- php-ab and php-ab2 open in new tab -->
+            <div class="card post" data-category="<?php echo $post['category']; ?>">
+                <a href="content/<?php echo $post['id']; ?>/index.php" target="_blank" class="post-link">
+                    <h3><?php echo $post['title']; ?></h3>
+                    <p><?php echo $post['desc']; ?></p>
+                    <small class="post-category"><?php echo $post['category']; ?></small><br>
+                    <small><?php echo $post['date']; ?></small>
+                </a>
+            </div>
 
-  <div class="section-header">
-    <h2>Tööd</h2>
-  </div>
+            <?php } else { ?>
+            <!-- all other posts open inside index -->
+            <div class="card post" data-category="<?php echo $post['category']; ?>"
+                onclick="loadPost('<?php echo $post['id']; ?>')">
+                <h3><?php echo $post['title']; ?></h3>
+                <p><?php echo $post['desc']; ?></p>
+                <small class="post-category"><?php echo $post['category']; ?></small><br>
+                <small><?php echo $post['date']; ?></small>
+            </div>
 
-  <div class="grid">
-    <?php foreach ($posts as $post) { ?>
-      <div class="card post"
-     data-category="<?php echo $post['category']; ?>"
-     onclick="loadPost('<?php echo $post['id']; ?>')">
-    <h3><?php echo $post['title']; ?></h3>
-    <p><?php echo $post['desc']; ?></p>
-    <small class="post-category"><?php echo $post['category']; ?></small><br>
-    <small><?php echo $post['date']; ?></small>
-</div>
-    <?php } ?>
-  </div>
+            <?php } ?>
 
-  <div id="content-area"></div>
+            <?php } ?>
+        </div>
 
-</div>
+        <div id="content-area"></div>
 
-<footer class="footer">
-  © Maksim Tsikavsvili 2025
-</footer>
+    </div>
+
+    <footer class="footer">
+        © Maksim Tsikavsvili 2025
+    </footer>
 
 </body>
+
 </html>
