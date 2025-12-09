@@ -1,10 +1,19 @@
 <?php
 require("config.php");
-$kask = $yhendus->prepare("SELECT nimetus, kirjeldus, hind, pilt FROM hinnakiri");
-$kask->bind_result($n, $k, $h, $pilt);
+
+if (isset($_REQUEST["lisa1euro"])) {
+    $paring = $yhendus->prepare("UPDATE hinnakiri SET hind = hind + 1 WHERE id=?");
+    $paring->bind_param("i", $_REQUEST["lisa1euro"]);
+    $paring->execute();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+$kask = $yhendus->prepare("SELECT id, nimetus, kirjeldus, hind, pilt FROM hinnakiri WHERE avalik = 1");
 $kask->execute();
+$tulemus = $kask->get_result();
 $tooted = [];
-while($kask->fetch()) $tooted[] = ['n'=>$n, 'k'=>$k, 'h'=>$h, 'pilt'=>$pilt];
+while($rida = $tulemus->fetch_assoc()) $tooted[] = $rida;
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,18 +37,28 @@ while($kask->fetch()) $tooted[] = ['n'=>$n, 'k'=>$k, 'h'=>$h, 'pilt'=>$pilt];
 </section>
 
 <section class="menu-section">
-<div class="products">
+<table class="admin-table">
+<tr>
+<th>Nimetus</th>
+<th>Pilt</th>
+<th>Kirjeldus</th>
+<th>Hind</th>
+<th>Tegevus</th>
+</tr>
 <?php foreach($tooted as $t): ?>
-<div class="product-card">
-<div class="product-image">
-<img src="<?=$t['pilt'] ? 'uploads/'.$t['pilt'] : 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop'?>" alt="<?=htmlspecialchars($t['n'])?>">
-</div>
-<h3><?=htmlspecialchars($t['n'])?></h3>
-<p><?=htmlspecialchars($t['k'])?></p>
-<span class="price">€<?=$t['h']?></span>
-</div>
+<tr>
+<td><?=htmlspecialchars($t['nimetus'])?></td>
+<td>
+<img src="<?=$t['pilt'] ? 'uploads/'.$t['pilt'] : 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop'?>" class="table-img">
+</td>
+<td><?=htmlspecialchars($t['kirjeldus'])?></td>
+<td>€<?=$t['hind']?></td>
+<td>
+<a href="?lisa1euro=<?=$t['id']?>" class="btn btn-small">Lisa 1€</a>
+</td>
+</tr>
 <?php endforeach; ?>
-</div>
+</table>
 </section>
 <script src="script.js"></script>
 <footer>

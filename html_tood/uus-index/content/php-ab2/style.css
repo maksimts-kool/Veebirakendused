@@ -287,6 +287,81 @@ footer {
     font-size: 14px;
 }
 
+.admin-table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.admin-table tr {
+    background: white;
+}
+
+.admin-table tr:first-child {
+    background: #4CAF50;
+    color: white;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-table .hidden-row {
+    background-color: #ffcccc !important;
+}
+
+.table-img {
+    width: 100px;
+    border-radius: 10px;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    margin: 2px;
+}
+
+.btn-delete {
+    background: #f44336;
+}
+
+.btn-delete:hover {
+    background: #d32f2f;
+}
+
+.logout-link {
+    text-align: center;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin: 10px 0;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.admin-form-full {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     nav {

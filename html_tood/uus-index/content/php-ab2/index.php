@@ -28,6 +28,7 @@ while($g->fetch()) $pildid[] = $f;
 <a href="hinnakiri.php">Tooted</a>
 <a href="galerii.php">Galerii</a>
 <a href="admin.php">Admin</a>
+<a href="valimised.php">Valimised</a>
 </div>
 </nav>
 
