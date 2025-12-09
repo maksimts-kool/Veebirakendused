@@ -45,6 +45,7 @@ if (isset($_REQUEST["lisa1punkt"])) {
     $paring->bind_param("i", $_REQUEST["lisa1punkt"]);
     $paring->execute();
     header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
 }
 
 if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
@@ -56,7 +57,7 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
     $paring->bind_param("ssii", $president, $pilt, $punktid, $avalik);
     $paring->execute();
     header("Location: ".$_SERVER['PHP_SELF']);
-    $yhendus->close();
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -117,15 +118,15 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
             <input type="text" name="pilt" id="pilt" pattern=".*\.(jpg|jpeg|png|gif|webp)$" required>
         </div>
         <?php if (isset($_SESSION["admin"])): ?>
-            <div>
-                <label for="punktid">Punktid: </label>
-                <input type="number" name="punktid" id="punktid" value="0" min="0">
-            </div>
-            <div>
-                <label for="avalik">
-                    <input type="checkbox" name="avalik" id="avalik" checked> Avalik
-                </label>
-            </div>
+        <div>
+            <label for="punktid">Punktid: </label>
+            <input type="number" name="punktid" id="punktid" value="0" min="0">
+        </div>
+        <div>
+            <label for="avalik">
+                <input type="checkbox" name="avalik" id="avalik" checked> Avalik
+            </label>
+        </div>
         <?php endif; ?>
         <div>
             <input type="submit" value="Lisa president">
