@@ -48,6 +48,14 @@ if (isset($_REQUEST["lisa1punkt"])) {
     exit;
 }
 
+if (isset($_REQUEST["lahuta1punkt"])) {
+    $paring = $yhendus->prepare("UPDATE valimised SET punktid = punktid - 1 WHERE id=?");
+    $paring->bind_param("i", $_REQUEST["lahuta1punkt"]);
+    $paring->execute();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
 if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
     $president = $_REQUEST["president"];
     $pilt = $_REQUEST["pilt"];
@@ -55,6 +63,25 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
     $avalik = isset($_REQUEST["avalik"]) ? 1 : 0;
     $paring = $yhendus->prepare("INSERT INTO valimised(president, pilt, punktid, avalik, lisamisaeg) VALUES (?, ?, ?, ?, NOW())");
     $paring->bind_param("ssii", $president, $pilt, $punktid, $avalik);
+    $paring->execute();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
+    $kommentaar = $_REQUEST["kommentaar"];
+    $id = $_REQUEST["lisa_kommentaar"];
+    $paring = $yhendus->prepare("UPDATE valimised SET kommentaarid = CONCAT(IFNULL(kommentaarid, ''), ?, '\n') WHERE id=?");
+    $paring->bind_param("si", $kommentaar, $id);
+    $paring->execute();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
+    $id = $_REQUEST["kustuta_kommentaar"];
+    $paring = $yhendus->prepare("UPDATE valimised SET kommentaarid = '' WHERE id=?");
+    $paring->bind_param("i", $id);
     $paring->execute();
     header("Location: ".$_SERVER['PHP_SELF']);
     exit;
@@ -73,6 +100,7 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
     <?php if (isset($_SESSION["admin"])): ?>
     <p style="text-align: center;"><a href="?logout=1">Logi välja</a></p>
     <?php endif; ?>
+    <p style="text-align: center;"><a href="galerii.php">Vaata galeriid</a></p>
     <table>
         <tr>
             <th>Nimi</th>
@@ -82,7 +110,7 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
             <th>Tegevus</th>
         </tr>
         <?php
-        $query = isset($_SESSION["admin"]) ? "SELECT id, president, pilt, punktid, lisamisaeg, avalik FROM valimised" : "SELECT id, president, pilt, punktid, lisamisaeg FROM valimised WHERE avalik = 1";
+        $query = isset($_SESSION["admin"]) ? "SELECT id, president, pilt, punktid, lisamisaeg, avalik, kommentaarid FROM valimised" : "SELECT id, president, pilt, punktid, lisamisaeg, kommentaarid FROM valimised WHERE avalik = 1";
         $paring = $yhendus->prepare($query);
         $paring->execute();
         $tulemus = $paring->get_result();
@@ -100,10 +128,34 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
                 echo " | <a href='?nulli_punktid={$rida['id']}'>Nulli punktid</a>";
                 echo " | <a href='?kustuta={$rida['id']}' onclick='return confirm(\"Kas oled kindel?\")'>Kustuta</a>";
             } else {
-                echo "<a href='?lisa1punkt={$rida['id']}'>Lisa 1 punkt</a>";
+                echo "<a href='?lahuta1punkt={$rida['id']}'>−</a>";
+                echo " <a href='?lisa1punkt={$rida['id']}'>+</a>";
             }
             echo "</td>";
             echo "</tr>";
+        
+            if (!empty($rida['kommentaarid'])) {
+                echo "<tr$hiddenClass class='comment-row'>";
+                echo "<td colspan='5'><strong>Kommentaarid:</strong><br>";
+                echo nl2br(htmlspecialchars($rida['kommentaarid']));
+                if (isset($_SESSION["admin"])) {
+                    echo "<br> <a href='?kustuta_kommentaar={$rida['id']}' onclick='return confirm(\"Kustuta kõik kommentaarid?\")' class='delete-comment'>Kustuta kõik</a>";
+                }
+                echo "</td>";
+                echo "</tr>";
+            }
+            
+            if (!isset($_SESSION["admin"])) {
+                echo "<tr$hiddenClass class='comment-form-row'>";
+                echo "<td colspan='5'>";
+                echo "<form action='?' method='post' class='comment-form'>";
+                echo "<input type='text' name='kommentaar' placeholder='Lisa kommentaar...' required>";
+                echo "<input type='hidden' name='lisa_kommentaar' value='{$rida['id']}'>";
+                echo "<input type='submit' value='Saada'>";
+                echo "</form>";
+                echo "</td>";
+                echo "</tr>";
+            }
         }
         ?>
     </table>
