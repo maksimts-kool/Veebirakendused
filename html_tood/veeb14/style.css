@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #e8f4f8;
+    padding: 20px;
+}
+
+h1 {
+    color: #228b22;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#myCanvas {
+    border: 2px solid #333;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: crosshair;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="button"] {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+    opacity: 0.8;
+}
+
+.status {
+    font-size: 11px;
+    font-weight: bold;
+    height: 16px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.status.ready {
+    color: #00aa00;
+}
+
+.status.locked {
+    color: #ff0000;
+}
+
+input[type="button"][value="Kuusk"] {
+    background-color: #228b22;
+}
+
+input[type="button"][value="Kingid"] {
+    background-color: #ff4500;
+}
+
+input[type="button"][value="Pall"] {
+    background-color: #dc143c;
+}
+
+input[type="button"][value="Vaip"] {
+    background-color: #8b0000;
+}
+
+input[type="button"][value="Sokk"] {
+    background-color: #ff6347;
+}
+
+input[type="button"][value="Kamin"] {
+    background-color: #d2691e;
+}
+
+input[type="button"][value="Diivan"] {
+    background-color: #a0522d;
+}
+
+input[type="button"][value="Aken"] {
+    background-color: #4169e1;
+}
+
+input[type="button"][value="Puhasta"] {
+    background-color: #696969;
+}
