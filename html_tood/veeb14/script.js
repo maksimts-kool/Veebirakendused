@@ -3,7 +3,7 @@ var snowflakes = [];
 var animationIndex = 0;
 var animationInterval = null;
 
-function checkAndAdd(name, needs) {
+function updateStatus(name, needs) {
     var status = document.getElementById("status-" + name);
     var ready = true;
 
@@ -17,56 +17,45 @@ function checkAndAdd(name, needs) {
     if (drawn.indexOf(name) !== -1) {
         status.textContent = "Lisatud";
         status.className = "status ready";
-        return false;
     } else if (ready) {
         status.textContent = "Saab lisada";
         status.className = "status ready";
-        drawn.push(name);
-        updateAllStatus();
-        return true;
     } else {
         status.textContent = "Pole valmis";
         status.className = "status locked";
-        return false;
     }
 }
 
-function updateAllStatus() {
-    checkStatus("vaip", []);
-    checkStatus("kolmnurk", ["vaip"]);
-    checkStatus("joulukuulid", ["kolmnurk"]);
-    checkStatus("kingid", ["vaip", "kolmnurk"]);
-    checkStatus("aken", []);
-    checkStatus("tool", ["kingid"]);
-    checkStatus("kamin", []);
-    checkStatus("sokk", ["kamin"]);
-    checkStatus("lumi", []);
-}
-
-function checkStatus(name, needs) {
-    var status = document.getElementById("status-" + name);
-    var ready = true;
+function checkAndAdd(name, needs) {
+    if (drawn.indexOf(name) !== -1) {
+        return false;
+    }
 
     for (var i = 0; i < needs.length; i++) {
         if (drawn.indexOf(needs[i]) === -1) { // not found
-            ready = false;
-            break;
+            return false;
         }
     }
 
-    if (drawn.indexOf(name) !== -1) {
-        status.textContent = "Lisatud";
-        status.className = "status ready";
-    } else if (ready) {
-        status.textContent = "Saab lisada";
-        status.className = "status ready";
-    } else {
-        status.textContent = "Pole valmis";
-        status.className = "status locked";
-    }
+    drawn.push(name);
+    updateAllStatus();
+    return true;
 }
 
-function startAnimation() {
+function updateAllStatus() {
+    updateStatus("vaip", []);
+    updateStatus("kolmnurk", ["vaip"]);
+    updateStatus("joulukuulid", ["kolmnurk"]);
+    updateStatus("kingid", ["vaip", "kolmnurk"]);
+    updateStatus("aken", []);
+    updateStatus("tool", ["kingid"]);
+    updateStatus("kamin", []);
+    updateStatus("sokk", ["kamin"]);
+    updateStatus("lumi", []);
+    updateStatus("tahr", ["kolmnurk"]);
+}
+
+function startAnimation() { // starti taimer
     if (animationInterval) clearInterval(animationInterval);
 
     animationInterval = setInterval(function () {
@@ -76,7 +65,7 @@ function startAnimation() {
     }, 500);
 }
 
-function drawAnimations() {
+function drawAnimations() { // lumi ja joulukuulid
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     var colors = ["#ff0000ff", "#ffff00ff", "#0080ffff", "#ff00ffff", "#00ffffff"];
@@ -131,7 +120,7 @@ function drawAnimations() {
     }
 }
 
-function redrawAll() {
+function redrawAll() { // joonista kõik uuesti
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -156,6 +145,9 @@ function redrawAll() {
     }
     if (drawn.indexOf("sokk") !== -1) {
         drawSokk(ctx, canvas);
+    }
+    if (drawn.indexOf("tahr") !== -1) {
+        drawTahr(ctx, canvas);
     }
 }
 
@@ -372,6 +364,27 @@ function drawSokk(ctx, canvas) {
     ctx.stroke();
 }
 
+function drawTahr(ctx, canvas) {
+    ctx.fillStyle = "#ffd700ff";
+    ctx.strokeStyle = "#ffaa00ff";
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.moveTo(150, 0);
+    ctx.lineTo(156, 18);
+    ctx.lineTo(175, 18);
+    ctx.lineTo(162, 30);
+    ctx.lineTo(168, 48);
+    ctx.lineTo(150, 36);
+    ctx.lineTo(132, 48);
+    ctx.lineTo(138, 30);
+    ctx.lineTo(125, 18);
+    ctx.lineTo(144, 18);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+}
+
 function puhasta() {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
@@ -438,5 +451,10 @@ function aken() {
 
 function kolmnurk() {
     if (!checkAndAdd("kolmnurk", ["vaip"])) return;
+    redrawAll();
+}
+
+function tahr() {
+    if (!checkAndAdd("tahr", ["kolmnurk"])) return;
     redrawAll();
 }

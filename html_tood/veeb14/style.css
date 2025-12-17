@@ -107,3 +107,8 @@ input[type="button"][value="Puhasta"] {
 input[type="button"][value="Lumi"] {
     background-color: #1e90ffff;
 }
+
+input[type="button"][value="Täht"] {
+    background-color: #ffd700;
+    color: #333;
+}
