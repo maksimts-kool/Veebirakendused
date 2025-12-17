@@ -1,11 +1,54 @@
 var drawn = [];
+var snowflakes = [];
+var animationIndex = 0;
+var animationInterval = null;
 
-function checkReady(name, needs) {
+function checkAndAdd(name, needs) {
     var status = document.getElementById("status-" + name);
     var ready = true;
 
     for (var i = 0; i < needs.length; i++) {
         if (drawn.indexOf(needs[i]) === -1) {
+            ready = false;
+            break;
+        }
+    }
+
+    if (drawn.indexOf(name) !== -1) {
+        status.textContent = "Lisatud";
+        status.className = "status ready";
+        return false;
+    } else if (ready) {
+        status.textContent = "Saab lisada";
+        status.className = "status ready";
+        drawn.push(name);
+        updateAllStatus();
+        return true;
+    } else {
+        status.textContent = "Pole valmis";
+        status.className = "status locked";
+        return false;
+    }
+}
+
+function updateAllStatus() {
+    checkStatus("vaip", []);
+    checkStatus("kolmnurk", ["vaip"]);
+    checkStatus("joulukuulid", ["kolmnurk"]);
+    checkStatus("kingid", ["vaip", "kolmnurk"]);
+    checkStatus("aken", []);
+    checkStatus("tool", ["kingid"]);
+    checkStatus("kamin", []);
+    checkStatus("sokk", ["kamin"]);
+    checkStatus("lumi", []);
+}
+
+function checkStatus(name, needs) {
+    var status = document.getElementById("status-" + name);
+    var ready = true;
+
+    for (var i = 0; i < needs.length; i++) {
+        if (drawn.indexOf(needs[i]) === -1) { // not found
             ready = false;
             break;
         }
@@ -23,47 +66,110 @@ function checkReady(name, needs) {
     }
 }
 
-function updateAllStatus() {
-    checkReady("vaip", []);
-    checkReady("kolmnurk", ["vaip"]);
-    checkReady("joulukuulid", ["kolmnurk"]);
-    checkReady("kingid", ["vaip", "kolmnurk"]);
-    checkReady("aken", []);
-    checkReady("tool", ["kingid"]);
-    checkReady("kamin", []);
-    checkReady("sokk", ["kamin"]);
+function startAnimation() {
+    if (animationInterval) clearInterval(animationInterval);
+
+    animationInterval = setInterval(function () {
+        animationIndex = (animationIndex + 1) % 5;
+        redrawAll();
+        drawAnimations();
+    }, 500);
 }
 
-function canAdd(name, needs) {
-    if (drawn.indexOf(name) !== -1) {
-        return false;
+function drawAnimations() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var colors = ["#ff0000ff", "#ffff00ff", "#0080ffff", "#ff00ffff", "#00ffffff"];
+
+    if (drawn.indexOf("joulukuulid") !== -1) { // found
+        ctx.beginPath();
+        ctx.fillStyle = colors[animationIndex];
+        ctx.arc(130, 60, 10, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = colors[(animationIndex + 1) % colors.length];
+        ctx.arc(170, 70, 10, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = colors[(animationIndex + 2) % colors.length];
+        ctx.arc(150, 110, 10, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = colors[(animationIndex + 3) % colors.length];
+        ctx.arc(100, 120, 10, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = colors[(animationIndex + 4) % colors.length];
+        ctx.arc(200, 130, 10, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = colors[animationIndex];
+        ctx.arc(150, 170, 10, 0, 2 * Math.PI);
+        ctx.fill();
     }
 
-    for (var i = 0; i < needs.length; i++) {
-        if (drawn.indexOf(needs[i]) === -1) {
-            return false;
+    if (drawn.indexOf("lumi") !== -1) {
+        ctx.fillStyle = "#ffffffff";
+
+        for (var i = 0; i < snowflakes.length; i++) {
+            ctx.beginPath();
+            ctx.arc(snowflakes[i].x, snowflakes[i].y, snowflakes[i].size, 0, 2 * Math.PI);
+            ctx.fill();
+
+            snowflakes[i].y += snowflakes[i].speed;
+
+            if (snowflakes[i].y > canvas.height) {
+                snowflakes[i].y = 0;
+                snowflakes[i].x = Math.random() * canvas.width;
+            }
         }
     }
-
-    drawn.push(name);
-    updateAllStatus();
-    return true;
 }
 
-function puhasta() {
+function redrawAll() {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawn = [];
-    updateAllStatus();
+
+    if (drawn.indexOf("vaip") !== -1) {
+        drawVaip(ctx, canvas);
+    }
+    if (drawn.indexOf("kolmnurk") !== -1) {
+        drawKolmnurk(ctx, canvas);
+    }
+    if (drawn.indexOf("kingid") !== -1) {
+        drawKingid(ctx, canvas);
+    }
+    if (drawn.indexOf("aken") !== -1) {
+        drawAken(ctx, canvas);
+    }
+    if (drawn.indexOf("tool") !== -1) {
+        drawTool(ctx, canvas);
+    }
+    if (drawn.indexOf("kamin") !== -1) {
+        drawKamin(ctx, canvas);
+    }
+    if (drawn.indexOf("sokk") !== -1) {
+        drawSokk(ctx, canvas);
+    }
 }
 
-function kolmnurk() {
-    if (!canAdd("kolmnurk", ["vaip"])) return;
+function drawVaip(ctx, canvas) {
+    ctx.beginPath();
+    ctx.fillStyle = "#970000aa";
+    ctx.save();
+    ctx.scale(2.5, 1);
+    ctx.arc(60, 280, 50, 0, 2 * Math.PI);
+    ctx.restore();
+    ctx.fill();
+}
 
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
+function drawKolmnurk(ctx, canvas) {
     ctx.beginPath();
     ctx.fillStyle = "#8b4513ff";
     ctx.strokeStyle = "#654321ff";
@@ -101,49 +207,7 @@ function kolmnurk() {
     ctx.fill();
 }
 
-function joulukuulid() {
-    if (!canAdd("joulukuulid", ["kolmnurk"])) return;
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
-    ctx.beginPath();
-    ctx.fillStyle = "#ff0000ff";
-    ctx.arc(130, 60, 10, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = "#ffff00ff";
-    ctx.arc(170, 70, 10, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = "#ff00ffff";
-    ctx.arc(150, 110, 10, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = "#ff0000ff";
-    ctx.arc(100, 120, 10, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = "#ffff00ff";
-    ctx.arc(200, 130, 10, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = "#00ffffff";
-    ctx.arc(150, 170, 10, 0, 2 * Math.PI);
-    ctx.fill();
-}
-
-function kingid() {
-    if (!canAdd("kingid", ["vaip", "kolmnurk"])) return;
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
+function drawKingid(ctx, canvas) {
     ctx.beginPath();
     ctx.fillStyle = "#ff0000d6";
     ctx.rect(70, 220, 40, 40);
@@ -190,56 +254,64 @@ function kingid() {
     ctx.stroke();
 }
 
-function vaip() {
-    if (!canAdd("vaip", [])) return;
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
+function drawAken(ctx, canvas) {
+    ctx.beginPath();
+    ctx.fillStyle = "#8B4513aa";
+    ctx.strokeStyle = "#654321ff";
+    ctx.lineWidth = 3;
+    ctx.rect(240, 30, 80, 100);
+    ctx.stroke();
 
     ctx.beginPath();
-    ctx.fillStyle = "#970000aa";
-    ctx.save();
-    ctx.scale(2.5, 1);
-    ctx.arc(60, 280, 50, 0, 2 * Math.PI);
-    ctx.restore();
+    ctx.fillStyle = "#87CEEBaa";
+    ctx.rect(245, 35, 70, 90);
     ctx.fill();
-}
-
-function sokk() {
-    if (!canAdd("sokk", ["kamin"])) return;
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
 
     ctx.beginPath();
-    ctx.fillStyle = "#ffffffff";
-    ctx.strokeStyle = "#000000ff";
+    ctx.strokeStyle = "#654321ff";
     ctx.lineWidth = 2;
-    ctx.rect(375, 60, 25, 10);
+    ctx.moveTo(280, 30);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(240, 80);
+    ctx.lineTo(320, 80);
+    ctx.stroke();
+}
+
+function drawTool(ctx, canvas) {
+    ctx.beginPath();
+    ctx.fillStyle = "#8b4513ff";
+    ctx.strokeStyle = "#654321ff";
+    ctx.lineWidth = 2;
+    ctx.rect(220, 250, 100, 30);
     ctx.fill();
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.fillStyle = "#fd4d4dff";
-    ctx.strokeStyle = "#000000ff";
-    ctx.rect(375, 70, 25, 40);
+    ctx.fillStyle = "#A0522Daa";
+    ctx.strokeStyle = "#654321ff";
+    ctx.rect(220, 200, 100, 50);
     ctx.fill();
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.fillStyle = "#fd4d4dff";
-    ctx.strokeStyle = "#000000ff";
-    ctx.rect(365, 110, 35, 20);
+    ctx.fillStyle = "#db9a7cd7";
+    ctx.strokeStyle = "#654321ff";
+    ctx.rect(210, 220, 20, 60);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.fillStyle = "#db9a7cd7";
+    ctx.strokeStyle = "#654321ff";
+    ctx.rect(310, 220, 20, 60);
     ctx.fill();
     ctx.stroke();
 }
 
-function kamin() {
-    if (!canAdd("kamin", [])) return;
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
+function drawKamin(ctx, canvas) {
     ctx.beginPath();
     ctx.fillStyle = "#a0512dff";
     ctx.strokeStyle = "#654321ff";
@@ -276,69 +348,95 @@ function kamin() {
     ctx.fill();
 }
 
-function tool() {
-    if (!canAdd("tool", ["kingid"])) return;
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
+function drawSokk(ctx, canvas) {
     ctx.beginPath();
-    ctx.fillStyle = "#8b4513ff";
-    ctx.strokeStyle = "#654321ff";
+    ctx.fillStyle = "#ffffffff";
+    ctx.strokeStyle = "#000000ff";
     ctx.lineWidth = 2;
-    ctx.rect(220, 250, 100, 30);
+    ctx.rect(375, 60, 25, 10);
     ctx.fill();
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.fillStyle = "#A0522Daa";
-    ctx.strokeStyle = "#654321ff";
-    ctx.rect(220, 200, 100, 50);
+    ctx.fillStyle = "#fd4d4dff";
+    ctx.strokeStyle = "#000000ff";
+    ctx.rect(375, 70, 25, 40);
     ctx.fill();
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.fillStyle = "#db9a7cd7";
-    ctx.strokeStyle = "#654321ff";
-    ctx.rect(210, 220, 20, 60);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.fillStyle = "#db9a7cd7";
-    ctx.strokeStyle = "#654321ff";
-    ctx.rect(310, 220, 20, 60);
+    ctx.fillStyle = "#fd4d4dff";
+    ctx.strokeStyle = "#000000ff";
+    ctx.rect(365, 110, 35, 20);
     ctx.fill();
     ctx.stroke();
 }
 
-function aken() {
-    if (!canAdd("aken", [])) return;
-
+function puhasta() {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawn = [];
+    snowflakes = [];
+    animationIndex = 0;
+    clearInterval(animationInterval);
+    animationInterval = null;
+    updateAllStatus();
+}
 
-    ctx.beginPath();
-    ctx.fillStyle = "#8B4513aa";
-    ctx.strokeStyle = "#654321ff";
-    ctx.lineWidth = 3;
-    ctx.rect(240, 30, 80, 100);
-    ctx.stroke();
+function lumi() {
+    if (!checkAndAdd("lumi", [])) return;
 
-    ctx.beginPath();
-    ctx.fillStyle = "#87CEEBaa";
-    ctx.rect(245, 35, 70, 90);
-    ctx.fill();
+    var canvas = document.getElementById("myCanvas");
+    snowflakes = [];
+    for (var i = 0; i < 50; i++) {
+        snowflakes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 3 + 2,
+            speed: Math.random() * 1 + 2
+        });
+    }
 
-    ctx.beginPath();
-    ctx.strokeStyle = "#654321ff";
-    ctx.lineWidth = 2;
-    ctx.moveTo(280, 30);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
+    startAnimation();
+}
 
-    ctx.beginPath();
-    ctx.moveTo(240, 80);
-    ctx.lineTo(320, 80);
-    ctx.stroke();
+function joulukuulid() {
+    if (!checkAndAdd("joulukuulid", ["kolmnurk"])) return;
+    startAnimation();
+}
+
+function kingid() {
+    if (!checkAndAdd("kingid", ["vaip", "kolmnurk"])) return;
+    redrawAll();
+}
+
+function vaip() {
+    if (!checkAndAdd("vaip", [])) return;
+    redrawAll();
+}
+
+function sokk() {
+    if (!checkAndAdd("sokk", ["kamin"])) return;
+    redrawAll();
+}
+
+function kamin() {
+    if (!checkAndAdd("kamin", [])) return;
+    redrawAll();
+}
+
+function tool() {
+    if (!checkAndAdd("tool", ["kingid"])) return;
+    redrawAll();
+}
+
+function aken() {
+    if (!checkAndAdd("aken", [])) return;
+    redrawAll();
+}
+
+function kolmnurk() {
+    if (!checkAndAdd("kolmnurk", ["vaip"])) return;
+    redrawAll();
 }

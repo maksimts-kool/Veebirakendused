@@ -19,7 +19,7 @@ h1 {
 
 #myCanvas {
     border: 2px solid #333;
-    background-color: #f0f0f0;
+    background-color: #f0e5a08a;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: crosshair;
     margin-bottom: 20px;
@@ -102,4 +102,8 @@ input[type="button"][value="Aken"] {
 
 input[type="button"][value="Puhasta"] {
     background-color: #696969;
+}
+
+input[type="button"][value="Lumi"] {
+    background-color: #1e90ffff;
 }
