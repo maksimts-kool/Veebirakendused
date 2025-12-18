@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Jõulukaart canvas peal</title>
+</head>
+
+<body onload="updateAllStatus()">
+    <h1>Jõulukaart</h1>
+    <canvas id="myCanvas" width="400" height="300"></canvas>
+    <div class="button-container">
+        <div class="button-wrapper">
+            <input type="button" value="Kuusk" onclick="kolmnurk()">
+            <div id="status-kolmnurk" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Kingid" onclick="kingid()">
+            <div id="status-kingid" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Pall" onclick="joulukuulid()">
+            <div id="status-joulukuulid" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Vaip" onclick="vaip()">
+            <div id="status-vaip" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Sokk" onclick="sokk()">
+            <div id="status-sokk" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Kamin" onclick="kamin()">
+            <div id="status-kamin" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Diivan" onclick="tool()">
+            <div id="status-tool" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Täht" onclick="tahr()">
+            <div id="status-tahr" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Aken" onclick="aken()">
+            <div id="status-aken" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Lumi" onclick="lumi()">
+            <div id="status-lumi" class="status"></div>
+        </div>
+        <div class="button-wrapper">
+            <input type="button" value="Puhasta" onclick="puhasta()">
+        </div>
+    </div>
+</body>
+
+</html>

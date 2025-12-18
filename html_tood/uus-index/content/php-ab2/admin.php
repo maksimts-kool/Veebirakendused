@@ -49,11 +49,33 @@ if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
     exit;
 }
 
-if (isset($_REQUEST["nimetus"]) && isset($_REQUEST["kirjeldus"]) && isset($_SESSION["admin"])) {
+if (isset($_REQUEST["edit_id"]) && isset($_REQUEST["nimetus"]) && isset($_REQUEST["kirjeldus"]) && isset($_SESSION["admin"])) {
+    $id = intval($_REQUEST["edit_id"]);
     $nimetus = $_REQUEST["nimetus"];
     $kirjeldus = $_REQUEST["kirjeldus"];
     $hind = isset($_REQUEST["hind"]) ? floatval($_REQUEST["hind"]) : 0;
-    $avalik = isset($_REQUEST["avalik"]) ? 1 : 0;
+    if (isset($_REQUEST["avalik"])) {
+        $avalik = 1;
+    } else {
+        $avalik = 0;
+    }
+    $pilt = isset($_REQUEST["pilt"]) ? $_REQUEST["pilt"] : '';
+    $paring = $yhendus->prepare("UPDATE hinnakiri SET nimetus=?, kirjeldus=?, hind=?, pilt=?, avalik=? WHERE id=?");
+    $paring->bind_param("ssdsii", $nimetus, $kirjeldus, $hind, $pilt, $avalik, $id);
+    $paring->execute();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+if (isset($_REQUEST["nimetus"]) && isset($_REQUEST["kirjeldus"]) && isset($_SESSION["admin"]) && !isset($_REQUEST["edit_id"])) {
+    $nimetus = $_REQUEST["nimetus"];
+    $kirjeldus = $_REQUEST["kirjeldus"];
+    $hind = isset($_REQUEST["hind"]) ? floatval($_REQUEST["hind"]) : 0;
+    if (isset($_REQUEST["avalik"])) {
+        $avalik = 1;
+    } else {
+        $avalik = 0;
+    }
     $pilt = isset($_REQUEST["pilt"]) ? $_REQUEST["pilt"] : '';
     $paring = $yhendus->prepare("INSERT INTO hinnakiri(nimetus, kirjeldus, hind, pilt, avalik) VALUES (?, ?, ?, ?, ?)");
     $paring->bind_param("ssdsi", $nimetus, $kirjeldus, $hind, $pilt, $avalik);
@@ -68,6 +90,17 @@ $kask->execute();
 $tulemus = $kask->get_result();
 $tooted = [];
 while($rida = $tulemus->fetch_assoc()) $tooted[] = $rida;
+
+$edit_product = null;
+if (isset($_GET["edit"]) && isset($_SESSION["admin"])) {
+    $edit_id = intval($_GET["edit"]);
+    foreach ($tooted as $t) {
+        if ($t["id"] === $edit_id) {
+            $edit_product = $t;
+            break;
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -109,21 +142,36 @@ while($rida = $tulemus->fetch_assoc()) $tooted[] = $rida;
                 <th>Tegevus</th>
             </tr>
             <?php foreach($tooted as $t): 
-$hiddenClass = (isset($t['avalik']) && $t['avalik'] == 0) ? ' class="hidden-row"' : '';
+$hiddenClass = '';
+if (isset($t['avalik']) && $t['avalik'] == 0) {
+    $hiddenClass = ' class="hidden-row"';
+}
 ?>
             <tr<?=$hiddenClass?>>
                 <td><?=htmlspecialchars($t['nimetus'])?></td>
                 <td>
-                    <img src="<?=$t['pilt'] ? $t['pilt'] : 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop'?>"
-                        class="table-img">
+                    <?php 
+                    if ($t['pilt']) {
+                        $piltURL = $t['pilt'];
+                    } else {
+                        $piltURL = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop';
+                    }
+                    ?>
+                    <img src="<?=htmlspecialchars($piltURL)?>" class="table-img"
+                        alt="<?=htmlspecialchars($t['nimetus'])?>">
                 </td>
                 <td><?=htmlspecialchars($t['kirjeldus'])?></td>
-                <td><?=$t['hind']?></td>
+                <td>€<?=htmlspecialchars($t['hind'])?></td>
                 <td>
                     <?php 
-$status = isset($t['avalik']) && $t['avalik'] ? 'Peida' : 'Näita';
-?>
+                    if (isset($t['avalik']) && $t['avalik']) {
+                        $status = 'Peida';
+                    } else {
+                        $status = 'Näita';
+                    }
+                    ?>
                     <a href="?muuda_avalik=<?=$t['id']?>" class="btn btn-small"><?=$status?></a>
+                    <a href="?edit=<?=$t['id']?>" class="btn btn-small" style="background-color: #2196F3;">Muuda</a>
                     <a href="?nulli_hind=<?=$t['id']?>" class="btn btn-small">Nulli hind</a>
                     <a href="?kustuta=<?=$t['id']?>" class="btn btn-small btn-delete"
                         onclick="return confirm('Kas oled kindel?')">Kustuta</a>
@@ -144,29 +192,85 @@ $status = isset($t['avalik']) && $t['avalik'] ? 'Peida' : 'Näita';
                     <?php endforeach; ?>
         </table>
 
-        <h2>Lisa uus toode</h2>
-        <form action="?" class="admin-form-full">
+        <h2>
+            <?php 
+            if ($edit_product) {
+                echo 'Muuda toodet';
+            } else {
+                echo 'Lisa uus toode';
+            }
+            ?>
+        </h2>
+        <form action="?" method="post" class="admin-form-full">
+            <?php if ($edit_product): ?>
+            <input type="hidden" name="edit_id" value="<?=$edit_product['id']?>">
+            <a href="?" class="btn" style="margin-bottom: 15px; display: inline-block;">Loobu muudatusest</a>
+            <?php endif; ?>
             <div class="form-group">
                 <label>Nimetus:</label>
-                <input type="text" name="nimetus" required class="form-input">
+                <?php 
+                if ($edit_product) {
+                    $nimetuseVaartus = htmlspecialchars($edit_product['nimetus']);
+                } else {
+                    $nimetuseVaartus = '';
+                }
+                ?>
+                <input type="text" name="nimetus" required class="form-input" value="<?=$nimetuseVaartus?>">
             </div>
             <div class="form-group">
                 <label>Kirjeldus:</label>
-                <input type="text" name="kirjeldus" required class="form-input">
+                <?php 
+                if ($edit_product) {
+                    $kirjeldusVaartus = htmlspecialchars($edit_product['kirjeldus']);
+                } else {
+                    $kirjeldusVaartus = '';
+                }
+                ?>
+                <input type="text" name="kirjeldus" required class="form-input" value="<?=$kirjeldusVaartus?>">
             </div>
             <div class="form-group">
                 <label>Pildi URL:</label>
-                <input type="text" name="pilt" class="form-input">
+                <?php 
+                if ($edit_product) {
+                    $piltVaartus = htmlspecialchars($edit_product['pilt']);
+                } else {
+                    $piltVaartus = '';
+                }
+                ?>
+                <input type="text" name="pilt" class="form-input" value="<?=$piltVaartus?>">
             </div>
             <div class="form-group">
                 <label>Hind:</label>
-                <input type="number" name="hind" value="0" min="0" step="0.01" class="form-input">
+                <?php 
+                if ($edit_product) {
+                    $hindVaartus = $edit_product['hind'];
+                } else {
+                    $hindVaartus = '0';
+                }
+                ?>
+                <input type="number" name="hind" value="<?=$hindVaartus?>" min="0" step="0.01" class="form-input">
             </div>
             <div class="form-group">
-                <label><input type="checkbox" name="avalik" checked> Avalik</label>
+                <?php 
+                if ($edit_product && $edit_product['avalik']) {
+                    $checked = 'checked';
+                } elseif ($edit_product) {
+                    $checked = '';
+                } else {
+                    $checked = 'checked';
+                }
+                ?>
+                <label><input type="checkbox" name="avalik" <?=$checked?>> Avalik</label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Lisa toode" class="btn">
+                <?php 
+                if ($edit_product) {
+                    $submitText = 'Salvesta muudatused';
+                } else {
+                    $submitText = 'Lisa toode';
+                }
+                ?>
+                <input type="submit" value="<?=$submitText?>" class="btn">
             </div>
         </form>
         <?php else: ?>
