@@ -125,11 +125,16 @@ function redrawAll() { // joonista kõik uuesti
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    drawNewYearText(ctx, canvas);
+
     if (drawn.indexOf("vaip") !== -1) {
         drawVaip(ctx, canvas);
     }
     if (drawn.indexOf("kolmnurk") !== -1) {
         drawKolmnurk(ctx, canvas);
+    }
+    if (drawn.indexOf("tahr") !== -1) {
+        drawTahr(ctx, canvas);
     }
     if (drawn.indexOf("kingid") !== -1) {
         drawKingid(ctx, canvas);
@@ -395,6 +400,22 @@ function puhasta() {
     clearInterval(animationInterval);
     animationInterval = null;
     updateAllStatus();
+}
+
+function drawNewYearText(ctx, canvas) {
+    ctx.save();
+    ctx.font = "bold 20px Arial";
+    ctx.fillStyle = "#ff0000ff";
+    ctx.strokeStyle = "#ffffffff";
+    ctx.lineWidth = 6;
+
+    ctx.translate(10, 150);
+    ctx.rotate(-Math.PI / 4);
+
+    ctx.strokeText("Head uut aastat 2026!", 0, 0);
+    ctx.fillText("Head uut aastat 2026!", 0, 0);
+
+    ctx.restore();
 }
 
 function lumi() {
