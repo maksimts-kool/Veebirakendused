@@ -10,11 +10,11 @@ $tooted = [];
 while($k->fetch()) $tooted[] = ['n'=>$n, 'k'=>$kirj, 'h'=>$h, 'pilt'=>$pilt];
 
 // Get top 3 products from gallery
-$g = $yhendus->prepare("SELECT pilt FROM hinnakiri WHERE avalik = 1 LIMIT 3");
-$g->bind_result($f);
+$g = $yhendus->prepare("SELECT id, pilt FROM hinnakiri WHERE avalik = 1 LIMIT 3");
+$g->bind_result($id, $f);
 $g->execute();
 $pildid = [];
-while($g->fetch()) $pildid[] = $f;
+while($g->fetch()) $pildid[] = ['id' => $id, 'pilt' => $f];
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@ while($g->fetch()) $pildid[] = $f;
 
 <body>
     <nav>
-        <div class="logo">Toidupood</div>
+        <a href="index.php" class="logo">Toidupood</a>
         <div>
             <a href="hinnakiri.php">Tooted</a>
             <a href="galerii.php">Galerii</a>
@@ -44,10 +44,10 @@ while($g->fetch()) $pildid[] = $f;
     <section class="gallery-section">
         <h2>Galerii</h2>
         <div class="image-gallery">
-            <?php foreach($pildid as $pilt): ?>
-            <div class="gallery-item">
-                <img src="<?=htmlspecialchars($pilt)?>" alt="Gallery image">
-            </div>
+            <?php foreach($pildid as $item): ?>
+            <a href="galerii.php?id=<?=$item['id']?>" class="gallery-item">
+                <img src="<?=htmlspecialchars($item['pilt'])?>" alt="Gallery image">
+            </a>
             <?php endforeach; ?>
         </div>
 

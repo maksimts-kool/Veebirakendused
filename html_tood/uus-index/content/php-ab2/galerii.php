@@ -26,7 +26,7 @@ if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
     $paring = $yhendus->prepare("UPDATE hinnakiri SET kommentaarid = CONCAT(IFNULL(kommentaarid, ''), ?, '\n') WHERE id=?");
     $paring->bind_param("si", $kommentaar, $id);
     $paring->execute();
-    header("Location: ".$_SERVER['PHP_SELF']."?id=".$id);
+    header("Location: " . $_SERVER['PHP_SELF'] . "?id=" . $id);
     exit;
 }
 ?>
@@ -41,10 +41,10 @@ if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
 
 <body>
     <nav>
-        <div class="logo">Toidupood</div>
+        <a href="index.php" class="logo">Toidupood</a>
         <div>
-            <a href="index.php">Avaleht</a>
             <a href="hinnakiri.php">Tooted</a>
+            <a href="galerii.php">Galerii</a>
             <a href="admin.php">Admin</a>
         </div>
     </nav>
@@ -54,9 +54,22 @@ if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
     </section>
 
     <section class="featured">
+        <div class="galerii">
+            <?php
+            $tulemus->data_seek(0);
+            while ($rida = $tulemus->fetch_assoc()) {
+                $activeClass = ($selected_id === $rida['id']) ? 'style="border: 3px solid #8b7355;"' : '';
+                $href = ($selected_id === $rida['id']) ? '?' : '?id=' . $rida['id'];
+                echo "<a href='{$href}' class='gallery-item' {$activeClass}>";
+                echo "<img src='{$rida['pilt']}' alt='{$rida['nimetus']}'>";
+                echo "<div class='gallery-item-title'>{$rida['nimetus']}</div>";
+                echo "</a>";
+            }
+            ?>
+        </div>
+
         <?php if ($selected_product): ?>
         <div class="detail-container">
-            <p><a href="galerii.php">Tagasi galeriisse</a></p>
             <div class="detail-content">
                 <div class="detail-image">
                     <img src="<?php echo htmlspecialchars($selected_product['pilt']); ?>"
@@ -86,18 +99,6 @@ if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
                     </div>
                 </div>
             </div>
-        </div>
-        <?php else: ?>
-        <div class="galerii">
-            <?php
-            $tulemus->data_seek(0);
-            while ($rida = $tulemus->fetch_assoc()) {
-                echo "<a href='?id={$rida['id']}' class='gallery-item'>";
-                echo "<img src='{$rida['pilt']}' alt='{$rida['nimetus']}'>";
-                echo "<div class='gallery-item-title'>{$rida['nimetus']}</div>";
-                echo "</a>";
-            }
-            ?>
         </div>
         <?php endif; ?>
     </section>
