@@ -113,9 +113,8 @@ if (isset($_GET["edit"]) && isset($_SESSION["admin"])) {
 
 <body>
     <nav>
-        <div class="logo">Toidupood</div>
+        <a href="index.php" class="logo">Toidupood</a>
         <div>
-            <a href="index.php">Avaleht</a>
             <a href="hinnakiri.php">Tooted</a>
             <a href="galerii.php">Galerii</a>
             <?php if (isset($_SESSION["admin"])): ?>
@@ -275,6 +274,7 @@ if (isset($t['avalik']) && $t['avalik'] == 0) {
         </form>
         <?php else: ?>
         <p style="text-align: center;">Palun logi sisse.</p>
+        <p style="text-align: center;">Parool: lolavalik</p>
         <?php endif; ?>
     </section>
 

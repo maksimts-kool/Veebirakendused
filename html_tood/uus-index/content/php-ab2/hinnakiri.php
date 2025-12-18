@@ -26,9 +26,9 @@ while($rida = $tulemus->fetch_assoc()) $tooted[] = $rida;
 
 <body>
     <nav>
-        <div class="logo">Toidupood</div>
+        <a href="index.php" class="logo">Toidupood</a>
         <div>
-            <a href="index.php">Avaleht</a>
+            <a href="hinnakiri.php">Tooted</a>
             <a href="galerii.php">Galerii</a>
             <a href="admin.php">Admin</a>
         </div>
