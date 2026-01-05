@@ -19,7 +19,7 @@ function logout_admin() {
 }
 
 // Presidendi funktsioonid
-function lisa_president($president, $pilt, $punktid = 0, $avalik = 1) {
+function lisa_president($president, $pilt, $punktid = 0, $avalik = 0) {
     global $yhendus;
     $paring = $yhendus->prepare(
         "INSERT INTO valimised(president, pilt, punktid, avalik, lisamisaeg)

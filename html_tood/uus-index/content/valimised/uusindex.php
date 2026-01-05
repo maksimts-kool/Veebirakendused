@@ -56,7 +56,7 @@ if (isset($_REQUEST["lahuta1punkt"])) {
 if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
     $punktid = kontrolli_admin() && isset($_REQUEST["punktid"])
                ? intval($_REQUEST["punktid"]) : 0;
-    $avalik = kontrolli_admin() && isset($_REQUEST["avalik"]) ? 1 : 1;
+    $avalik = kontrolli_admin() && isset($_REQUEST["avalik"]) ? 1 : 0;
     lisa_president($_REQUEST["president"], $_REQUEST["pilt"],
                    $punktid, $avalik);
     header("Location: " . $_SERVER['PHP_SELF']);
