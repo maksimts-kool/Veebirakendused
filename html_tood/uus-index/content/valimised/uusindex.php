@@ -1,14 +1,81 @@
 <?php
-require('funktsioonid.php'); 
+session_start();
+require('funktsioonid.php');
 
-if (isset($_REQUEST["lisa1punkt"])) {
-    lisa1punkt($_REQUEST["lisa1punkt"]);
-    header("Location: ".$_SERVER['PHP_SELF']);
+// Logi sisse
+if (isset($_REQUEST["login"])) {
+    if (login_admin($_REQUEST["parool"])) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+}
+
+// Logi välja
+if (isset($_REQUEST["logout"])) {
+    logout_admin();
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
+
+// Muuda avalikuks/peidetud
+if (isset($_REQUEST["muuda_avalik"]) && kontrolli_admin()) {
+    muuda_avalik($_REQUEST["muuda_avalik"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Kustuta president
+if (isset($_REQUEST["kustuta"]) && kontrolli_admin()) {
+    kustuta_president($_REQUEST["kustuta"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Nulli punktid
+if (isset($_REQUEST["nulli_punktid"]) && kontrolli_admin()) {
+    nulli_punktid($_REQUEST["nulli_punktid"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Lisa 1 punkt
+if (isset($_REQUEST["lisa1punkt"])) {
+    lisa1punkt($_REQUEST["lisa1punkt"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Lahuta 1 punkt
+if (isset($_REQUEST["lahuta1punkt"])) {
+    lahuta1punkt($_REQUEST["lahuta1punkt"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Lisa uus president
 if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
-    lisa_president($_REQUEST["president"], $_REQUEST["pilt"]);
-    header("Location: ".$_SERVER['PHP_SELF']);
+    $punktid = kontrolli_admin() && isset($_REQUEST["punktid"])
+               ? intval($_REQUEST["punktid"]) : 0;
+    $avalik = kontrolli_admin() && isset($_REQUEST["avalik"]) ? 1 : 1;
+    lisa_president($_REQUEST["president"], $_REQUEST["pilt"],
+                   $punktid, $avalik);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Lisa kommentaar
+if (isset($_REQUEST["lisa_kommentaar"])
+    && isset($_REQUEST["kommentaar"])) {
+    lisa_kommentaar($_REQUEST["lisa_kommentaar"],
+                    $_REQUEST["kommentaar"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Kustuta kommentaarid
+if (isset($_REQUEST["kustuta_kommentaar"]) && kontrolli_admin()) {
+    kustuta_kommentaarid($_REQUEST["kustuta_kommentaar"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 ?>
