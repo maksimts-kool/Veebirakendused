@@ -7,4 +7,19 @@ if (isset($_REQUEST["lisa1punkt"])) {
     exit;
 }
 
+function naitaTabel() {
+    global $yhendus;
+    $paring = $yhendus->prepare("SELECT id, president, pilt, punktid, lisamisaeg, kommentaarid FROM valimised WHERE avalik = 1");
+    $paring->bind_result($id, $president, $pilt, $punktid, $lisamisaeg, $kommentaarid);
+    $paring->execute();
+
+    while ($paring->fetch()) {
+        echo "<tr>";
+        echo "<td>{$president}</td>";
+        echo "<td>{$punktid}</td>";
+        echo "<td><a href='?lisa1punkt={$id}'>+</a></td>";
+        echo "</tr>";
+    }
+}
+
 ?>
