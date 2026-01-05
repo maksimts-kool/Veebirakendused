@@ -1,5 +1,9 @@
 <?php require('config.php'); 
 
+function kontrolli_admin() {
+    return isset($_SESSION["admin"]);
+}
+
 function lisa1punkt($id) {
     global $yhendus;
     $paring = $yhendus->prepare(
