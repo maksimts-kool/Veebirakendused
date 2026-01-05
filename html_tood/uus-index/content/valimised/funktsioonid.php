@@ -1,10 +1,11 @@
 <?php require('config.php'); 
 
-if (isset($_REQUEST["lisa1punkt"])) {
+function lisa1punkt($id) {
+    global $yhendus;
     $paring = $yhendus->prepare("UPDATE valimised SET punktid = punktid + 1 WHERE id=?");
-    $paring->bind_param("i", $_REQUEST["lisa1punkt"]);
+    $paring->bind_param("i", $id);
     $paring->execute();
-    exit;
+    $yhendus->close();
 }
 
 function naitaTabel() {
