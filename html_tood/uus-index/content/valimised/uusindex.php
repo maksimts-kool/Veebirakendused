@@ -6,6 +6,11 @@ if (isset($_REQUEST["lisa1punkt"])) {
     header("Location: ".$_SERVER['PHP_SELF']);
     exit;
 }
+if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
+    lisa_president($_REQUEST["president"], $_REQUEST["pilt"]);
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

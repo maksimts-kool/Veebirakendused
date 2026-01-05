@@ -2,10 +2,11 @@
 
 function lisa1punkt($id) {
     global $yhendus;
-    $paring = $yhendus->prepare("UPDATE valimised SET punktid = punktid + 1 WHERE id=?");
+    $paring = $yhendus->prepare(
+        "UPDATE valimised SET punktid = punktid + 1 WHERE id=?"
+    );
     $paring->bind_param("i", $id);
     $paring->execute();
-    $yhendus->close();
 }
 
 function naitaTabel() {
@@ -23,12 +24,14 @@ function naitaTabel() {
     }
 }
 
-function lisaPresident($president, $pilt) {
+function lisa_president($president, $pilt, $punktid = 0, $avalik = 1) {
     global $yhendus;
-    $paring = $yhendus->prepare("INSERT INTO valimised (president, pilt, lisamisaeg) VALUES (?, ?, NOW())");
-    $paring->bind_param("ss", $president, $pilt);
+    $paring = $yhendus->prepare(
+        "INSERT INTO valimised(president, pilt, punktid, avalik, lisamisaeg)
+         VALUES (?, ?, ?, ?, NOW())"
+    );
+    $paring->bind_param("ssii", $president, $pilt, $punktid, $avalik);
     $paring->execute();
-    $yhendus->close();
 }
 
 ?>
