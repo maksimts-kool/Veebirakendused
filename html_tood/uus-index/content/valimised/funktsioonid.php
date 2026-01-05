@@ -23,4 +23,12 @@ function naitaTabel() {
     }
 }
 
+function lisaPresident($president, $pilt) {
+    global $yhendus;
+    $paring = $yhendus->prepare("INSERT INTO valimised (president, pilt, lisamisaeg) VALUES (?, ?, NOW())");
+    $paring->bind_param("ss", $president, $pilt);
+    $paring->execute();
+    $yhendus->close();
+}
+
 ?>
