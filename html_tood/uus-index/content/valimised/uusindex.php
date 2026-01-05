@@ -95,9 +95,6 @@ if (isset($_REQUEST["kustuta_kommentaar"]) && kontrolli_admin()) {
         <a href="?logout=1">Logi välja</a>
     </p>
     <?php endif; ?>
-    <p style="text-align: center;">
-        <a href="galerii.php">Vaata galeriid</a>
-    </p>
 
     <table>
         <tr>
