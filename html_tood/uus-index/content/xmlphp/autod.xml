@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autod>
+  <auto>
+    <autoNumber>111AAA</autoNumber>
+    <mark>BMW</mark>
+    <model>3-seeria</model>
+    <omanik>
+      <eesnimi>Maie</eesnimi>
+      <perenimi>Tamm</perenimi>
+      <vanus>30</vanus>
+    </omanik>
+  </auto>
+  <auto>
+    <autoNumber>222BBB</autoNumber>
+    <mark>Audi</mark>
+    <model>A4</model>
+    <omanik>
+      <eesnimi>Jaan</eesnimi>
+      <perenimi>Kask</perenimi>
+      <vanus>28</vanus>
+    </omanik>
+  </auto>
+  <auto>
+    <autoNumber>333CCC</autoNumber>
+    <mark>Mercedes</mark>
+    <model>C-klassi</model>
+    <omanik>
+      <eesnimi>Liis</eesnimi>
+      <perenimi>Rebane</perenimi>
+      <vanus>41</vanus>
+    </omanik>
+  </auto>
+  <auto>
+    <autoNumber>123ABC</autoNumber>
+    <mark>Tesla</mark>
+    <model>Model 3</model>
+    <omanik>
+      <eesnimi>Maksim</eesnimi>
+      <perenimi>Tamm</perenimi>
+      <vanus>20</vanus>
+    </omanik>
+  </auto>
+  <auto>
+    <autoNumber>111AAA</autoNumber>
+    <mark>AAA</mark>
+    <model>AAAA</model>
+    <omanik>
+      <eesnimi>AAA</eesnimi>
+      <perenimi>AAA</perenimi>
+      <vanus>26</vanus>
+    </omanik>
+  </auto>
+</autod>
