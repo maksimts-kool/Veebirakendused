@@ -13,7 +13,7 @@ $posts = [
     ["id" => "php-ab", "title" => "XAMPP Andmebaasi loomine PHPs", "desc" => "", "date" => "2025-12-02", "category" => "XAMPP"],
     ["id" => "php-ab2", "title" => "Toidupood", "desc" => "Toidupood kasutades andmebaasi", "date" => "2025-12-04", "category" => "XAMPP"],
     ["id" => "valimised", "title" => "Presidenti valimised", "desc" => "Lisa, Kustuta, lisa punkte, näita ja peida presiednte", "date" => "2025-12-09", "category" => "XAMPP"],
-    
+    ["id" => "xmlphp", "title" => "", "desc" => "", "date" => "2026-01-08", "category" => "Määratlemata"],
 ];
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
@@ -68,7 +68,7 @@ usort($posts, function($a, $b) {
         <div class="grid">
             <?php foreach ($posts as $post) { ?>
 
-            <?php if ($post['id'] === 'php-ab' || $post['id'] === 'php-ab2' || $post['id'] === 'valimised') { ?>
+            <?php if ($post['id'] === 'php-ab' || $post['id'] === 'php-ab2' || $post['id'] === 'valimised' || $post['id'] === 'xmlphp') { ?>
             <!-- php-ab and php-ab2 open in new tab -->
             <div class="card post" data-category="<?php echo $post['category']; ?>">
                 <a href="content/<?php echo $post['id']; ?>/index.php" target="_blank" class="post-link">
