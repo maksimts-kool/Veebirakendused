@@ -18,6 +18,8 @@ $posts = [
 usort($posts, function($a, $b) {
     return strtotime($b["date"]) - strtotime($a["date"]);
 });
+//header('Location: ../index2/index.php');
+//exit();
 ?>
 <!DOCTYPE html>
 <html>
