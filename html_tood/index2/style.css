@@ -275,8 +275,8 @@ h2::after {
 
 .filter-btn {
     background-color: white;
-    color: var(--text-muted);
-    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    border: 1.5px solid var(--border-color);
     padding: 0.6rem 1.25rem;
     border-radius: 8px;
     cursor: pointer;
@@ -287,28 +287,35 @@ h2::after {
     display: inline-block;
 }
 
+.filter-btn[data-category] {
+    color: var(--cat-color);
+    border-color: var(--cat-border);
+}
+
 .filter-btn:hover {
     border-color: var(--primary-color);
-    color: var(--primary-color);
-    background-color: #eff6ff;
+    background-color: #f0f7ff;
+    transform: translateY(-2px);
+}
+
+.filter-btn[data-category]:hover {
+    background-color: var(--cat-bg);
+    border-color: var(--cat-color);
+    box-shadow: 0 4px 10px var(--cat-bg);
 }
 
 .filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
-.filter-btn[data-category] {
-    color: var(--cat-color, var(--text-muted));
-    border-color: var(--cat-border, var(--border-color));
-}
-
 .filter-btn[data-category].active {
-    background-color: var(--cat-color, var(--primary-color));
-    border-color: var(--cat-color, var(--primary-color));
-    color: white;
+    background-color: var(--cat-color) !important;
+    color: white !important;
+    border-color: var(--cat-color) !important;
+    box-shadow: 0 4px 12px var(--cat-border);
 }
 
 /* All Posts List */
