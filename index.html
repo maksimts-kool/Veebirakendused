@@ -35,7 +35,6 @@
         function stardiLeht() {
             $("section h2").mouseenter(red);
             $("section h2").mouseleave(sinine);
-
             $("section h2").click(Peida);
             $("section h2").dblclick(Naita);
 
@@ -43,9 +42,20 @@
                 containment: "parent",
                 drag: pildiKoordinaat,
             });
-
             $("img").click(huppa);
             $("#menuNupp").click(menunupp);
+
+            // Hamburger toggle
+            $("#hamburger").click(function () {
+                $("#navMenu").toggleClass("open");
+                $(this).toggleClass("active");
+            });
+
+            // Close menu when a link is clicked (mobile UX)
+            $("#navMenu a").click(function () {
+                $("#navMenu").removeClass("open");
+                $("#hamburger").removeClass("active");
+            });
         }
         function pildiKoordinaat(event, ui) {
             let koht = ui.offset;
@@ -78,7 +88,12 @@
     </header>
 
     <nav>
-        <ul>
+        <button id="hamburger" aria-label="Ava menüü">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="navMenu">
             <li><a href="index.html">Kodu</a></li>
             <li><a href="teemad_lingid.html">Teemad / Lingid</a></li>
             <li><a href="tehtud_tood.html">Tehtud tööd</a></li>
