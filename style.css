@@ -31,6 +31,7 @@ header h1 {
 /* --- Navigation --- */
 nav {
     position: relative;
+    background: #636dfc;
     top: 0;
 }
 
@@ -42,7 +43,6 @@ nav ul {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    background: #636dfc;
 }
 
 nav a {
@@ -52,11 +52,48 @@ nav a {
     padding: 8px 14px;
     border-radius: 4px;
     white-space: nowrap;
+    display: block;
 }
 
 nav a:hover {
     background: #fb1374;
     color: white;
+}
+
+/* --- Hamburger button (hidden on desktop) --- */
+#hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    margin: 0;
+    width: auto;
+}
+
+#hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Animate hamburger → X when active */
+#hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+#hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+#hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* --- Main content --- */
@@ -210,16 +247,6 @@ footer strong {
         font-size: 20px;
     }
 
-    nav ul {
-        gap: 6px;
-        padding: 8px;
-    }
-
-    nav a {
-        padding: 6px 10px;
-        font-size: 14px;
-    }
-
     main {
         margin: 10px auto;
         padding: 0 10px;
@@ -230,7 +257,6 @@ footer strong {
     }
 }
 
-/* Mobiil – kuni 480px */
 @media (max-width: 480px) {
     header img {
         width: 150px;
@@ -240,17 +266,33 @@ footer strong {
         font-size: 16px;
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
+    /* Show hamburger, hide nav by default */
+    #hamburger {
+        display: flex;
     }
 
-    nav a {
-        display: block;
-        text-align: center;
-        padding: 10px;
-        font-size: 14px;
+    #navMenu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0;
+        border-top: 2px solid #4a54d1;
+    }
+
+    /* Slide open */
+    #navMenu.open {
+        display: flex;
+    }
+
+    #navMenu li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #4a54d1;
+        font-size: 15px;
+    }
+
+    #navMenu li a:hover {
+        background: #fb1374;
     }
 
     section {
