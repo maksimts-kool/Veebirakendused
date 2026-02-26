@@ -17,14 +17,10 @@ header {
 
 header img {
     display: block;
-    margin: 0 auto 0;
+    margin: 0 auto;
     width: 300px;
     height: auto;
-}
-
-header img {
     filter: brightness(2) contrast(1.5);
-
 }
 
 header h1 {
@@ -43,8 +39,9 @@ nav ul {
     margin: 0;
     padding: 10px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     background: #636dfc;
 }
 
@@ -54,6 +51,7 @@ nav a {
     font-weight: bold;
     padding: 8px 14px;
     border-radius: 4px;
+    white-space: nowrap;
 }
 
 nav a:hover {
@@ -66,6 +64,7 @@ main {
     max-width: 900px;
     margin: 20px auto;
     padding: 0 15px;
+    box-sizing: border-box;
 }
 
 section {
@@ -75,6 +74,7 @@ section {
     border: 1px solid #ccc;
     border-radius: 20px;
     border-left: 6px solid #1c33ba;
+    box-sizing: border-box;
 }
 
 section:nth-of-type(1) {
@@ -130,6 +130,7 @@ button#menuNupp {
     right: 10px;
     cursor: pointer;
     background-color: rgb(209, 70, 45);
+    z-index: 1000;
 }
 
 /* --- Footer --- */
@@ -182,25 +183,103 @@ footer strong {
     cursor: pointer;
 }
 
-.grid-item:hover {
-    border-color: #fb1374;
-}
-
-.grid-item a:hover {
-    color: #1c33ba;
-}
-
 .hindeline-badge {
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 10px;
     background: #ff0019;
     color: white;
     padding: 4px 12px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     font-size: 12px;
     font-weight: 600;
+}
+
+/* =============================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================= */
+
+/* Tahvelarvuti (tablet) – kuni 768px */
+@media (max-width: 768px) {
+    header img {
+        width: 200px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    nav ul {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    nav a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 0 10px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* Mobiil – kuni 480px */
+@media (max-width: 480px) {
+    header img {
+        width: 150px;
+    }
+
+    header h1 {
+        font-size: 16px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+    }
+
+    nav a {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    section {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    section h2 {
+        font-size: 18px;
+    }
+
+    button {
+        width: 100%;
+        margin: 6px 0;
+        font-size: 14px;
+    }
+
+    button#menuNupp {
+        width: auto;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        font-size: 12px;
+        padding: 15px 10px;
+    }
 }
