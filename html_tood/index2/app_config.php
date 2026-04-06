@@ -1,5 +1,8 @@
 <?php
 
+$privateSecurityDir = dirname(__DIR__, 2) . '/storage/index2-security';
+$legacySecurityDir = __DIR__ . '/data/security';
+
 return [
     'database' => [
         'host' => getenv('INDEX2_DB_HOST') ?: 'd141144.mysql.zonevs.eu',
@@ -16,7 +19,9 @@ return [
             '127.0.0.1',
             '::1',
         ],
-        'authorized_ips_file' => __DIR__ . '/data/security/authorized_ips.json',
-        'ip_requests_file' => __DIR__ . '/data/security/ip_requests.json',
+        'authorized_ips_file' => $privateSecurityDir . '/authorized_ips.json',
+        'ip_requests_file' => $privateSecurityDir . '/ip_requests.json',
+        'authorized_ips_legacy_file' => $legacySecurityDir . '/authorized_ips.json',
+        'ip_requests_legacy_file' => $legacySecurityDir . '/ip_requests.json',
     ],
 ];
