@@ -1,0 +1,577 @@
+/* Material Design 3 - Jalgratta Eksam */
+
+:root {
+    /* MD3 Color Tokens - Light Theme */
+    --md-sys-color-primary: #0061a4;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #d1e4ff;
+    --md-sys-color-on-primary-container: #001d36;
+
+    --md-sys-color-secondary: #535f70;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #d7e3f7;
+    --md-sys-color-on-secondary-container: #101c2b;
+
+    --md-sys-color-tertiary: #6b5778;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #f2daff;
+    --md-sys-color-on-tertiary-container: #251431;
+
+    --md-sys-color-error: #ba1a1a;
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+    --md-sys-color-on-error-container: #410002;
+
+    --md-sys-color-success: #006e1c;
+    --md-sys-color-on-success: #ffffff;
+    --md-sys-color-success-container: #9ef991;
+    --md-sys-color-on-success-container: #002204;
+
+    --md-sys-color-surface: #fcfcff;
+    --md-sys-color-on-surface: #1a1c1e;
+    --md-sys-color-surface-variant: #dfe2eb;
+    --md-sys-color-on-surface-variant: #43474e;
+
+    --md-sys-color-outline: #73777f;
+    --md-sys-color-outline-variant: #c3c7cf;
+
+    --md-sys-color-background: #f8f9ff;
+    --md-sys-color-on-background: #1a1c1e;
+
+    /* MD3 Elevation Shadows */
+    --md-sys-elevation-0: none;
+    --md-sys-elevation-1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --md-sys-elevation-2: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+    --md-sys-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+    --md-sys-elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+
+    /* MD3 Shape Tokens */
+    --md-sys-shape-corner-none: 0px;
+    --md-sys-shape-corner-small: 8px;
+    --md-sys-shape-corner-medium: 12px;
+    --md-sys-shape-corner-large: 16px;
+    --md-sys-shape-corner-extra-large: 28px;
+
+    /* MD3 Typography Scale */
+    --md-sys-typescale-display-large: 57px;
+    --md-sys-typescale-headline-large: 32px;
+    --md-sys-typescale-headline-medium: 28px;
+    --md-sys-typescale-title-large: 22px;
+    --md-sys-typescale-title-medium: 16px;
+    --md-sys-typescale-body-large: 16px;
+    --md-sys-typescale-body-medium: 14px;
+    --md-sys-typescale-label-large: 14px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--md-sys-typescale-body-medium);
+}
+
+/* HEADER - MD3 Top App Bar */
+.header {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    padding: 24px 0;
+    box-shadow: var(--md-sys-elevation-2);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo h1 {
+    font-size: var(--md-sys-typescale-headline-large);
+    font-weight: 500;
+    color: var(--md-sys-color-on-primary);
+    margin: 0;
+}
+
+.tagline {
+    font-size: var(--md-sys-typescale-body-medium);
+    color: var(--md-sys-color-on-primary);
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+/* NAVIGATION - MD3 Navigation Bar */
+.navbar {
+    background-color: var(--md-sys-color-surface);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--md-sys-elevation-2);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--md-sys-color-on-surface);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: var(--md-sys-shape-corner-large);
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    font-weight: 500;
+    font-size: var(--md-sys-typescale-label-large);
+    white-space: nowrap;
+    position: relative;
+}
+
+.nav-link:hover {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.nav-link:active {
+    transform: scale(0.98);
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+/* MD3 Card Container */
+.container {
+    background: var(--md-sys-color-surface);
+    padding: 32px;
+    border-radius: var(--md-sys-shape-corner-extra-large);
+    box-shadow: var(--md-sys-elevation-1);
+    margin-bottom: 24px;
+    border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* MD3 Typography */
+h1 {
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 24px;
+    font-size: var(--md-sys-typescale-headline-large);
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.container h1 {
+    color: var(--md-sys-color-on-surface);
+}
+
+h2 {
+    color: var(--md-sys-color-on-surface);
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: var(--md-sys-typescale-title-large);
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: 16px;
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: var(--md-sys-typescale-body-large);
+    line-height: 1.6;
+}
+
+/* MD3 TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background: var(--md-sys-color-surface);
+    border-radius: var(--md-sys-shape-corner-medium);
+    overflow: hidden;
+    box-shadow: var(--md-sys-elevation-1);
+    border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+th {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: var(--md-sys-typescale-title-medium);
+    letter-spacing: 0.1px;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    color: var(--md-sys-color-on-surface);
+    font-size: var(--md-sys-typescale-body-medium);
+}
+
+tr:hover {
+    background-color: var(--md-sys-color-surface-variant);
+    transition: background-color 0.2s ease;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* MD3 FORMS */
+form {
+    margin: 24px 0;
+}
+
+dl {
+    display: grid;
+    gap: 24px;
+}
+
+dt {
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+    font-size: var(--md-sys-typescale-body-large);
+    margin-bottom: 8px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+/* MD3 Text Fields */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--md-sys-shape-corner-small);
+    font-size: var(--md-sys-typescale-body-large);
+    max-width: 400px;
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+select:hover {
+    border-color: var(--md-sys-color-on-surface);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--md-sys-color-primary);
+    border-width: 2px;
+    padding: 15px;
+    box-shadow: 0 0 0 3px rgba(0, 97, 164, 0.12);
+}
+
+/* MD3 Filled Button */
+input[type="submit"],
+.btn {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--md-sys-shape-corner-large);
+    cursor: pointer;
+    font-size: var(--md-sys-typescale-label-large);
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    box-shadow: var(--md-sys-elevation-0);
+    letter-spacing: 0.1px;
+    min-height: 40px;
+}
+
+input[type="submit"]:hover,
+.btn:hover {
+    background-color: var(--md-sys-color-primary);
+    box-shadow: var(--md-sys-elevation-1);
+    color: var(--md-sys-color-on-primary);
+    filter: brightness(1.1);
+}
+
+input[type="submit"]:active,
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: var(--md-sys-elevation-0);
+    color: var(--md-sys-color-on-primary);
+}
+
+input[type="submit"]:focus,
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 97, 164, 0.12);
+}
+
+/* MD3 Danger Button */
+.btn-danger {
+    background-color: var(--md-sys-color-error);
+    color: var(--md-sys-color-on-error);
+}
+
+.btn-danger:hover {
+    background-color: var(--md-sys-color-error);
+    color: var(--md-sys-color-on-error);
+    filter: brightness(1.1);
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+/* MD3 Info Button */
+.btn-info {
+    background-color: var(--md-sys-color-secondary);
+    color: var(--md-sys-color-on-secondary);
+}
+
+.btn-info:hover {
+    background-color: var(--md-sys-color-secondary);
+    color: var(--md-sys-color-on-secondary);
+    filter: brightness(1.1);
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+small {
+    color: var(--md-sys-color-on-surface-variant);
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* MD3 ALERTS/SNACKBARS */
+.viga {
+    color: var(--md-sys-color-on-error-container);
+    background-color: var(--md-sys-color-error-container);
+    padding: 16px 20px;
+    border-radius: var(--md-sys-shape-corner-medium);
+    margin: 16px 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+.edukas {
+    color: var(--md-sys-color-on-success-container);
+    background-color: var(--md-sys-color-success-container);
+    padding: 16px 20px;
+    border-radius: var(--md-sys-shape-corner-medium);
+    margin: 16px 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+.info {
+    color: var(--md-sys-color-on-secondary-container);
+    background-color: var(--md-sys-color-secondary-container);
+    padding: 16px 20px;
+    border-radius: var(--md-sys-shape-corner-medium);
+    margin: 16px 0;
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+/* MD3 LINKS */
+a {
+    color: var(--md-sys-color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--md-sys-color-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+a:focus {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* MD3 BADGES/CHIPS */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: var(--md-sys-shape-corner-small);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: 0.1px;
+}
+
+.badge-success {
+    background-color: var(--md-sys-color-success-container);
+    color: var(--md-sys-color-on-success-container);
+}
+
+.badge-danger {
+    background-color: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+}
+
+.badge-warning {
+    background-color: #fef7e0;
+    color: #6b5e00;
+}
+
+.badge-info {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+/* MD3 FOOTER */
+.footer {
+    background-color: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    text-align: center;
+    padding: 32px 20px;
+    margin-top: auto;
+    border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-info {
+    font-size: var(--md-sys-typescale-body-medium);
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+/* MD3 RESPONSIVE */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: var(--md-sys-typescale-headline-medium);
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+    }
+
+    .nav-link {
+        padding: 12px 16px;
+        justify-content: flex-start;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: var(--md-sys-shape-corner-large);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        max-width: 100%;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+/* MD3 Utility Classes */
+.md-elevated {
+    box-shadow: var(--md-sys-elevation-2);
+}
+
+.md-filled {
+    background-color: var(--md-sys-color-surface-variant);
+}
+
+.md-outlined {
+    border: 1px solid var(--md-sys-color-outline);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+}
