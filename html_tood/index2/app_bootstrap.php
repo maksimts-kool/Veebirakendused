@@ -209,6 +209,10 @@ if (!function_exists('app_normalize_permission_page_key')) {
             return '*';
         }
 
+        if (app_starts_with($path, 'project:')) {
+            return $path;
+        }
+
         if ($path === '') {
             $path = $fallback !== '' ? $fallback : app_get_current_script_relative_path();
         }
@@ -228,7 +232,7 @@ if (!function_exists('app_normalize_permission_page_key')) {
         if (preg_match('#^[A-Za-z]:/#', $path)) {
             $root = str_replace('\\', '/', INDEX2_ROOT);
             if (app_starts_with($path, $root . '/')) {
-                return ltrim(substr($path, strlen($root)), '/');
+                return app_map_page_to_permission_scope(ltrim(substr($path, strlen($root)), '/'));
             }
 
             return '';
@@ -240,10 +244,10 @@ if (!function_exists('app_normalize_permission_page_key')) {
             $position = strpos($trimmedPath, $marker);
 
             if ($position !== false) {
-                return ltrim(substr($trimmedPath, $position + strlen($marker)), '/');
+                return app_map_page_to_permission_scope(ltrim(substr($trimmedPath, $position + strlen($marker)), '/'));
             }
 
-            return $trimmedPath;
+            return app_map_page_to_permission_scope($trimmedPath);
         }
 
         if (app_starts_with($path, './')) {
@@ -251,14 +255,53 @@ if (!function_exists('app_normalize_permission_page_key')) {
         }
 
         if (app_starts_with($path, 'content/') || $path === 'ip-admin.php') {
-            return ltrim($path, '/');
+            return app_map_page_to_permission_scope(ltrim($path, '/'));
         }
 
         $baseScript = $fallback !== '' ? $fallback : app_get_current_script_relative_path();
         $baseDirectory = dirname(str_replace('\\', '/', $baseScript));
         $baseDirectory = $baseDirectory === '.' ? '' : $baseDirectory;
 
-        return app_resolve_relative_path($baseDirectory, $path);
+        return app_map_page_to_permission_scope(app_resolve_relative_path($baseDirectory, $path));
+    }
+}
+
+if (!function_exists('app_get_permission_scope_map')) {
+    function app_get_permission_scope_map()
+    {
+        return [
+            'content/php-ab/index.php' => 'project:php-ab',
+            'content/php-ab/lisaUudis.php' => 'project:php-ab',
+            'content/php-ab2/admin.php' => 'project:toidupood',
+            'content/php-ab2/galerii.php' => 'project:toidupood',
+            'content/php-ab2/hinnakiri.php' => 'project:toidupood',
+            'content/valimised/index.php' => 'project:valimised',
+            'content/valimised/uusindex.php' => 'project:valimised',
+            'content/jalgratta-eksam/lubadeleht.php' => 'project:jalgrattaeksam',
+            'content/jalgratta-eksam/registreerimine.php' => 'project:jalgrattaeksam',
+            'content/jalgratta-eksam/ringtee.php' => 'project:jalgrattaeksam',
+            'content/jalgratta-eksam/slaalom.php' => 'project:jalgrattaeksam',
+            'content/jalgratta-eksam/t2navasoit.php' => 'project:jalgrattaeksam',
+            'content/jalgratta-eksam/teooriaeksam.php' => 'project:jalgrattaeksam',
+        ];
+    }
+}
+
+if (!function_exists('app_map_page_to_permission_scope')) {
+    function app_map_page_to_permission_scope($pageKey)
+    {
+        $pageKey = ltrim(trim((string)$pageKey), '/');
+        if ($pageKey === '' || $pageKey === '*') {
+            return $pageKey;
+        }
+
+        if (app_starts_with($pageKey, 'project:')) {
+            return $pageKey;
+        }
+
+        $scopeMap = app_get_permission_scope_map();
+
+        return $scopeMap[$pageKey] ?? $pageKey;
     }
 }
 
@@ -266,57 +309,21 @@ if (!function_exists('app_get_protected_page_definitions')) {
     function app_get_protected_page_definitions()
     {
         return [
-            'content/php-ab/index.php' => [
-                'label' => 'PHP AB uudised',
-                'description' => 'Uudiste kustutamine',
+            'project:php-ab' => [
+                'label' => 'PHP AB',
+                'description' => 'Uudiste loomine ja kustutamine kogu projektis',
             ],
-            'content/php-ab/lisaUudis.php' => [
-                'label' => 'PHP AB uudise lisamine',
-                'description' => 'Uudiste loomine',
+            'project:toidupood' => [
+                'label' => 'Toidupood',
+                'description' => 'Koik Toidupoe muutmised kogu projektis',
             ],
-            'content/php-ab2/admin.php' => [
-                'label' => 'Toidupood admin',
-                'description' => 'Toodete haldamine',
-            ],
-            'content/php-ab2/galerii.php' => [
-                'label' => 'Toidupood galerii',
-                'description' => 'Galerii kommentaaride lisamine',
-            ],
-            'content/php-ab2/hinnakiri.php' => [
-                'label' => 'Toidupood hinnakiri',
-                'description' => 'Hindade muutmine',
-            ],
-            'content/valimised/index.php' => [
+            'project:valimised' => [
                 'label' => 'Valimised',
-                'description' => 'Kandidaatide ja kommentaaride muutmine',
+                'description' => 'Koik valimiste muudatused kogu projektis',
             ],
-            'content/valimised/uusindex.php' => [
-                'label' => 'Valimised uus vaade',
-                'description' => 'Kandidaatide ja kommentaaride muutmine',
-            ],
-            'content/jalgratta-eksam/lubadeleht.php' => [
-                'label' => 'Jalgrattaeksam load',
-                'description' => 'Lubade valjastamine ja kustutamine',
-            ],
-            'content/jalgratta-eksam/registreerimine.php' => [
-                'label' => 'Jalgrattaeksam registreerimine',
-                'description' => 'Osalejate lisamine',
-            ],
-            'content/jalgratta-eksam/ringtee.php' => [
-                'label' => 'Jalgrattaeksam ringtee',
-                'description' => 'Ringtee tulemuste salvestamine',
-            ],
-            'content/jalgratta-eksam/slaalom.php' => [
-                'label' => 'Jalgrattaeksam slaalom',
-                'description' => 'Slaalomi tulemuste salvestamine',
-            ],
-            'content/jalgratta-eksam/t2navasoit.php' => [
-                'label' => 'Jalgrattaeksam tanavasoit',
-                'description' => 'Tanavasoitu tulemuste salvestamine',
-            ],
-            'content/jalgratta-eksam/teooriaeksam.php' => [
-                'label' => 'Jalgrattaeksam teooria',
-                'description' => 'Teooria tulemuste salvestamine',
+            'project:jalgrattaeksam' => [
+                'label' => 'Jalgrattaeksam',
+                'description' => 'Koik jalgrattaeksami muudatused kogu projektis',
             ],
         ];
     }
