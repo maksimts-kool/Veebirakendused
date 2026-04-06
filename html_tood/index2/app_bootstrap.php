@@ -143,6 +143,281 @@ if (!function_exists('app_current_path')) {
     }
 }
 
+if (!function_exists('app_get_current_script_relative_path')) {
+    function app_get_current_script_relative_path()
+    {
+        $scriptFilename = $_SERVER['SCRIPT_FILENAME'] ?? '';
+        if ($scriptFilename !== '') {
+            $scriptFilename = str_replace('\\', '/', $scriptFilename);
+            $root = str_replace('\\', '/', INDEX2_ROOT);
+
+            if (app_starts_with($scriptFilename, $root . '/')) {
+                return ltrim(substr($scriptFilename, strlen($root)), '/');
+            }
+        }
+
+        $scriptName = str_replace('\\', '/', app_current_path());
+        $marker = '/index2/';
+        $position = strpos($scriptName, $marker);
+
+        if ($position !== false) {
+            return ltrim(substr($scriptName, $position + strlen($marker)), '/');
+        }
+
+        return ltrim($scriptName, '/');
+    }
+}
+
+if (!function_exists('app_resolve_relative_path')) {
+    function app_resolve_relative_path($basePath, $targetPath)
+    {
+        $segments = [];
+        $combinedPath = trim((string)$basePath, '/');
+        $targetPath = trim((string)$targetPath);
+
+        if ($combinedPath !== '') {
+            foreach (explode('/', $combinedPath) as $segment) {
+                if ($segment !== '') {
+                    $segments[] = $segment;
+                }
+            }
+        }
+
+        foreach (explode('/', str_replace('\\', '/', $targetPath)) as $segment) {
+            if ($segment === '' || $segment === '.') {
+                continue;
+            }
+
+            if ($segment === '..') {
+                array_pop($segments);
+                continue;
+            }
+
+            $segments[] = $segment;
+        }
+
+        return implode('/', $segments);
+    }
+}
+
+if (!function_exists('app_normalize_permission_page_key')) {
+    function app_normalize_permission_page_key($path, $fallback = '')
+    {
+        $path = trim((string)$path);
+
+        if ($path === '*' || $path === 'all') {
+            return '*';
+        }
+
+        if ($path === '') {
+            $path = $fallback !== '' ? $fallback : app_get_current_script_relative_path();
+        }
+
+        $parsedPath = parse_url($path, PHP_URL_PATH);
+        $path = $parsedPath !== null ? $parsedPath : $path;
+        $path = str_replace('\\', '/', trim((string)$path));
+
+        if ($path === '') {
+            return '';
+        }
+
+        if (preg_match('/^[a-z][a-z0-9+.-]*:/i', $path)) {
+            return '';
+        }
+
+        if (preg_match('#^[A-Za-z]:/#', $path)) {
+            $root = str_replace('\\', '/', INDEX2_ROOT);
+            if (app_starts_with($path, $root . '/')) {
+                return ltrim(substr($path, strlen($root)), '/');
+            }
+
+            return '';
+        }
+
+        if (app_starts_with($path, '/')) {
+            $trimmedPath = ltrim($path, '/');
+            $marker = 'index2/';
+            $position = strpos($trimmedPath, $marker);
+
+            if ($position !== false) {
+                return ltrim(substr($trimmedPath, $position + strlen($marker)), '/');
+            }
+
+            return $trimmedPath;
+        }
+
+        if (app_starts_with($path, './')) {
+            $path = substr($path, 2);
+        }
+
+        if (app_starts_with($path, 'content/') || $path === 'ip-admin.php') {
+            return ltrim($path, '/');
+        }
+
+        $baseScript = $fallback !== '' ? $fallback : app_get_current_script_relative_path();
+        $baseDirectory = dirname(str_replace('\\', '/', $baseScript));
+        $baseDirectory = $baseDirectory === '.' ? '' : $baseDirectory;
+
+        return app_resolve_relative_path($baseDirectory, $path);
+    }
+}
+
+if (!function_exists('app_get_protected_page_definitions')) {
+    function app_get_protected_page_definitions()
+    {
+        return [
+            'content/php-ab/index.php' => [
+                'label' => 'PHP AB uudised',
+                'description' => 'Uudiste kustutamine',
+            ],
+            'content/php-ab/lisaUudis.php' => [
+                'label' => 'PHP AB uudise lisamine',
+                'description' => 'Uudiste loomine',
+            ],
+            'content/php-ab2/admin.php' => [
+                'label' => 'Toidupood admin',
+                'description' => 'Toodete haldamine',
+            ],
+            'content/php-ab2/galerii.php' => [
+                'label' => 'Toidupood galerii',
+                'description' => 'Galerii kommentaaride lisamine',
+            ],
+            'content/php-ab2/hinnakiri.php' => [
+                'label' => 'Toidupood hinnakiri',
+                'description' => 'Hindade muutmine',
+            ],
+            'content/valimised/index.php' => [
+                'label' => 'Valimised',
+                'description' => 'Kandidaatide ja kommentaaride muutmine',
+            ],
+            'content/valimised/uusindex.php' => [
+                'label' => 'Valimised uus vaade',
+                'description' => 'Kandidaatide ja kommentaaride muutmine',
+            ],
+            'content/jalgratta-eksam/lubadeleht.php' => [
+                'label' => 'Jalgrattaeksam load',
+                'description' => 'Lubade valjastamine ja kustutamine',
+            ],
+            'content/jalgratta-eksam/registreerimine.php' => [
+                'label' => 'Jalgrattaeksam registreerimine',
+                'description' => 'Osalejate lisamine',
+            ],
+            'content/jalgratta-eksam/ringtee.php' => [
+                'label' => 'Jalgrattaeksam ringtee',
+                'description' => 'Ringtee tulemuste salvestamine',
+            ],
+            'content/jalgratta-eksam/slaalom.php' => [
+                'label' => 'Jalgrattaeksam slaalom',
+                'description' => 'Slaalomi tulemuste salvestamine',
+            ],
+            'content/jalgratta-eksam/t2navasoit.php' => [
+                'label' => 'Jalgrattaeksam tanavasoit',
+                'description' => 'Tanavasoitu tulemuste salvestamine',
+            ],
+            'content/jalgratta-eksam/teooriaeksam.php' => [
+                'label' => 'Jalgrattaeksam teooria',
+                'description' => 'Teooria tulemuste salvestamine',
+            ],
+        ];
+    }
+}
+
+if (!function_exists('app_get_protected_page_label')) {
+    function app_get_protected_page_label($pageKey)
+    {
+        if ($pageKey === '*' || $pageKey === 'all') {
+            return 'All protected pages';
+        }
+
+        $definitions = app_get_protected_page_definitions();
+        if (isset($definitions[$pageKey]['label'])) {
+            return $definitions[$pageKey]['label'];
+        }
+
+        return $pageKey !== '' ? $pageKey : 'Unknown page';
+    }
+}
+
+if (!function_exists('app_normalize_allowed_pages')) {
+    function app_normalize_allowed_pages(array $pages)
+    {
+        $normalized = [];
+
+        foreach ($pages as $page) {
+            $pageKey = app_normalize_permission_page_key((string)$page);
+            if ($pageKey === '') {
+                continue;
+            }
+
+            if ($pageKey === '*') {
+                return ['*'];
+            }
+
+            $normalized[$pageKey] = $pageKey;
+        }
+
+        ksort($normalized);
+
+        return array_values($normalized);
+    }
+}
+
+if (!function_exists('app_get_effective_allowed_pages')) {
+    function app_get_effective_allowed_pages(array $meta)
+    {
+        if (!array_key_exists('allowed_pages', $meta)) {
+            return ['*'];
+        }
+
+        if (!is_array($meta['allowed_pages'])) {
+            return ['*'];
+        }
+
+        return app_normalize_allowed_pages($meta['allowed_pages']);
+    }
+}
+
+if (!function_exists('app_merge_allowed_pages')) {
+    function app_merge_allowed_pages(array $existingPages, array $newPages)
+    {
+        $existingPages = app_normalize_allowed_pages($existingPages);
+        $newPages = app_normalize_allowed_pages($newPages);
+
+        if (in_array('*', $existingPages, true) || in_array('*', $newPages, true)) {
+            return ['*'];
+        }
+
+        return app_normalize_allowed_pages(array_merge($existingPages, $newPages));
+    }
+}
+
+if (!function_exists('app_meta_allows_page')) {
+    function app_meta_allows_page(array $meta, $pageKey)
+    {
+        $pageKey = app_normalize_permission_page_key($pageKey);
+        if ($pageKey === '') {
+            return true;
+        }
+
+        $allowedPages = app_get_effective_allowed_pages($meta);
+
+        return in_array('*', $allowedPages, true) || in_array($pageKey, $allowedPages, true);
+    }
+}
+
+if (!function_exists('app_request_matches_page')) {
+    function app_request_matches_page(array $request, $pageKey = null)
+    {
+        if ($pageKey === null || $pageKey === '') {
+            return true;
+        }
+
+        $requestPage = $request['requested_page'] ?? app_normalize_permission_page_key($request['request_path'] ?? '');
+
+        return $requestPage === $pageKey;
+    }
+}
+
 if (!function_exists('app_build_url')) {
     function app_build_url($path, array $params = [])
     {
@@ -277,12 +552,20 @@ if (!function_exists('app_get_authorized_ip_map')) {
 }
 
 if (!function_exists('app_is_ip_authorized')) {
-    function app_is_ip_authorized($ip = null)
+    function app_is_ip_authorized($ip = null, $pageKey = null)
     {
         $ip = $ip ?: app_get_client_ip();
         $authorizedIps = app_get_authorized_ip_map();
 
-        return isset($authorizedIps[$ip]);
+        if (!isset($authorizedIps[$ip])) {
+            return false;
+        }
+
+        if ($pageKey === null || $pageKey === '') {
+            return true;
+        }
+
+        return app_meta_allows_page($authorizedIps[$ip], $pageKey);
     }
 }
 
@@ -298,6 +581,10 @@ if (!function_exists('app_authorize_ip')) {
             ],
             $meta
         );
+
+        if (isset($authorizedIps[$ip]['allowed_pages']) && is_array($authorizedIps[$ip]['allowed_pages'])) {
+            $authorizedIps[$ip]['allowed_pages'] = app_normalize_allowed_pages($authorizedIps[$ip]['allowed_pages']);
+        }
 
         app_write_json_file(app_config('security.authorized_ips_file'), $authorizedIps);
 
@@ -320,12 +607,12 @@ if (!function_exists('app_save_ip_requests')) {
 }
 
 if (!function_exists('app_get_latest_request_for_ip')) {
-    function app_get_latest_request_for_ip($ip)
+    function app_get_latest_request_for_ip($ip, $pageKey = null)
     {
         $requests = array_reverse(app_get_ip_requests());
 
         foreach ($requests as $request) {
-            if (isset($request['ip']) && $request['ip'] === $ip) {
+            if (isset($request['ip']) && $request['ip'] === $ip && app_request_matches_page($request, $pageKey)) {
                 return $request;
             }
         }
@@ -360,8 +647,28 @@ if (!function_exists('app_remove_authorized_ip')) {
     }
 }
 
+if (!function_exists('app_update_authorized_ip')) {
+    function app_update_authorized_ip($ip, array $meta)
+    {
+        $authorizedIps = app_get_authorized_ip_map();
+        if (!isset($authorizedIps[$ip])) {
+            return null;
+        }
+
+        $authorizedIps[$ip] = array_merge($authorizedIps[$ip], $meta);
+
+        if (isset($authorizedIps[$ip]['allowed_pages']) && is_array($authorizedIps[$ip]['allowed_pages'])) {
+            $authorizedIps[$ip]['allowed_pages'] = app_normalize_allowed_pages($authorizedIps[$ip]['allowed_pages']);
+        }
+
+        app_write_json_file(app_config('security.authorized_ips_file'), $authorizedIps);
+
+        return $authorizedIps[$ip];
+    }
+}
+
 if (!function_exists('app_update_request_status')) {
-    function app_update_request_status($requestId, $status)
+    function app_update_request_status($requestId, $status, array $options = [])
     {
         $requests = app_get_ip_requests();
         $updatedRequest = null;
@@ -376,11 +683,30 @@ if (!function_exists('app_update_request_status')) {
                 $requests[$index]['decision_at'] = app_now();
 
                 if ($status === 'approved') {
+                    $requestedPage = $request['requested_page'] ?? app_normalize_permission_page_key($request['request_path'] ?? '');
+                    $approvedPages = $options['allowed_pages'] ?? [$requestedPage];
+                    $approvedPages = app_normalize_allowed_pages($approvedPages);
+
+                    if (empty($approvedPages) && $requestedPage !== '') {
+                        $approvedPages = [$requestedPage];
+                    }
+
+                    $existingAuthorizedIps = app_get_authorized_ip_map();
+                    $existingMeta = $existingAuthorizedIps[$request['ip']] ?? null;
+                    if (is_array($existingMeta)) {
+                        $mergedPages = app_merge_allowed_pages(app_get_effective_allowed_pages($existingMeta), $approvedPages);
+                    } else {
+                        $mergedPages = $approvedPages;
+                    }
+
                     app_authorize_ip($request['ip'], [
                         'label' => 'Approved from admin panel',
                         'added_at' => app_now(),
                         'source' => 'admin-panel',
+                        'allowed_pages' => $mergedPages,
                     ]);
+
+                    $requests[$index]['approved_pages'] = $mergedPages;
                 }
             }
 
@@ -401,7 +727,8 @@ if (!function_exists('app_request_ip_access')) {
     {
         $ip = app_get_client_ip();
         $returnTo = app_normalize_return_to($returnTo);
-        $existingRequest = app_get_latest_request_for_ip($ip);
+        $requestedPage = app_normalize_permission_page_key($returnTo);
+        $existingRequest = app_get_latest_request_for_ip($ip, $requestedPage);
 
         if ($existingRequest && isset($existingRequest['status']) && $existingRequest['status'] === 'pending') {
             return $existingRequest;
@@ -415,6 +742,7 @@ if (!function_exists('app_request_ip_access')) {
             'note' => (string)$note,
             'status' => 'pending',
             'request_path' => (string)$returnTo,
+            'requested_page' => $requestedPage,
             'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
             'requested_at' => app_now(),
         ];
@@ -447,7 +775,9 @@ if (!function_exists('app_require_ip_admin_access')) {
 if (!function_exists('app_require_authorized_ip_for_action')) {
     function app_require_authorized_ip_for_action($reason, $returnTo)
     {
-        if (app_is_ip_authorized()) {
+        $pageKey = app_normalize_permission_page_key($returnTo);
+
+        if (app_is_ip_authorized(null, $pageKey)) {
             return true;
         }
 
@@ -456,10 +786,12 @@ if (!function_exists('app_require_authorized_ip_for_action')) {
         app_set_denied_context([
             'reason' => $reason,
             'return_to' => $returnTo,
+            'page_key' => $pageKey,
+            'page_label' => app_get_protected_page_label($pageKey),
             'denied_at' => app_now(),
         ]);
 
-        app_flash_add('warning', 'Your IP address is not authorized to change data yet. You can send an approval request below.');
+        app_flash_add('warning', 'Your IP address is not authorized to change data on ' . app_get_protected_page_label($pageKey) . ' yet. You can send an approval request below.');
         header('Location: ' . $returnTo);
         exit;
     }
@@ -500,23 +832,27 @@ if (!function_exists('app_render_ip_access_panel')) {
     function app_render_ip_access_panel(array $options = [])
     {
         $flashHtml = app_render_flash_messages();
+        $returnTo = $options['return_to'] ?? (app_get_denied_context()['return_to'] ?? app_current_path());
+        $pageKey = app_normalize_permission_page_key($returnTo);
 
-        if (app_is_ip_authorized()) {
+        if (app_is_ip_authorized(null, $pageKey)) {
             return $flashHtml;
         }
 
         $ip = app_get_client_ip();
-        $latestRequest = app_get_latest_request_for_ip($ip);
         $deniedContext = app_get_denied_context();
+        $pageKey = $deniedContext['page_key'] ?? $pageKey;
+        $pageLabel = app_get_protected_page_label($pageKey);
+        $latestRequest = app_get_latest_request_for_ip($ip, $pageKey);
         $reason = $deniedContext['reason'] ?? ($options['reason'] ?? 'Protected data change');
         $returnTo = $options['return_to'] ?? ($deniedContext['return_to'] ?? app_current_path());
 
-        $statusHtml = '<p style="margin:0 0 12px;color:#374151;">Only authorized IP addresses can change data. Current IP: <strong>' . htmlspecialchars($ip, ENT_QUOTES, 'UTF-8') . '</strong>.</p>';
+        $statusHtml = '<p style="margin:0 0 12px;color:#374151;">Only authorized IP addresses can change data on <strong>' . htmlspecialchars($pageLabel, ENT_QUOTES, 'UTF-8') . '</strong>. Current IP: <strong>' . htmlspecialchars($ip, ENT_QUOTES, 'UTF-8') . '</strong>.</p>';
 
         if ($latestRequest && ($latestRequest['status'] ?? '') === 'pending') {
-            $statusHtml .= '<p style="margin:0;color:#92400e;">A request for this IP is already pending review.</p>';
+            $statusHtml .= '<p style="margin:0;color:#92400e;">A request for this IP and page is already pending review.</p>';
         } elseif ($latestRequest && ($latestRequest['status'] ?? '') === 'declined') {
-            $statusHtml .= '<p style="margin:0 0 12px;color:#b91c1c;">The latest request for this IP was declined. You can send a new request.</p>';
+            $statusHtml .= '<p style="margin:0 0 12px;color:#b91c1c;">The latest request for this IP and page was declined. You can send a new request.</p>';
         }
 
         $html = $flashHtml;
