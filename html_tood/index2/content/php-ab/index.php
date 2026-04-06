@@ -1,25 +1,14 @@
 <?php
 require('config.php'); 
 
+app_handle_ip_request_submission([
+    'return_to' => 'index.php',
+    'reason' => 'Delete news entry',
+]);
+
 if (isset($_REQUEST['kustuta'])) {
-
-    $correct_user = "admin";
-$correct_pass = "phpantihacker";
-
-if (!isset($_SERVER['PHP_AUTH_USER'])) {
-    header('WWW-Authenticate: Basic realm="Admin Area"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo "Access denied";
-    exit;
-}
-
-if ($_SERVER['PHP_AUTH_USER'] !== $correct_user ||
-    $_SERVER['PHP_AUTH_PW'] !== $correct_pass) {
-    header('WWW-Authenticate: Basic realm="Admin Area"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo "Wrong username or password";
-    exit;
-}
+    app_require_basic_auth();
+    app_require_authorized_ip_for_action('Delete news entry', 'index.php');
 
     $id = $_REQUEST['kustuta'];
     $paring = $connect->prepare("DELETE FROM uudised WHERE uudisId = ?");
@@ -39,9 +28,16 @@ if ($_SERVER['PHP_AUTH_USER'] !== $correct_user ||
     </head>
     <body>
         <h1>Uudiste tabeli sisu</h1>
+        <?=app_render_ip_access_panel([
+            'return_to' => 'index.php',
+            'reason' => 'Delete news entry',
+        ]);?>
         <div style="text-align:center;">
     <a href="lisaUudis.php">
         <button>Lisa uus uudis</button>
+    </a>
+    <a href="../../ip-admin.php">
+        <button>IP админка</button>
     </a>
     <a href="indexcopy.php">
         <button>Vaata teine tabel</button>

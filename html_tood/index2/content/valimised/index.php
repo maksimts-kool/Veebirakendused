@@ -1,9 +1,13 @@
 <?php 
-session_start();
 require('config.php');
 
+app_handle_ip_request_submission([
+    'return_to' => 'index.php',
+    'reason' => 'Modify election data',
+]);
+
 if (isset($_REQUEST["login"])) {
-    if ($_REQUEST["parool"] === "lolavalik") {
+    if ($_REQUEST["parool"] === app_get_admin_password()) {
         $_SESSION["admin"] = true;
         header("Location: ".$_SERVER['PHP_SELF']);
         exit;
@@ -17,6 +21,7 @@ if (isset($_REQUEST["logout"])) {
 }
 
 if (isset($_REQUEST["muuda_avalik"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Change candidate visibility', 'index.php');
     $paring = $yhendus->prepare("UPDATE valimised SET avalik = IF(avalik = 1, 0, 1) WHERE id=?"); // kui avalik on =1 siis tehakse 0 else 1
     $paring->bind_param("i", $_REQUEST["muuda_avalik"]);
     $paring->execute();
@@ -25,6 +30,7 @@ if (isset($_REQUEST["muuda_avalik"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["kustuta"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Delete candidate', 'index.php');
     $paring = $yhendus->prepare("DELETE FROM valimised WHERE id=?");
     $paring->bind_param("i", $_REQUEST["kustuta"]);
     $paring->execute();
@@ -33,6 +39,7 @@ if (isset($_REQUEST["kustuta"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["nulli_punktid"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Reset candidate points', 'index.php');
     $paring = $yhendus->prepare("UPDATE valimised SET punktid = 0 WHERE id=?");
     $paring->bind_param("i", $_REQUEST["nulli_punktid"]);
     $paring->execute();
@@ -41,6 +48,7 @@ if (isset($_REQUEST["nulli_punktid"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["lisa1punkt"])) {
+    app_require_authorized_ip_for_action('Increase candidate points', 'index.php');
     $paring = $yhendus->prepare("UPDATE valimised SET punktid = punktid + 1 WHERE id=?");
     $paring->bind_param("i", $_REQUEST["lisa1punkt"]);
     $paring->execute();
@@ -49,6 +57,7 @@ if (isset($_REQUEST["lisa1punkt"])) {
 }
 
 if (isset($_REQUEST["lahuta1punkt"])) {
+    app_require_authorized_ip_for_action('Decrease candidate points', 'index.php');
     $paring = $yhendus->prepare("UPDATE valimised SET punktid = punktid - 1 WHERE id=?");
     $paring->bind_param("i", $_REQUEST["lahuta1punkt"]);
     $paring->execute();
@@ -57,6 +66,7 @@ if (isset($_REQUEST["lahuta1punkt"])) {
 }
 
 if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
+    app_require_authorized_ip_for_action('Create candidate', 'index.php');
     $president = $_REQUEST["president"];
     $pilt = $_REQUEST["pilt"];
     $punktid = isset($_REQUEST["punktid"]) ? intval($_REQUEST["punktid"]) : 0;
@@ -69,6 +79,7 @@ if (isset($_REQUEST["president"]) && isset($_REQUEST["pilt"])) {
 }
 
 if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
+    app_require_authorized_ip_for_action('Add election comment', 'index.php');
     $kommentaar = $_REQUEST["kommentaar"];
     $id = $_REQUEST["lisa_kommentaar"];
     $paring = $yhendus->prepare("UPDATE valimised SET kommentaarid = CONCAT(IFNULL(kommentaarid, ''), ?, '\n') WHERE id=?");
@@ -79,6 +90,7 @@ if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
 }
 
 if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Delete election comments', 'index.php');
     $id = $_REQUEST["kustuta_kommentaar"];
     $paring = $yhendus->prepare("UPDATE valimised SET kommentaarid = '' WHERE id=?");
     $paring->bind_param("i", $id);
@@ -97,8 +109,13 @@ if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
 
 <body>
     <h1>Eesti presidenti valimised</h1>
+    <?=app_render_ip_access_panel([
+        'return_to' => 'index.php',
+        'reason' => 'Modify election data',
+    ]);?>
     <?php if (isset($_SESSION["admin"])): ?>
     <p style="text-align: center;"><a href="?logout=1">Logi välja</a></p>
+    <p style="text-align: center;"><a href="../../ip-admin.php">IP admin</a></p>
     <?php endif; ?>
     <p style="text-align: center;"><a href="galerii.php">Vaata galeriid</a></p>
     <table>
@@ -160,7 +177,7 @@ if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
         ?>
     </table>
     <h2>Lisa uus president</h2>
-    <form action="?">
+    <form action="?" method="post">
         <div>
             <label for="president">Presidenti nimi: </label>
             <input type="text" name="president" id="president" required>

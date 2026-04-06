@@ -1,7 +1,13 @@
 <?php
 require("config.php");
 
+app_handle_ip_request_submission([
+    'return_to' => 'hinnakiri.php',
+    'reason' => 'Increase product price by 1 euro',
+]);
+
 if (isset($_REQUEST["lisa1euro"])) {
+    app_require_authorized_ip_for_action('Increase product price by 1 euro', 'hinnakiri.php');
     $paring = $yhendus->prepare("UPDATE hinnakiri SET hind = hind + 1 WHERE id=?");
     $paring->bind_param("i", $_REQUEST["lisa1euro"]);
     $paring->execute();
@@ -39,6 +45,10 @@ while($rida = $tulemus->fetch_assoc()) $tooted[] = $rida;
     </section>
 
     <section class="menu-section">
+        <?=app_render_ip_access_panel([
+            'return_to' => 'hinnakiri.php',
+            'reason' => 'Increase product price by 1 euro',
+        ]);?>
         <table class="admin-table">
             <tr>
                 <th>Nimetus</th>

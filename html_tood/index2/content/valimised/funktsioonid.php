@@ -7,7 +7,7 @@ function kontrolli_admin() {
 }
 
 function login_admin($parool) {
-    if ($parool === "lolavalik") {
+    if ($parool === app_get_admin_password()) {
         $_SESSION["admin"] = true;
         return true;
     }

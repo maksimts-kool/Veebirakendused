@@ -1,11 +1,19 @@
 <?php
 require('config.php');
 
-if (isset($_REQUEST['nimi'])) {
-    $nimi = $_REQUEST['nimi'];
-    $kirjeldus = $_REQUEST['kirjeldus'];
-    $kuupaev = $_REQUEST['kuupaev'];
-    $tuju = $_REQUEST['tuju'];
+app_require_basic_auth();
+app_handle_ip_request_submission([
+    'return_to' => 'lisaUudis.php',
+    'reason' => 'Create news entry',
+]);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nimi'])) {
+    app_require_authorized_ip_for_action('Create news entry', 'lisaUudis.php');
+
+    $nimi = $_POST['nimi'];
+    $kirjeldus = $_POST['kirjeldus'];
+    $kuupaev = $_POST['kuupaev'];
+    $tuju = $_POST['tuju'];
 
     $paring = $connect->prepare(
         "INSERT INTO uudised (pealkiri, kirjeldus, kuupaev, tuju) VALUES (?, ?, ?, ?)"
@@ -17,25 +25,6 @@ if (isset($_REQUEST['nimi'])) {
     header("Location: index.php");
 }
 ?>
-<?php
-$correct_user = "admin";
-$correct_pass = "phpantihacker";
-
-if (!isset($_SERVER['PHP_AUTH_USER'])) {
-    header('WWW-Authenticate: Basic realm="Admin Area"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo "Access denied";
-    exit;
-}
-
-if ($_SERVER['PHP_AUTH_USER'] !== $correct_user ||
-    $_SERVER['PHP_AUTH_PW'] !== $correct_pass) {
-    header('WWW-Authenticate: Basic realm="Admin Area"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo "Wrong username or password";
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,14 +33,21 @@ if ($_SERVER['PHP_AUTH_USER'] !== $correct_user ||
 </head>
 <body>
 <h1>Lisa uus uudis</h1>
+<?=app_render_ip_access_panel([
+    'return_to' => 'lisaUudis.php',
+    'reason' => 'Create news entry',
+]);?>
 
 <div style="text-align:center;">
     <a href="index.php">
         <button>Tagasi</button>
     </a>
+    <a href="../../ip-admin.php">
+        <button>IP админка</button>
+    </a>
 </div>
 
-<form action="">
+<form action="" method="post">
     <label for="nimi">Pealkiri</label><br>
     <input type="text" name="nimi" id="nimi" required><br><br>
 

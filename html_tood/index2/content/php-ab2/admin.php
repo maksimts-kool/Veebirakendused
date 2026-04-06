@@ -1,9 +1,13 @@
 <?php
-session_start();
 require("config.php");
 
+app_handle_ip_request_submission([
+    'return_to' => 'admin.php',
+    'reason' => 'Manage product catalog',
+]);
+
 if (isset($_REQUEST["login"])) {
-    if ($_REQUEST["parool"] === "lolavalik") {
+    if ($_REQUEST["parool"] === app_get_admin_password()) {
         $_SESSION["admin"] = true;
         header("Location: ".$_SERVER['PHP_SELF']);
         exit;
@@ -17,6 +21,7 @@ if (isset($_REQUEST["logout"])) {
 }
 
 if (isset($_REQUEST["muuda_avalik"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Change product visibility', 'admin.php');
     $paring = $yhendus->prepare("UPDATE hinnakiri SET avalik = IF(avalik = 1, 0, 1) WHERE id=?");
     $paring->bind_param("i", $_REQUEST["muuda_avalik"]);
     $paring->execute();
@@ -25,6 +30,7 @@ if (isset($_REQUEST["muuda_avalik"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["kustuta"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Delete product', 'admin.php');
     $paring = $yhendus->prepare("DELETE FROM hinnakiri WHERE id=?");
     $paring->bind_param("i", $_REQUEST["kustuta"]);
     $paring->execute();
@@ -33,6 +39,7 @@ if (isset($_REQUEST["kustuta"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["nulli_hind"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Reset product price', 'admin.php');
     $paring = $yhendus->prepare("UPDATE hinnakiri SET hind = 0 WHERE id=?");
     $paring->bind_param("i", $_REQUEST["nulli_hind"]);
     $paring->execute();
@@ -41,6 +48,7 @@ if (isset($_REQUEST["nulli_hind"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Delete product comments', 'admin.php');
     $id = $_REQUEST["kustuta_kommentaar"];
     $paring = $yhendus->prepare("UPDATE hinnakiri SET kommentaarid = '' WHERE id=?");
     $paring->bind_param("i", $id);
@@ -50,6 +58,7 @@ if (isset($_REQUEST["kustuta_kommentaar"]) && isset($_SESSION["admin"])) {
 }
 
 if (isset($_REQUEST["edit_id"]) && isset($_REQUEST["nimetus"]) && isset($_REQUEST["kirjeldus"]) && isset($_SESSION["admin"])) {
+    app_require_authorized_ip_for_action('Edit product', 'admin.php');
     $id = intval($_REQUEST["edit_id"]);
     $nimetus = $_REQUEST["nimetus"];
     $kirjeldus = $_REQUEST["kirjeldus"];
@@ -68,6 +77,7 @@ if (isset($_REQUEST["edit_id"]) && isset($_REQUEST["nimetus"]) && isset($_REQUES
 }
 
 if (isset($_REQUEST["nimetus"]) && isset($_REQUEST["kirjeldus"]) && isset($_SESSION["admin"]) && !isset($_REQUEST["edit_id"])) {
+    app_require_authorized_ip_for_action('Create product', 'admin.php');
     $nimetus = $_REQUEST["nimetus"];
     $kirjeldus = $_REQUEST["kirjeldus"];
     $hind = isset($_REQUEST["hind"]) ? floatval($_REQUEST["hind"]) : 0;
@@ -117,6 +127,7 @@ if (isset($_GET["edit"]) && isset($_SESSION["admin"])) {
         <div>
             <a href="hinnakiri.php">Tooted</a>
             <a href="galerii.php">Galerii</a>
+            <a href="../../ip-admin.php">IP Admin</a>
             <?php if (isset($_SESSION["admin"])): ?>
             <a href="?logout=1">Logi välja</a>
             <?php endif; ?>
@@ -131,6 +142,10 @@ if (isset($_GET["edit"]) && isset($_SESSION["admin"])) {
     </section>
 
     <section class="menu-section">
+        <?=app_render_ip_access_panel([
+            'return_to' => 'admin.php',
+            'reason' => 'Manage product catalog',
+        ]);?>
         <?php if (isset($_SESSION["admin"])): ?>
         <table class="admin-table">
             <tr>
@@ -274,7 +289,6 @@ if (isset($t['avalik']) && $t['avalik'] == 0) {
         </form>
         <?php else: ?>
         <p style="text-align: center;">Palun logi sisse.</p>
-        <p style="text-align: center;">Parool: lolavalik</p>
         <?php endif; ?>
     </section>
 

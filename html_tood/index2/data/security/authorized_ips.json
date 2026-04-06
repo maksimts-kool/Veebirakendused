@@ -1,0 +1,12 @@
+{
+    "127.0.0.1": {
+        "label": "Automatic local access",
+        "added_at": "2026-04-06T00:00:00+00:00",
+        "source": "auto"
+    },
+    "::1": {
+        "label": "Automatic local access",
+        "added_at": "2026-04-06T00:00:00+00:00",
+        "source": "auto"
+    }
+}

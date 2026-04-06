@@ -1,9 +1,14 @@
 <?php
 require("config.php");
-session_start();
 
 $selected_id = isset($_GET['id']) ? intval($_GET['id']) : null;
 $selected_product = null;
+$detailUrl = $selected_id ? app_build_url('galerii.php', ['id' => $selected_id]) : 'galerii.php';
+
+app_handle_ip_request_submission([
+    'return_to' => $detailUrl,
+    'reason' => 'Add gallery comment',
+]);
 
 $query = "SELECT id, nimetus, pilt, hind, kirjeldus, kommentaarid FROM hinnakiri WHERE avalik = 1";
 $paring = $yhendus->prepare($query);
@@ -22,7 +27,8 @@ if ($selected_id) {
 // Add comment
 if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
     $kommentaar = $_REQUEST["kommentaar"];
-    $id = $_REQUEST["lisa_kommentaar"];
+    $id = (int)$_REQUEST["lisa_kommentaar"];
+    app_require_authorized_ip_for_action('Add gallery comment', app_build_url('galerii.php', ['id' => $id]));
     $paring = $yhendus->prepare("UPDATE hinnakiri SET kommentaarid = CONCAT(IFNULL(kommentaarid, ''), ?, '\n') WHERE id=?");
     $paring->bind_param("si", $kommentaar, $id);
     $paring->execute();
@@ -54,6 +60,10 @@ if (isset($_REQUEST["lisa_kommentaar"]) && isset($_REQUEST["kommentaar"])) {
     </section>
 
     <section class="featured">
+        <?=app_render_ip_access_panel([
+            'return_to' => $detailUrl,
+            'reason' => 'Add gallery comment',
+        ]);?>
         <div class="galerii">
             <?php
             $tulemus->data_seek(0);

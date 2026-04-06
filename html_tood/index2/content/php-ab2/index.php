@@ -1,6 +1,5 @@
 <?php
 require("config.php");
-session_start();
 
 // Get top 3 products by price
 $k = $yhendus->prepare("SELECT nimetus, kirjeldus, hind, pilt FROM hinnakiri WHERE avalik = 1 ORDER BY hind DESC LIMIT 3");
