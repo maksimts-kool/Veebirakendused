@@ -1,8 +1,6 @@
 <?php
 
-$privateSecurityDir = getenv('INDEX2_PRIVATE_STORAGE_DIR') ?: dirname(__DIR__, 3) . '/index2-private/index2-security';
-$legacySecurityDir = __DIR__ . '/data/security';
-$legacyStorageSecurityDir = dirname(__DIR__, 2) . '/storage/index2-security';
+$privateSecurityDir = getenv('INDEX2_PRIVATE_SECURITY_DIR') ?: dirname(__DIR__, 3) . '/index2-private/index2-security';
 
 return [
     'database' => [
@@ -22,13 +20,5 @@ return [
         ],
         'authorized_ips_file' => $privateSecurityDir . '/authorized_ips.json',
         'ip_requests_file' => $privateSecurityDir . '/ip_requests.json',
-        'authorized_ips_legacy_files' => [
-            $legacyStorageSecurityDir . '/authorized_ips.json',
-            $legacySecurityDir . '/authorized_ips.json',
-        ],
-        'ip_requests_legacy_files' => [
-            $legacyStorageSecurityDir . '/ip_requests.json',
-            $legacySecurityDir . '/ip_requests.json',
-        ],
     ],
 ];

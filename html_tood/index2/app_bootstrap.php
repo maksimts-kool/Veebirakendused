@@ -108,51 +108,6 @@ if (!function_exists('app_write_json_file')) {
     }
 }
 
-if (!function_exists('app_migrate_legacy_file_if_needed')) {
-    function app_migrate_legacy_file_if_needed($targetPath, $legacyPaths)
-    {
-        $targetPath = trim((string)$targetPath);
-
-        if ($targetPath === '') {
-            return;
-        }
-
-        if (!is_array($legacyPaths)) {
-            $legacyPaths = [$legacyPaths];
-        }
-
-        if (file_exists($targetPath)) {
-            return;
-        }
-
-        foreach ($legacyPaths as $legacyPath) {
-            $legacyPath = trim((string)$legacyPath);
-
-            if ($legacyPath === '' || $targetPath === $legacyPath || !file_exists($legacyPath)) {
-                continue;
-            }
-
-            app_ensure_parent_dir($targetPath);
-            if (copy($legacyPath, $targetPath)) {
-                @unlink($legacyPath);
-                return;
-            }
-        }
-    }
-}
-
-if (!function_exists('app_get_security_file_path')) {
-    function app_get_security_file_path($primaryConfigKey, $legacyConfigKey = null)
-    {
-        $primaryPath = (string)app_config($primaryConfigKey, '');
-        $legacyPaths = $legacyConfigKey !== null ? app_config($legacyConfigKey, []) : [];
-
-        app_migrate_legacy_file_if_needed($primaryPath, $legacyPaths);
-
-        return $primaryPath;
-    }
-}
-
 if (!function_exists('app_get_client_ip')) {
     function app_get_client_ip()
     {
@@ -583,7 +538,7 @@ if (!function_exists('app_clear_denied_context')) {
 if (!function_exists('app_get_authorized_ip_map')) {
     function app_get_authorized_ip_map()
     {
-        $path = app_get_security_file_path('security.authorized_ips_file', 'security.authorized_ips_legacy_files');
+        $path = app_config('security.authorized_ips_file');
         $map = app_read_json_file($path, []);
         $defaults = app_config('security.auto_authorized_ips', []);
 
@@ -638,7 +593,7 @@ if (!function_exists('app_authorize_ip')) {
             $authorizedIps[$ip]['allowed_pages'] = app_normalize_allowed_pages($authorizedIps[$ip]['allowed_pages']);
         }
 
-        app_write_json_file(app_get_security_file_path('security.authorized_ips_file', 'security.authorized_ips_legacy_files'), $authorizedIps);
+        app_write_json_file(app_config('security.authorized_ips_file'), $authorizedIps);
 
         return $authorizedIps[$ip];
     }
@@ -647,14 +602,14 @@ if (!function_exists('app_authorize_ip')) {
 if (!function_exists('app_get_ip_requests')) {
     function app_get_ip_requests()
     {
-        return app_read_json_file(app_get_security_file_path('security.ip_requests_file', 'security.ip_requests_legacy_files'), []);
+        return app_read_json_file(app_config('security.ip_requests_file'), []);
     }
 }
 
 if (!function_exists('app_save_ip_requests')) {
     function app_save_ip_requests(array $requests)
     {
-        return app_write_json_file(app_get_security_file_path('security.ip_requests_file', 'security.ip_requests_legacy_files'), array_values($requests));
+        return app_write_json_file(app_config('security.ip_requests_file'), array_values($requests));
     }
 }
 
@@ -695,7 +650,7 @@ if (!function_exists('app_remove_authorized_ip')) {
         }
 
         unset($authorizedIps[$ip]);
-        return app_write_json_file(app_get_security_file_path('security.authorized_ips_file', 'security.authorized_ips_legacy_files'), $authorizedIps);
+        return app_write_json_file(app_config('security.authorized_ips_file'), $authorizedIps);
     }
 }
 
@@ -713,7 +668,7 @@ if (!function_exists('app_update_authorized_ip')) {
             $authorizedIps[$ip]['allowed_pages'] = app_normalize_allowed_pages($authorizedIps[$ip]['allowed_pages']);
         }
 
-        app_write_json_file(app_get_security_file_path('security.authorized_ips_file', 'security.authorized_ips_legacy_files'), $authorizedIps);
+        app_write_json_file(app_config('security.authorized_ips_file'), $authorizedIps);
 
         return $authorizedIps[$ip];
     }
