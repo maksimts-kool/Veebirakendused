@@ -33,16 +33,18 @@ if (!function_exists('ip_admin_render_page_selector')) {
         $selectedPages = app_normalize_allowed_pages($selectedPages);
         $allSelected = in_array('*', $selectedPages, true);
 
-        $html = '<div id="' . htmlspecialchars($selectorId, ENT_QUOTES, 'UTF-8') . '" style="display:grid;gap:8px;">';
+        $html = '<div id="' . htmlspecialchars($selectorId, ENT_QUOTES, 'UTF-8') . '" data-page-selector="1" style="display:grid;gap:8px;">';
         $html .= '<label style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border:1px solid #d1d5db;border-radius:10px;background:#f9fafb;">';
-        $html .= '<input type="checkbox" name="' . htmlspecialchars($fieldName, ENT_QUOTES, 'UTF-8') . '[]" value="*" ' . ($allSelected ? 'checked' : '') . '>';
+        $html .= '<input type="checkbox" data-select-all="1" name="' . htmlspecialchars($fieldName, ENT_QUOTES, 'UTF-8') . '[]" value="*" ' . ($allSelected ? 'checked' : '') . '>';
         $html .= '<span><strong>All protected pages</strong><br><span style="color:#6b7280;font-size:0.9rem;">Full edit access everywhere this IP protection is used.</span></span>';
         $html .= '</label>';
 
         foreach ($definitions as $pageKey => $definition) {
-            $checked = $allSelected || in_array($pageKey, $selectedPages, true) ? 'checked' : '';
-            $html .= '<label style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;">';
-            $html .= '<input type="checkbox" name="' . htmlspecialchars($fieldName, ENT_QUOTES, 'UTF-8') . '[]" value="' . htmlspecialchars($pageKey, ENT_QUOTES, 'UTF-8') . '" ' . $checked . '>';
+            $checked = !$allSelected && in_array($pageKey, $selectedPages, true) ? 'checked' : '';
+            $disabled = $allSelected ? 'disabled' : '';
+            $labelOpacity = $allSelected ? 'opacity:0.55;' : '';
+            $html .= '<label style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;' . $labelOpacity . '">';
+            $html .= '<input type="checkbox" data-page-option="1" name="' . htmlspecialchars($fieldName, ENT_QUOTES, 'UTF-8') . '[]" value="' . htmlspecialchars($pageKey, ENT_QUOTES, 'UTF-8') . '" ' . $checked . ' ' . $disabled . '>';
             $html .= '<span><strong>' . htmlspecialchars($definition['label'], ENT_QUOTES, 'UTF-8') . '</strong><br><span style="color:#6b7280;font-size:0.9rem;">' . htmlspecialchars($definition['description'], ENT_QUOTES, 'UTF-8') . '</span></span>';
             $html .= '</label>';
         }
@@ -277,4 +279,31 @@ ksort($authorizedIps);
         </section>
     </main>
 </body>
+<script>
+document.querySelectorAll('[data-page-selector="1"]').forEach(function(selector) {
+    var allCheckbox = selector.querySelector('[data-select-all="1"]');
+    var optionCheckboxes = Array.from(selector.querySelectorAll('[data-page-option="1"]'));
+
+    if (!allCheckbox) {
+        return;
+    }
+
+    function syncSelectorState() {
+        optionCheckboxes.forEach(function(checkbox) {
+            checkbox.disabled = allCheckbox.checked;
+            if (allCheckbox.checked) {
+                checkbox.checked = false;
+            }
+
+            var label = checkbox.closest('label');
+            if (label) {
+                label.style.opacity = allCheckbox.checked ? '0.55' : '1';
+            }
+        });
+    }
+
+    allCheckbox.addEventListener('change', syncSelectorState);
+    syncSelectorState();
+});
+</script>
 </html>
