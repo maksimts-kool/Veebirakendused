@@ -45,7 +45,6 @@ $paginatedWorks = array_slice($filteredWorks, $offset, $perPage);
             </div>
             <div class="header-nav">
                 <a href="../../index.html" class="btn-back">← Tagasi pealehele</a>
-                <a href="ip-admin.php" class="btn-back">IP Admin</a>
             </div>
         </div>
     </header>
