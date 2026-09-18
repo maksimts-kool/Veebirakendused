@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenLayers kaart - Kool ja kodu</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- OpenLayers 10.10.0 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.10.0/ol.css">
+<script src="https://cdn.jsdelivr.net/npm/ol@10.10.0/dist/ol.js"></script>
+</head>
+<body class="h-screen flex flex-col bg-slate-50 text-slate-800">
+
+<!-- Navigatsioon -->
+<nav class="bg-slate-800 text-slate-300">
+  <div class="mx-auto max-w-5xl flex flex-wrap items-center gap-1 px-4 py-2">
+    <a href="../index.html" class="mr-auto font-semibold text-white">Kool ja kodu kaardil</a>
+    <a href="../index.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">Avaleht</a>
+    <a href="../leaflet/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">LeafletJS kaart</a>
+    <a href="../openlayers/kaart.html" class="rounded px-3 py-1.5 text-sm bg-slate-700 text-white">OpenLayers kaart</a>
+    <a href="../vordlus.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">Töö kirjeldus</a>
+  </div>
+</nav>
+
+<header class="border-b border-slate-200 bg-white">
+  <div class="mx-auto max-w-5xl px-4 py-3">
+    <h1 class="text-lg font-semibold text-slate-900">Kaart 2 &middot; OpenLayers</h1>
+  </div>
+</header>
+
+<!-- Kaart taidab ekraanist ulejaanu osa -->
+<div id="map" class="relative flex-1">
+  <!-- LISAFUNKTSIOON 3: aluskaardi valik -->
+  <div class="absolute right-2 top-2 z-10 rounded-md bg-white px-3 py-2 text-sm shadow-md">
+    <label for="aluskaart" class="mr-1 text-slate-600">Aluskaart:</label>
+    <select id="aluskaart" class="rounded border border-slate-300 px-1 py-0.5">
+      <option value="osm">Tavakaart</option>
+      <option value="sat">Satelliit</option>
+    </select>
+  </div>
+</div>
+
+<!-- Teabeaken, mille OpenLayersis tuleb ise teha -->
+<div id="popup" class="whitespace-nowrap rounded-md bg-white px-3 py-2 text-sm shadow-md"></div>
+
+<script>
+// --- Aluskaardid -------------------------------------------------------
+
+var tavakaart = new ol.layer.Tile({
+  source: new ol.source.OSM()
+});
+
+var satelliit = new ol.layer.Tile({
+  visible: false,
+  source: new ol.source.XYZ({
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    attributions: 'Tiles &copy; Esri'
+  })
+});
+
+
+// --- KML-faili lugemine ------------------------------------------------
+// OpenLayersil on KML-i jaoks oma lugeja (ol.format.KML), seega faili ei
+// pea ise labi kaima. NB! fail loetakse fetch'iga, mis ei tooeta file://
+// aadressi - ava leht kohaliku serveri kaudu (nt VS Code Live Server).
+
+var allikas = new ol.source.Vector({
+  url: '../andmed/kaart.kml',
+  format: new ol.format.KML({ extractStyles: false })   // kasutame oma stiile
+});
+
+var kihtKml = new ol.layer.Vector({
+  source: allikas,
+  style: stiil
+});
+
+// Iga objekt saab geomeetria tuubi jargi oma valimuse.
+function stiil(objekt) {
+  var nimi = objekt.get('name') || '';
+  var tyyp = objekt.getGeometry().getType();
+
+  if (tyyp === 'Point') {
+    return new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 8,
+        fill: new ol.style.Fill({ color: nimi === 'Kool' ? '#1976d2' : '#d32f2f' }),
+        stroke: new ol.style.Stroke({ color: '#fff', width: 2 })
+      }),
+      text: new ol.style.Text({
+        text: nimi,
+        font: 'bold 13px Arial',
+        offsetY: -18,
+        fill: new ol.style.Fill({ color: '#222' }),
+        stroke: new ol.style.Stroke({ color: '#fff', width: 3 })
+      })
+    });
+  }
+
+  if (tyyp === 'LineString') {
+    return new ol.style.Style({
+      stroke: new ol.style.Stroke({ color: '#ff6712', width: 5 })
+    });
+  }
+
+  // Polygon - kodukohta tahistav kujund.
+  return new ol.style.Style({
+    stroke: new ol.style.Stroke({ color: '#fbc02d', width: 2 }),
+    fill: new ol.style.Fill({ color: 'rgba(251, 192, 45, 0.4)' })
+  });
+}
+
+
+// --- Kaart -------------------------------------------------------------
+
+var map = new ol.Map({
+  target: 'map',
+  layers: [tavakaart, satelliit, kihtKml],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([24.6959, 59.4074]),
+    zoom: 14
+  })
+});
+
+var teekonnaInfo = 'Teekond kodu - kool';
+
+// Kui KML on laetud, seame vaate nii, et kogu sisu oleks korraga naha.
+allikas.on('featuresloadend', function () {
+  eemaldaTopeltpunktid();
+  arvutaTeekond();
+  map.getView().fit(allikas.getExtent(), { padding: [30, 30, 30, 30] });
+});
+
+allikas.on('featuresloaderror', function () {
+  alert('Faili andmed/kaart.kml ei onnestunud laadida.\n' +
+        'Ava leht kohaliku serveri kaudu, mitte topeltklopsuga.');
+});
+
+// Kool ja kodu on KML-is kaks korda (kasitsi pandud nael + marsruudi ots),
+// jatame igast alles esimese.
+function eemaldaTopeltpunktid() {
+  var olemas = {};
+  allikas.getFeatures().forEach(function (objekt) {
+    if (objekt.getGeometry().getType() !== 'Point') return;
+    var nimi = objekt.get('name');
+    if (olemas[nimi]) {
+      allikas.removeFeature(objekt);
+    } else {
+      olemas[nimi] = true;
+    }
+  });
+}
+
+
+// === LISAFUNKTSIOON 1: teekonna pikkus ja kaimisaeg =====================
+// ol.sphere.getLength arvutab joone pikkuse meetrites keral.
+
+function arvutaTeekond() {
+  allikas.getFeatures().forEach(function (objekt) {
+    if (objekt.getGeometry().getType() !== 'LineString') return;
+
+    var pikkus = ol.sphere.getLength(objekt.getGeometry());
+    var km = (pikkus / 1000).toFixed(2);
+    var minutid = Math.round(pikkus / 1000 / 5 * 60);   // kiirus 5 km/h
+
+    teekonnaInfo = '<b>Teekond kodu - kool</b><br>Pikkus: ' + km +
+                   ' km<br>Jalgsi umbes ' + minutid + ' min';
+  });
+}
+
+
+// === LISAFUNKTSIOON 2: teabeaken objektil klopsates =====================
+// OpenLayersil pole valmis popupi, seega teeme selle ol.Overlay abil.
+
+var popup = new ol.Overlay({
+  element: document.getElementById('popup'),
+  positioning: 'bottom-center',
+  offset: [0, -14]
+});
+map.addOverlay(popup);
+
+map.on('singleclick', function (sundmus) {
+  var objekt = map.forEachFeatureAtPixel(sundmus.pixel, function (o) { return o; },
+                                        { hitTolerance: 5 });   // ohuke joon on lihtsam tabada
+
+  if (!objekt) {                       // klops tuhja koha peal sulgeb akna
+    popup.setPosition(undefined);
+    return;
+  }
+
+  document.getElementById('popup').innerHTML = teabetekst(objekt);
+  popup.setPosition(sundmus.coordinate);
+});
+
+// Kursor muutub kaeks, kui objekti kohal.
+map.on('pointermove', function (sundmus) {
+  map.getTargetElement().style.cursor =
+    map.hasFeatureAtPixel(sundmus.pixel, { hitTolerance: 5 }) ? 'pointer' : '';
+});
+
+function teabetekst(objekt) {
+  var tyyp = objekt.getGeometry().getType();
+
+  if (tyyp === 'Point') {
+    var lonLat = ol.proj.toLonLat(objekt.getGeometry().getCoordinates());
+    return '<b>' + objekt.get('name') + '</b><br>' +
+           lonLat[1].toFixed(5) + ', ' + lonLat[0].toFixed(5);
+  }
+
+  if (tyyp === 'LineString') return teekonnaInfo;
+
+  return '<b>Maja</b><br>Kodukohta tahistav kujund';
+}
+
+
+// === LISAFUNKTSIOON 3: aluskaardi vahetus ===============================
+
+document.getElementById('aluskaart').addEventListener('change', function () {
+  var sat = this.value === 'sat';
+  satelliit.setVisible(sat);
+  tavakaart.setVisible(!sat);
+});
+
+
+// === LISAFUNKTSIOON 4: mootkava =========================================
+
+map.addControl(new ol.control.ScaleLine({ units: 'metric' }));
+</script>
+</body>
+</html>

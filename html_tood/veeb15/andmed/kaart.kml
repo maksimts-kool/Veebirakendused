@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1ENoNL-CHTbUkXIPJSNgvmGFiBMaKNVXu">
+	<name>KML test</name>
+	<Schema name="__managed_schema" id="__managed_schema">
+		<SimpleField type="string" name="str:0L3QsNC30LLQsNC90LjQtQ==">
+			<displayName>название</displayName>
+		</SimpleField>
+		<SimpleField type="string" name="str:0L7Qv9C40YHQsNC90LjQtQ==">
+			<displayName>описание</displayName>
+		</SimpleField>
+	</Schema>
+	<gx:CascadingStyle kml:id="__managed_style_08A60E7B1641E9962959_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_1CD8ED64DD41E99576C7_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACB0lEQVQ4T62UPWhTURTHf+clUArWNAVFGhWsn0OriBQRFRdLHZxUcHGz5nVRULo5uAuCQsGkfqC4iNiOWjEIakVFF2sXRRSHRlBojENatMmR+573kvesMVJ/y7v3fw7/d+89hyP8Z8StYnT4uqMGhzzYpcpGo4nwpqY89oTRmbw8tbn1/Ga49KiuSyS5JrDTiQugysNqlYFvV+SdE+OG6az2iFAAljuxMZ+1Sl/pskxawRmmsro2AY8QOq3WJNOzwvbZnEybjTPs8HUc6Lf7liQUh+0uuCIfvsC5O3DzmZMt92byss8sAsPUMd2b8Lj/KxhgDWsKYy9g/QrYsjqMdZ2CciVcW6o1+sqXpBAYprOaE8G3QYM1rHyHVSdC7eMFWNIC/Wfh5ftQs6iSL43IYGjo62uBbhs0WMP5GtyYgO6V0NsFcz8gc9ylORSmSnnpsSf8KkLKBg3xN7Q8eQsHzoc/qkeVcmlE2v9qaE60YQg622HsZPg9fQtyD1xqQNSwwZXr3/C6D/u3wt1XcORiqFniV/5jUUyVxydhWRtsWwOewOFhKEy51IBIURq1jcX04ady2EJnRp3siLSNId7Y/0i0sQ2tg5ppVZ4DGas1hVKcm6e3clWKZusMDekB3SyJ4OqLHw6WtqxuSoIp0h4nLkBT46ueYMAqBz1hd2TAwoQHt5sesIvlJ5LC0xUNFVPhAAAAAElFTkSuQmCC</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_1CD8ED64DD41E99576C7">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1CD8ED64DD41E99576C7_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_1CD8ED64DD41E99576C7_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_019512802D41E99576C7_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACDUlEQVQ4T62UPWhTURTHf+elIqFoTAatdvSjgsZNRLSIaExwUuruYPtSsQhOLkLtqCKIU1PbqJMiKnRT7OAX1tLSwQ9E/KY2g2DTOrSiSY6897yPvORZAvU3nfs/lz/33HM4wn9G/KiGRFZ3VuCIBbtVaXM0Ed5WlCeWcGcmJ6PmbjV1hiuP6YZIE9cEdvliCKo8Kpfp/DEk732x1jBua1KEEWC1Ly7ONy2TKg7KCyP4hjFb10fgMcI6ozXI9IKwY6Ffpp2Db5jI6j0gbc6G5uXw5ZL7f/RchxuhP8f9mZxknMA1jHXp/ojFg7/JAKcycOaQF098gvQ5L66lXCE1d0VGXMO4rf0iZE2ymud9sHEN/CqBZUHLCbchdaiSKw5It2eY1ZcCW03SYMqdnYfJz7BvCxy/CrfG/Cs+Cq+KOUmaF86KEDNJw8k09B6G4UkYnoC8DeMfIXPev+KjylxxQFYtajh6Fja1wJsCTH2HA0koVcLLDhqGlBxdBlOXve7W0jUEd8f9o0ttyXVN6UlBXwe8/gp23tOOtoO9F8Y+wMELnmYINCVsbJ71QttaOH0TBh96WqIZ3l2E32Wv7GoCY+Pwr8FukOBgO0S7tTWqOAPRarSGUAo/S2yfz0vBOQa+PN6p2yTilr705WBYYevmJnCatMcXQ2hofVXjLlilwxLaAwsWnlpwu+EFu1T+AAJLyRVf4vFcAAAAAElFTkSuQmCC</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.9</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_08A60E7B1641E9962959">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_08A60E7B1641E9962959_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_08A60E7B1641E9962959_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_019512802D41E99576C7_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACDUlEQVQ4T62UPWhTURTHf+elIqFoTAatdvSjgsZNRLSIaExwUuruYPtSsQhOLkLtqCKIU1PbqJMiKnRT7OAX1tLSwQ9E/KY2g2DTOrSiSY6897yPvORZAvU3nfs/lz/33HM4wn9G/KiGRFZ3VuCIBbtVaXM0Ed5WlCeWcGcmJ6PmbjV1hiuP6YZIE9cEdvliCKo8Kpfp/DEk732x1jBua1KEEWC1Ly7ONy2TKg7KCyP4hjFb10fgMcI6ozXI9IKwY6Ffpp2Db5jI6j0gbc6G5uXw5ZL7f/RchxuhP8f9mZxknMA1jHXp/ojFg7/JAKcycOaQF098gvQ5L66lXCE1d0VGXMO4rf0iZE2ymud9sHEN/CqBZUHLCbchdaiSKw5It2eY1ZcCW03SYMqdnYfJz7BvCxy/CrfG/Cs+Cq+KOUmaF86KEDNJw8k09B6G4UkYnoC8DeMfIXPev+KjylxxQFYtajh6Fja1wJsCTH2HA0koVcLLDhqGlBxdBlOXve7W0jUEd8f9o0ttyXVN6UlBXwe8/gp23tOOtoO9F8Y+wMELnmYINCVsbJ71QttaOH0TBh96WqIZ3l2E32Wv7GoCY+Pwr8FukOBgO0S7tTWqOAPRarSGUAo/S2yfz0vBOQa+PN6p2yTilr705WBYYevmJnCatMcXQ2hofVXjLlilwxLaAwsWnlpwu+EFu1T+AAJLyRVf4vFcAAAAAElFTkSuQmCC</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_288FF96F8141E99576C7_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=0288d1&amp;id=1899&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ffff6712</color>
+				<width>3.75</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_1CD8ED64DD41E99576C7_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACB0lEQVQ4T62UPWhTURTHf+clUArWNAVFGhWsn0OriBQRFRdLHZxUcHGz5nVRULo5uAuCQsGkfqC4iNiOWjEIakVFF2sXRRSHRlBojENatMmR+573kvesMVJ/y7v3fw7/d+89hyP8Z8StYnT4uqMGhzzYpcpGo4nwpqY89oTRmbw8tbn1/Ga49KiuSyS5JrDTiQugysNqlYFvV+SdE+OG6az2iFAAljuxMZ+1Sl/pskxawRmmsro2AY8QOq3WJNOzwvbZnEybjTPs8HUc6Lf7liQUh+0uuCIfvsC5O3DzmZMt92byss8sAsPUMd2b8Lj/KxhgDWsKYy9g/QrYsjqMdZ2CciVcW6o1+sqXpBAYprOaE8G3QYM1rHyHVSdC7eMFWNIC/Wfh5ftQs6iSL43IYGjo62uBbhs0WMP5GtyYgO6V0NsFcz8gc9ylORSmSnnpsSf8KkLKBg3xN7Q8eQsHzoc/qkeVcmlE2v9qaE60YQg622HsZPg9fQtyD1xqQNSwwZXr3/C6D/u3wt1XcORiqFniV/5jUUyVxydhWRtsWwOewOFhKEy51IBIURq1jcX04ady2EJnRp3siLSNId7Y/0i0sQ2tg5ppVZ4DGas1hVKcm6e3clWKZusMDekB3SyJ4OqLHw6WtqxuSoIp0h4nLkBT46ueYMAqBz1hd2TAwoQHt5sesIvlJ5LC0xUNFVPhAAAAAElFTkSuQmCC</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.9</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_288FF96F8141E99576C7">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_288FF96F8141E99576C7_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_288FF96F8141E99576C7_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_1EA8F851DC41E99576C4_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=0288d1&amp;id=1899&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.9</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_019512802D41E99576C7">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_019512802D41E99576C7_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_019512802D41E99576C7_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_08A60E7B1641E9962959_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_288FF96F8141E99576C7_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=0288d1&amp;id=1899&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ffff6712</color>
+				<width>2.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_1EA8F851DC41E99576C4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1EA8F851DC41E99576C4_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_1EA8F851DC41E99576C4_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_060A40D94041E99576C4_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3</width>
+			</LineStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_1EA8F851DC41E99576C4_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=0288d1&amp;id=1899&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4d000000</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_060A40D94041E99576C4_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2</width>
+			</LineStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_060A40D94041E99576C4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_060A40D94041E99576C4_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_060A40D94041E99576C4_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder id="2641d4c3_0">
+		<name>Kool - Kodu</name>
+		<open>1</open>
+		<styleUrl>#__managed_style_060A40D94041E99576C4</styleUrl>
+		<Placemark id="2641d4c3_5EC7404991B1DA27">
+			<name>Kool</name>
+			<description><![CDATA[<div><b>название</b>: Kool</div><div><b>описание</b>: <i>empty</i></div>]]></description>
+			<styleUrl>#__managed_style_1EA8F851DC41E99576C4</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#__managed_schema">
+					<SimpleData name="str:0L3QsNC30LLQsNC90LjQtQ==">Kool</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>24.7043277,59.4116327,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="2641d4c3_5EC741725B71D0BC">
+			<name>Kodu</name>
+			<description><![CDATA[<div><b>название</b>: Kodu</div><div><b>описание</b>: <i>empty</i></div>]]></description>
+			<gx:fid>0x469294fea292a42d:0xcab175442de708e8</gx:fid>
+			<styleUrl>#__managed_style_1EA8F851DC41E99576C4</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#__managed_schema">
+					<SimpleData name="str:0L3QsNC30LLQsNC90LjQtQ==">Kodu</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>24.6874258,59.40307940000001,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+	<Folder id="2641d4c3_1">
+		<name>Маршрут Kodu – Kool</name>
+		<open>1</open>
+		<styleUrl>#__managed_style_060A40D94041E99576C4</styleUrl>
+		<Placemark id="2641d4c3_5EC741FDB0529AC2">
+			<name>Маршрут Kodu – Kool</name>
+			<description><![CDATA[<div><b>название</b>: Маршрут Kodu – Kool</div><div><b>описание</b>: <i>empty</i></div>]]></description>
+			<styleUrl>#__managed_style_288FF96F8141E99576C7</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#__managed_schema">
+					<SimpleData name="str:0L3QsNC30LLQsNC90LjQtQ==">Маршрут Kodu – Kool</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<LineString>
+				<coordinates>
+					24.68746,59.40311,0 24.68905,59.40269,0 24.68921,59.40265,0 24.68951,59.40255999999999,0 24.68987,59.40245,0 24.69028,59.40235,0 24.69089,59.40219,0 24.69207,59.40186000000001,0 24.69241,59.40176,0 24.69346,59.40151,0 24.69382,59.40142,0 24.69407,59.40133000000001,0 24.69432,59.40124,0 24.69439,59.40121,0 24.69448,59.40116,0 24.69459,59.40109,0 24.6947,59.40105,0 24.69483,59.401,0 24.69509,59.40114000000001,0 24.6956,59.40142,0 24.69605,59.40167,0 24.69612,59.40171,0 24.69622,59.40176,0 24.69698,59.40218,0 24.69726,59.40234,0 24.69738,59.4024,0 24.69752,59.40249,0 24.69814,59.40287,0 24.69845,59.40304,0 24.69886,59.40328,0 24.69888,59.40329,0 24.69906,59.40341,0 24.69927,59.40355999999999,0 24.70002,59.40414000000001,0 24.70038,59.40447000000001,0 24.70048,59.40458999999999,0 24.70079,59.40488,0 24.7009,59.40498,0 24.70103,59.40511999999999,0 24.70112,59.40521,0 24.70134,59.4054,0 24.70175,59.40588,0 24.7022,59.4064,0 24.70271,59.40696,0 24.70328,59.4076,0 24.70369,59.40807,0 24.70389,59.40826,0 24.70436,59.40889,0 24.70489999999999,59.40943,0 24.70499,59.40954,0 24.70533,59.40994999999999,0 24.70553,59.41018,0 24.70563,59.41028000000001,0 24.70605,59.41082,0 24.7064,59.41125000000001,0 24.70669,59.41159,0 24.70679,59.41172999999999,0 24.70699,59.412,0 24.7071,59.41214000000001,0 24.70775,59.41288,0 24.70751,59.41294,0 24.70712,59.41247,0 24.70696,59.41225,0 24.70676,59.41197999999999,0 24.70618,59.41129,0 24.70608,59.41117,0 24.70608,59.41116,0 24.70576,59.41078000000001,0 24.70557,59.41082,0 24.70552,59.41083,0 24.7054,59.41086,0 24.70511,59.41091,0 24.70498,59.41096,0 24.70488,59.41105,0 24.70475,59.41108999999999,0 24.70469,59.4111,0 24.7043,59.41118,0 24.70444,59.4113,0 
+				</coordinates>
+			</LineString>
+		</Placemark>
+		<Placemark id="2641d4c3_5EC741FDB09C1AD5">
+			<name>Kodu</name>
+			<description><![CDATA[<div><b>название</b>: Kodu</div><div><b>описание</b>: <i>empty</i></div>]]></description>
+			<styleUrl>#__managed_style_019512802D41E99576C7</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#__managed_schema">
+					<SimpleData name="str:0L3QsNC30LLQsNC90LjQtQ==">Kodu</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>24.6874594,59.4031125,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="2641d4c3_5EC741FDB010C098">
+			<name>Kool</name>
+			<description><![CDATA[<div><b>название</b>: Kool</div><div><b>описание</b>: <i>empty</i></div>]]></description>
+			<styleUrl>#__managed_style_1CD8ED64DD41E99576C7</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#__managed_schema">
+					<SimpleData name="str:0L3QsNC30LLQsNC90LjQtQ==">Kool</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>24.7044425,59.41130020000001,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+	<Placemark id="011407424341E996294E">
+		<name>Maja</name>
+		<LookAt>
+			<longitude>24.68803726893249</longitude>
+			<latitude>59.40407793266983</latitude>
+			<altitude>21.0417731400761</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>30.00000000027696</gx:fovy>
+			<range>587.7347368979099</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08A60E7B1641E9962959</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						24.68758557288358,59.40348016956898,0 24.68766423138603,59.40335212827866,0 24.68863826336709,59.40348142692096,0 24.68858163194523,59.4036309399731,0 24.68758557288358,59.40348016956898,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>

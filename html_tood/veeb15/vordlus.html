@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Töö kirjeldus ja võrdlus</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
+
+<!-- Navigatsioon -->
+<nav class="bg-slate-800 text-slate-300">
+  <div class="mx-auto max-w-5xl flex flex-wrap items-center gap-1 px-4 py-2">
+    <a href="index.html" class="mr-auto font-semibold text-white">Kool ja kodu kaardil</a>
+    <a href="index.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">Avaleht</a>
+    <a href="leaflet/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">LeafletJS kaart</a>
+    <a href="openlayers/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">OpenLayers kaart</a>
+    <a href="vordlus.html" class="rounded px-3 py-1.5 text-sm bg-slate-700 text-white">Töö kirjeldus</a>
+  </div>
+</nav>
+
+<main class="mx-auto w-full max-w-4xl flex-1 px-4 py-10">
+
+  <h1 class="text-3xl font-bold tracking-tight text-slate-900">Töö kirjeldus ja võrdlus</h1>
+  <p class="mt-3 text-slate-700">
+    Sama KML-fail (<code>andmed/kaart.kml</code>) on kuvatud kahel kaardil: kool, kodukoht,
+    teekond ja maja kujund. Kool ja kodu on failis kaks korda, seega mõlemad kaardid jätavad
+    igast nimest alles esimese.
+  </p>
+
+  <!-- Failistruktuur -->
+  <h2 class="mt-10 text-xl font-semibold text-slate-900">Failistruktuur</h2>
+<pre class="mt-3 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">index.html                 avaleht
+vordlus.html               töö kirjeldus ja võrdlus
+andmed/kaart.kml           ühine andmefail
+leaflet/kaart.html         Kaart 1 - LeafletJS
+openlayers/kaart.html      Kaart 2 - OpenLayers</pre>
+
+  <!-- KML -->
+  <h2 class="mt-10 text-xl font-semibold text-slate-900">KML-faili lugemine</h2>
+  <p class="mt-3 text-slate-700">Siin on teekide suurim erinevus.</p>
+  <div class="mt-3 grid gap-4 sm:grid-cols-2">
+    <div>
+      <p class="text-sm font-medium text-slate-900">Leaflet – KML-i tugi puudub, tuli ise teha</p>
+<pre class="mt-2 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">var kml = new DOMParser()
+  .parseFromString(tekst, 'application/xml');
+kml.getElementsByTagName('Placemark')
+// + koordinaatide teisendus, ~40 rida</pre>
+    </div>
+    <div>
+      <p class="text-sm font-medium text-slate-900">OpenLayers – valmis lugeja</p>
+<pre class="mt-2 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">new ol.source.Vector({
+  url: '../andmed/kaart.kml',
+  format: new ol.format.KML()
+});</pre>
+    </div>
+  </div>
+
+  <!-- Vordlustabel -->
+  <h2 class="mt-10 text-xl font-semibold text-slate-900">Võrdlus</h2>
+  <div class="mt-3 overflow-x-auto rounded-lg border border-slate-200">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-slate-100 text-slate-900">
+        <tr>
+          <th class="px-4 py-2 font-semibold">Omadus</th>
+          <th class="px-4 py-2 font-semibold">LeafletJS 1.9.4</th>
+          <th class="px-4 py-2 font-semibold">OpenLayers 10.10.0</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200 bg-white">
+        <tr><td class="px-4 py-2 font-medium">Teegi suurus</td>
+            <td class="px-4 py-2">144 KB</td>
+            <td class="px-4 py-2">1019 KB</td></tr>
+        <tr><td class="px-4 py-2 font-medium">KML-i tugi</td>
+            <td class="px-4 py-2">Puudub</td>
+            <td class="px-4 py-2"><code>ol.format.KML</code></td></tr>
+        <tr><td class="px-4 py-2 font-medium">Koordinaadid</td>
+            <td class="px-4 py-2"><code>[laius, pikkus]</code></td>
+            <td class="px-4 py-2"><code>ol.proj.fromLonLat</code></td></tr>
+        <tr><td class="px-4 py-2 font-medium">Teabeaken</td>
+            <td class="px-4 py-2"><code>bindPopup()</code></td>
+            <td class="px-4 py-2">Puudub, tegin ise</td></tr>
+        <tr><td class="px-4 py-2 font-medium">Kihtide valija</td>
+            <td class="px-4 py-2"><code>L.control.layers</code></td>
+            <td class="px-4 py-2">Puudub, tegin ise</td></tr>
+        <tr><td class="px-4 py-2 font-medium">Vahemaa</td>
+            <td class="px-4 py-2"><code>distanceTo()</code></td>
+            <td class="px-4 py-2"><code>ol.sphere.getLength()</code></td></tr>
+        <tr><td class="px-4 py-2 font-medium">Joonistamine</td>
+            <td class="px-4 py-2">SVG</td>
+            <td class="px-4 py-2">Canvas</td></tr>
+        <tr><td class="px-4 py-2 font-medium">Minu koodi maht</td>
+            <td class="px-4 py-2">u 135 rida</td>
+            <td class="px-4 py-2">u 250 rida</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Lisafunktsioonid -->
+  <h2 class="mt-10 text-xl font-semibold text-slate-900">Lisafunktsioonid</h2>
+  <div class="mt-3 grid gap-4 sm:grid-cols-2">
+    <div class="rounded-lg border border-slate-200 bg-white p-5">
+      <h3 class="font-semibold text-slate-900">LeafletJS</h3>
+      <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+        <li>Teekonna pikkus ja käimisaeg (2,39 km, ~29 min)</li>
+        <li>Aluskaardi vahetus ja kihtide peitmine</li>
+        <li>Mõõtkava</li>
+      </ol>
+    </div>
+    <div class="rounded-lg border border-slate-200 bg-white p-5">
+      <h3 class="font-semibold text-slate-900">OpenLayers</h3>
+      <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+        <li>Teekonna pikkus ja käimisaeg</li>
+        <li>Teabeaken klõpsates (<code>ol.Overlay</code>)</li>
+        <li>Aluskaardi vahetus</li>
+        <li>Mõõtkava</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Kokkuvote -->
+  <h2 class="mt-10 text-xl font-semibold text-slate-900">Kokkuvõte</h2>
+  <p class="mt-3 text-slate-700">
+    Leafletiga sai kiiremini valmis – markerid, teabeaknad ja kihtide valija on olemas,
+    puudu jäi ainult KML-i tugi. OpenLayersis avanes KML kolme reaga, aga teabeakna ja
+    aluskaardi valiku pidin ise tegema.
+  </p>
+  <p class="mt-3 text-slate-700">
+    Lihtsa ülesande jaoks on mugavam <b>Leaflet</b>, geoandmete failide ja erinevate
+    koordinaatsüsteemidega tööks <b>OpenLayers</b>.
+  </p>
+
+</main>
+
+<footer class="border-t border-slate-200 bg-white">
+  <div class="mx-auto max-w-4xl px-4 py-4 text-xs text-slate-500">
+    Praktiline töö &middot; LeafletJS 1.9.4 ja OpenLayers 10.10.0 &middot; kaardiandmed OpenStreetMap ja Esri
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeafletJS kaart - Kool ja kodu</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Leaflet 1.9.4 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body class="h-screen flex flex-col bg-slate-50 text-slate-800">
+
+<!-- Navigatsioon -->
+<nav class="bg-slate-800 text-slate-300">
+  <div class="mx-auto max-w-5xl flex flex-wrap items-center gap-1 px-4 py-2">
+    <a href="../index.html" class="mr-auto font-semibold text-white">Kool ja kodu kaardil</a>
+    <a href="../index.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">Avaleht</a>
+    <a href="../leaflet/kaart.html" class="rounded px-3 py-1.5 text-sm bg-slate-700 text-white">LeafletJS kaart</a>
+    <a href="../openlayers/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">OpenLayers kaart</a>
+    <a href="../vordlus.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">Töö kirjeldus</a>
+  </div>
+</nav>
+
+<header class="border-b border-slate-200 bg-white">
+  <div class="mx-auto max-w-5xl px-4 py-3">
+    <h1 class="text-lg font-semibold text-slate-900">Kaart 1 &middot; LeafletJS</h1>
+  </div>
+</header>
+
+<!-- Kaart taidab ekraanist ulejaanu osa -->
+<div id="map" class="flex-1"></div>
+
+<script>
+// --- Kaart -------------------------------------------------------------
+
+var map = L.map('map').setView([59.4074, 24.6959], 14);
+
+var tavakaart = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+
+// --- KML-faili lugemine ------------------------------------------------
+// Fail andmed/kaart.kml on molema kaardi uhine andmefail. NB! fetch ei
+// tooeta file:// aadressi - ava leht kohaliku serveri kaudu (nt Live Server).
+
+fetch('../andmed/kaart.kml')
+  .then(function (vastus) { return vastus.text(); })
+  .then(joonistaKaardile)
+  .catch(function () {
+    alert('Faili andmed/kaart.kml ei onnestunud laadida.\n' +
+          'Ava leht kohaliku serveri kaudu, mitte topeltklopsuga.');
+  });
+
+// KML-is on koordinaadid kujul "pikkus,laius,korgus",
+// Leaflet ootab aga [laius, pikkus].
+function loeKoordinaadid(tekst) {
+  return tekst.trim().split(/\s+/).map(function (paar) {
+    var osad = paar.split(',');
+    return [parseFloat(osad[1]), parseFloat(osad[0])];
+  });
+}
+
+function joonistaKaardile(kmlTekst) {
+  var kml = new DOMParser().parseFromString(kmlTekst, 'application/xml');
+
+  var kihtPunktid = L.featureGroup().addTo(map);   // kool ja kodu
+  var kihtTeekond = L.featureGroup().addTo(map);   // teekond
+  var kihtKujund  = L.featureGroup().addTo(map);   // maja
+  var teekond = null;
+  var nimedOlemas = {};   // kool ja kodu on KML-is kaks korda, votame uhe
+
+  // Kaime labi koik Placemark-elemendid ja lisame need kaardile.
+  Array.prototype.forEach.call(kml.getElementsByTagName('Placemark'), function (pm) {
+    var nimi = pm.getElementsByTagName('name')[0].textContent.trim();
+    var punkt = pm.getElementsByTagName('Point')[0];
+    var joon = pm.getElementsByTagName('LineString')[0];
+    var ala = pm.getElementsByTagName('Polygon')[0];
+
+    if (punkt && !nimedOlemas[nimi]) {
+      nimedOlemas[nimi] = true;
+      var koht = loeKoordinaadid(punkt.getElementsByTagName('coordinates')[0].textContent)[0];
+      L.marker(koht).addTo(kihtPunktid)
+        .bindPopup('<b>' + nimi + '</b><br>' + koht[0].toFixed(5) + ', ' + koht[1].toFixed(5));
+
+    } else if (joon) {
+      teekond = L.polyline(
+        loeKoordinaadid(joon.getElementsByTagName('coordinates')[0].textContent),
+        { color: '#ff6712', weight: 5 }
+      ).addTo(kihtTeekond);
+
+    } else if (ala) {
+      L.polygon(
+        loeKoordinaadid(ala.getElementsByTagName('coordinates')[0].textContent),
+        { color: '#fbc02d', fillOpacity: 0.4 }
+      ).addTo(kihtKujund).bindPopup('<b>' + nimi + '</b><br>Kodukohta tahistav kujund');
+    }
+  });
+
+  // Kaart seatakse nii, et kogu KML-i sisu oleks korraga naha.
+  map.fitBounds(kihtTeekond.getBounds(), { padding: [30, 30] });
+
+
+  // === LISAFUNKTSIOON 1: teekonna pikkus ja kaimisaeg ===================
+  // Liidame koik joone loigud kokku (distanceTo annab vahemaa meetrites).
+
+  var punktid = teekond.getLatLngs();
+  var pikkus = 0;
+  for (var i = 1; i < punktid.length; i++) {
+    pikkus += punktid[i - 1].distanceTo(punktid[i]);
+  }
+  var km = (pikkus / 1000).toFixed(2);
+  var minutid = Math.round(pikkus / 1000 / 5 * 60);   // kiirus 5 km/h
+
+  teekond.bindPopup('<b>Teekond kodu - kool</b><br>Pikkus: ' + km +
+                    ' km<br>Jalgsi umbes ' + minutid + ' min');
+
+
+  // === LISAFUNKTSIOON 2: aluskaardi vahetus ja kihtide peitmine =========
+
+  var satelliit = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { maxZoom: 19, attribution: 'Tiles &copy; Esri' });
+
+  L.control.layers(
+    { 'Tavakaart': tavakaart, 'Satelliit': satelliit },
+    { 'Kool ja kodu': kihtPunktid, 'Teekond': kihtTeekond, 'Maja kujund': kihtKujund }
+  ).addTo(map);
+}
+
+
+// === LISAFUNKTSIOON 3: mootkava =========================================
+
+L.control.scale({ imperial: false }).addTo(map);
+</script>
+</body>
+</html>
