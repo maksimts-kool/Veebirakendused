@@ -15,6 +15,7 @@
     <a href="index.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">Avaleht</a>
     <a href="leaflet/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">LeafletJS kaart</a>
     <a href="openlayers/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">OpenLayers kaart</a>
+    <a href="cesium/kaart.html" class="rounded px-3 py-1.5 text-sm hover:bg-slate-700 hover:text-white">CesiumJS 3D</a>
     <a href="vordlus.html" class="rounded px-3 py-1.5 text-sm bg-slate-700 text-white">Töö kirjeldus</a>
   </div>
 </nav>
@@ -23,8 +24,8 @@
 
   <h1 class="text-3xl font-bold tracking-tight text-slate-900">Töö kirjeldus ja võrdlus</h1>
   <p class="mt-3 text-slate-700">
-    Sama KML-fail (<code>andmed/kaart.kml</code>) on kuvatud kahel kaardil: kool, kodukoht,
-    teekond ja maja kujund. Kool ja kodu on failis kaks korda, seega mõlemad kaardid jätavad
+    Sama KML-fail (<code>andmed/kaart.kml</code>) on kuvatud kolmes lahenduses: kool, kodukoht,
+    teekond ja maja kujund. Kool ja kodu on failis kaks korda, seega kõik lahendused jätavad
     igast nimest alles esimese.
   </p>
 
@@ -34,7 +35,8 @@
 vordlus.html               töö kirjeldus ja võrdlus
 andmed/kaart.kml           ühine andmefail
 leaflet/kaart.html         Kaart 1 - LeafletJS
-openlayers/kaart.html      Kaart 2 - OpenLayers</pre>
+openlayers/kaart.html      Kaart 2 - OpenLayers
+cesium/kaart.html          Kaart 3 - CesiumJS 3D gloobus</pre>
 
   <!-- KML -->
   <h2 class="mt-10 text-xl font-semibold text-slate-900">KML-faili lugemine</h2>
@@ -65,33 +67,42 @@ kml.getElementsByTagName('Placemark')
           <th class="px-4 py-2 font-semibold">Omadus</th>
           <th class="px-4 py-2 font-semibold">LeafletJS 1.9.4</th>
           <th class="px-4 py-2 font-semibold">OpenLayers 10.10.0</th>
+          <th class="px-4 py-2 font-semibold">CesiumJS 1.145.0</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-slate-200 bg-white">
         <tr><td class="px-4 py-2 font-medium">Teegi suurus</td>
             <td class="px-4 py-2">144 KB</td>
-            <td class="px-4 py-2">1019 KB</td></tr>
+            <td class="px-4 py-2">1019 KB</td>
+            <td class="px-4 py-2">5878 KB</td></tr>
         <tr><td class="px-4 py-2 font-medium">KML-i tugi</td>
             <td class="px-4 py-2">Puudub</td>
-            <td class="px-4 py-2"><code>ol.format.KML</code></td></tr>
+            <td class="px-4 py-2"><code>ol.format.KML</code></td>
+            <td class="px-4 py-2"><code>Cesium.KmlDataSource</code></td></tr>
         <tr><td class="px-4 py-2 font-medium">Koordinaadid</td>
             <td class="px-4 py-2"><code>[laius, pikkus]</code></td>
-            <td class="px-4 py-2"><code>ol.proj.fromLonLat</code></td></tr>
+            <td class="px-4 py-2"><code>ol.proj.fromLonLat</code></td>
+            <td class="px-4 py-2"><code>Cartesian3.fromDegrees</code></td></tr>
         <tr><td class="px-4 py-2 font-medium">Teabeaken</td>
             <td class="px-4 py-2"><code>bindPopup()</code></td>
-            <td class="px-4 py-2">Puudub, tegin ise</td></tr>
+            <td class="px-4 py-2">Puudub, tegin ise</td>
+            <td class="px-4 py-2">Olemas (InfoBox)</td></tr>
         <tr><td class="px-4 py-2 font-medium">Kihtide valija</td>
             <td class="px-4 py-2"><code>L.control.layers</code></td>
+            <td class="px-4 py-2">Puudub, tegin ise</td>
             <td class="px-4 py-2">Puudub, tegin ise</td></tr>
         <tr><td class="px-4 py-2 font-medium">Vahemaa</td>
             <td class="px-4 py-2"><code>distanceTo()</code></td>
-            <td class="px-4 py-2"><code>ol.sphere.getLength()</code></td></tr>
+            <td class="px-4 py-2"><code>ol.sphere.getLength()</code></td>
+            <td class="px-4 py-2"><code>EllipsoidGeodesic</code></td></tr>
         <tr><td class="px-4 py-2 font-medium">Joonistamine</td>
             <td class="px-4 py-2">SVG</td>
-            <td class="px-4 py-2">Canvas</td></tr>
+            <td class="px-4 py-2">Canvas</td>
+            <td class="px-4 py-2">WebGL (3D)</td></tr>
         <tr><td class="px-4 py-2 font-medium">Minu koodi maht</td>
             <td class="px-4 py-2">u 135 rida</td>
-            <td class="px-4 py-2">u 250 rida</td></tr>
+            <td class="px-4 py-2">u 250 rida</td>
+            <td class="px-4 py-2">u 205 rida</td></tr>
       </tbody>
     </table>
   </div>
@@ -118,6 +129,40 @@ kml.getElementsByTagName('Placemark')
     </div>
   </div>
 
+  <!-- Kolmas lahendus -->
+  <h2 class="mt-10 text-xl font-semibold text-slate-900">Kolmas lahendus: CesiumJS 3D gloobus</h2>
+  <p class="mt-3 text-slate-700">
+    Otsisin, kus veel saab sama KML-faili kasutada. KML on Google Earthi vorming, seega
+    see avaneb ka Google Earthis, Google My Mapsis, QGIS-is ja uMapis. Veebilehele sobis
+    kõige paremini <b>CesiumJS</b> – avatud lähtekoodiga teek, mis näitab kaarti
+    3D maakeral (sama tehnoloogia on näiteks lennusimulaatorites ja droonide rakendustes).
+  </p>
+  <p class="mt-3 text-slate-700">
+    Proovisin faili muutmata kujul: Cesium loeb KML-i ise ning tunneb ka Google Earthi
+    laiendusi (<code>gx:</code>). Konsooli jäid ainult hoiatused toetamata osade kohta
+    (<code>SchemaData</code>, <code>StyleMap highlight</code>), kaardile tulid kõik objektid.
+  </p>
+<pre class="mt-3 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">Cesium.KmlDataSource.load('../andmed/kaart.kml', {
+  camera: viewer.scene.camera,
+  canvas: viewer.scene.canvas,
+  clampToGround: true
+}).then(function (andmed) {
+  viewer.dataSources.add(andmed);
+});</pre>
+  <div class="mt-3 rounded-lg border border-slate-200 bg-white p-5">
+    <h3 class="font-semibold text-slate-900">Lisafunktsioonid</h3>
+    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+      <li>Kodukohta tähistav kujund on tõstetud 12 m kõrguseks 3D majaks (<code>extrudedHeight</code>)</li>
+      <li>Kaamera lennud: „Lenda kooli“, „Lenda koju“, „Kogu teekond“ (<code>viewer.flyTo</code>)</li>
+      <li>Teekonna pikkus ja käimisaeg (<code>Cesium.EllipsoidGeodesic</code>)</li>
+      <li>Aluskaardi vahetus ning 3D / 2D / 2,5D vaade</li>
+    </ol>
+  </div>
+  <p class="mt-3 text-sm text-slate-600">
+    NB! Cesiumi vaikimisi aluskaart ja aadressiotsing vajavad Cesium ion'i võtit. Et võtit
+    poleks vaja, kasutasin OpenStreetMapi ja Esri pilte otse.
+  </p>
+
   <!-- Kokkuvote -->
   <h2 class="mt-10 text-xl font-semibold text-slate-900">Kokkuvõte</h2>
   <p class="mt-3 text-slate-700">
@@ -127,14 +172,15 @@ kml.getElementsByTagName('Placemark')
   </p>
   <p class="mt-3 text-slate-700">
     Lihtsa ülesande jaoks on mugavam <b>Leaflet</b>, geoandmete failide ja erinevate
-    koordinaatsüsteemidega tööks <b>OpenLayers</b>.
+    koordinaatsüsteemidega tööks <b>OpenLayers</b>. Kui kaarti on vaja näidata 3D-s
+    (hooned, maastik, kaamera lennud), sobib <b>CesiumJS</b>, kuid see on kõige suurem teek.
   </p>
 
 </main>
 
 <footer class="border-t border-slate-200 bg-white">
   <div class="mx-auto max-w-4xl px-4 py-4 text-xs text-slate-500">
-    LeafletJS 1.9.4 ja OpenLayers 10.10.0 &middot; OpenStreetMap ja Esri &middot; Maksim Tsikvasvili 2026
+    LeafletJS 1.9.4, OpenLayers 10.10.0 ja CesiumJS 1.145.0 &middot; OpenStreetMap ja Esri &middot; Maksim Tsikvasvili 2026
   </div>
 </footer>
 
