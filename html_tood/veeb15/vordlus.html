@@ -28,6 +28,12 @@
     teekond ja maja kujund. Kool ja kodu on failis kaks korda, seega kõik lahendused jätavad
     igast nimest alles esimese.
   </p>
+  <p class="mt-3 text-slate-700">
+    Kolmanda lahenduse jaoks otsisin, kus veel saab sama faili kasutada. KML on Google Earthi
+    vorming, seega see avaneb ka Google Earthis, Google My Mapsis, QGIS-is ja uMapis.
+    Veebilehele valisin <b>CesiumJS</b>-i, mis näitab kaarti 3D maakeral. Fail avanes
+    muutmata kujul.
+  </p>
 
   <!-- Failistruktuur -->
   <h2 class="mt-10 text-xl font-semibold text-slate-900">Failistruktuur</h2>
@@ -41,7 +47,7 @@ cesium/kaart.html          Kaart 3 - CesiumJS 3D gloobus</pre>
   <!-- KML -->
   <h2 class="mt-10 text-xl font-semibold text-slate-900">KML-faili lugemine</h2>
   <p class="mt-3 text-slate-700">Siin on teekide suurim erinevus.</p>
-  <div class="mt-3 grid gap-4 sm:grid-cols-2">
+  <div class="mt-3 grid gap-4 md:grid-cols-3">
     <div>
       <p class="text-sm font-medium text-slate-900">Leaflet – KML-i tugi puudub, tuli ise teha</p>
 <pre class="mt-2 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">var kml = new DOMParser()
@@ -55,6 +61,14 @@ kml.getElementsByTagName('Placemark')
   url: '../andmed/kaart.kml',
   format: new ol.format.KML()
 });</pre>
+    </div>
+    <div>
+      <p class="text-sm font-medium text-slate-900">CesiumJS – valmis lugeja</p>
+<pre class="mt-2 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">Cesium.KmlDataSource.load(
+  '../andmed/kaart.kml', {
+  clampToGround: true
+});
+// loeb ka gx: laiendused</pre>
     </div>
   </div>
 
@@ -102,14 +116,14 @@ kml.getElementsByTagName('Placemark')
         <tr><td class="px-4 py-2 font-medium">Minu koodi maht</td>
             <td class="px-4 py-2">u 135 rida</td>
             <td class="px-4 py-2">u 250 rida</td>
-            <td class="px-4 py-2">u 205 rida</td></tr>
+            <td class="px-4 py-2">u 225 rida</td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- Lisafunktsioonid -->
   <h2 class="mt-10 text-xl font-semibold text-slate-900">Lisafunktsioonid</h2>
-  <div class="mt-3 grid gap-4 sm:grid-cols-2">
+  <div class="mt-3 grid gap-4 md:grid-cols-3">
     <div class="rounded-lg border border-slate-200 bg-white p-5">
       <h3 class="font-semibold text-slate-900">LeafletJS</h3>
       <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
@@ -127,48 +141,24 @@ kml.getElementsByTagName('Placemark')
         <li>Mõõtkava</li>
       </ol>
     </div>
+    <div class="rounded-lg border border-slate-200 bg-white p-5">
+      <h3 class="font-semibold text-slate-900">CesiumJS</h3>
+      <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+        <li>Teekonna pikkus ja käimisaeg</li>
+        <li>Maja kujund 3D-s (<code>extrudedHeight</code>)</li>
+        <li>Kaamera lennud kooli, koju ja üle teekonna</li>
+        <li>Aluskaardi vahetus, 3D / 2D / 2,5D vaade</li>
+      </ol>
+    </div>
   </div>
-
-  <!-- Kolmas lahendus -->
-  <h2 class="mt-10 text-xl font-semibold text-slate-900">Kolmas lahendus: CesiumJS 3D gloobus</h2>
-  <p class="mt-3 text-slate-700">
-    Otsisin, kus veel saab sama KML-faili kasutada. KML on Google Earthi vorming, seega
-    see avaneb ka Google Earthis, Google My Mapsis, QGIS-is ja uMapis. Veebilehele sobis
-    kõige paremini <b>CesiumJS</b> – avatud lähtekoodiga teek, mis näitab kaarti
-    3D maakeral (sama tehnoloogia on näiteks lennusimulaatorites ja droonide rakendustes).
-  </p>
-  <p class="mt-3 text-slate-700">
-    Proovisin faili muutmata kujul: Cesium loeb KML-i ise ning tunneb ka Google Earthi
-    laiendusi (<code>gx:</code>). Konsooli jäid ainult hoiatused toetamata osade kohta
-    (<code>SchemaData</code>, <code>StyleMap highlight</code>), kaardile tulid kõik objektid.
-  </p>
-<pre class="mt-3 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100">Cesium.KmlDataSource.load('../andmed/kaart.kml', {
-  camera: viewer.scene.camera,
-  canvas: viewer.scene.canvas,
-  clampToGround: true
-}).then(function (andmed) {
-  viewer.dataSources.add(andmed);
-});</pre>
-  <div class="mt-3 rounded-lg border border-slate-200 bg-white p-5">
-    <h3 class="font-semibold text-slate-900">Lisafunktsioonid</h3>
-    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
-      <li>Kodukohta tähistav kujund on tõstetud 12 m kõrguseks 3D majaks (<code>extrudedHeight</code>)</li>
-      <li>Kaamera lennud: „Lenda kooli“, „Lenda koju“, „Kogu teekond“ (<code>viewer.flyTo</code>)</li>
-      <li>Teekonna pikkus ja käimisaeg (<code>Cesium.EllipsoidGeodesic</code>)</li>
-      <li>Aluskaardi vahetus ning 3D / 2D / 2,5D vaade</li>
-    </ol>
-  </div>
-  <p class="mt-3 text-sm text-slate-600">
-    NB! Cesiumi vaikimisi aluskaart ja aadressiotsing vajavad Cesium ion'i võtit. Et võtit
-    poleks vaja, kasutasin OpenStreetMapi ja Esri pilte otse.
-  </p>
 
   <!-- Kokkuvote -->
   <h2 class="mt-10 text-xl font-semibold text-slate-900">Kokkuvõte</h2>
   <p class="mt-3 text-slate-700">
     Leafletiga sai kiiremini valmis – markerid, teabeaknad ja kihtide valija on olemas,
     puudu jäi ainult KML-i tugi. OpenLayersis avanes KML kolme reaga, aga teabeakna ja
-    aluskaardi valiku pidin ise tegema.
+    aluskaardi valiku pidin ise tegema. CesiumJS luges KML-i samuti ise, aga vaikimisi
+    aluskaart vajab Cesium ion'i võtit, seega kasutasin OpenStreetMapi ja Esri pilte otse.
   </p>
   <p class="mt-3 text-slate-700">
     Lihtsa ülesande jaoks on mugavam <b>Leaflet</b>, geoandmete failide ja erinevate
