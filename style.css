@@ -7,6 +7,7 @@
 
 /* ---------- Tokenid ---------- */
 :root {
+    --dot: rgba(39, 44, 48, 0.09);
     --primary: #65bc7b;
     --primary-strong: #2f7a45;
     --primary-soft: rgba(101, 188, 123, 0.14);
@@ -28,6 +29,7 @@
 }
 
 html.hm-dark {
+    --dot: rgba(255, 255, 255, 0.07);
     --primary-strong: #8fd6a2;
     --primary-soft: rgba(101, 188, 123, 0.16);
     --graded: #ff8a8a;
@@ -206,16 +208,10 @@ html.hm-dark .button:not(.is-outline):hover {
 }
 
 .brand-mark {
-    display: grid;
-    place-items: center;
+    flex: none;
+    display: block;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
-    background: var(--primary);
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
 }
 
 .brand-text {
@@ -335,24 +331,108 @@ html.hm-dark .dark-toggle .icon-sun {
     overflow: hidden;
     padding: 56px 0 48px;
     border-bottom: 1px solid var(--border);
-    background: var(--surface);
+    /* teine, väiksem helendus sisu vasakus alanurgas */
+    background:
+        radial-gradient(360px circle at calc(50% - 480px) 115%, var(--primary-soft), transparent 70%),
+        var(--surface);
 }
 
+/* Punktivõrk, mis hajub servade poole */
 .hero::before {
     content: "";
     position: absolute;
-    top: -260px;
-    right: -160px;
-    width: 620px;
-    height: 620px;
+    inset: 0;
+    background-image: radial-gradient(var(--dot) 1.2px, transparent 1.6px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 90% at 65% 40%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 60% 90% at 65% 40%, #000 20%, transparent 75%);
+    pointer-events: none;
+}
+
+/* Peamine helendus – asub sisu järgi, mitte akna servas */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: -220px;
+    left: calc(50% + 140px);
+    width: 560px;
+    height: 560px;
     border-radius: 50%;
     background: radial-gradient(circle, var(--primary-soft), transparent 65%);
     pointer-events: none;
     animation: drift 16s ease-in-out infinite alternate;
 }
 
+.hero.is-home::after {
+    animation: none;
+}
+
+/* Hõljuvad ikoonipaanid alamlehtede hero paremas servas */
+.hero-deco {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 280px;
+    height: 200px;
+    margin-top: -100px;
+    animation: pop 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both;
+}
+
+.tile {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    color: var(--primary-strong);
+    box-shadow: 0 14px 30px rgba(39, 44, 48, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+html.hm-dark .tile {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.tile .icon {
+    width: 42%;
+    height: 42%;
+}
+
+.tile.t1 {
+    top: 18px;
+    left: 20px;
+    width: 96px;
+    height: 96px;
+    rotate: -8deg;
+}
+
+.tile.t2 {
+    top: 0;
+    left: 160px;
+    width: 72px;
+    height: 72px;
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+    rotate: 7deg;
+    animation-duration: 5s;
+    animation-delay: -1.5s;
+}
+
+.tile.t3 {
+    top: 110px;
+    left: 130px;
+    width: 84px;
+    height: 84px;
+    rotate: -3deg;
+    animation-duration: 7s;
+    animation-delay: -3s;
+}
+
 .hero > .container {
     position: relative;
+    z-index: 1; /* sisu helenduse ja punktivõrgu kohal */
 }
 
 .hero-grid {
@@ -420,7 +500,6 @@ html.hm-dark .dark-toggle .icon-sun {
 }
 
 .art-soft { fill: var(--primary-soft); }
-.art-soft-strong { fill: rgba(101, 188, 123, 0.22); }
 .art-surface { fill: var(--surface); }
 .art-stroke { stroke: var(--border); stroke-width: 1; }
 .art-bar { fill: var(--bg); }
@@ -432,7 +511,12 @@ html.hm-dark .dark-toggle .icon-sun {
 .art-tag { fill: rgba(101, 188, 123, 0.35); }
 .art-graded { fill: rgba(204, 0, 0, 0.18); }
 .art-outline { fill: none; stroke: var(--primary); stroke-width: 2; }
-.art-green-stroke { fill: none; stroke: var(--primary); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.art-icon { fill: none; stroke: var(--primary-strong); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.art-icon.is-white { stroke: #ffffff; }
+
+.art-tile {
+    filter: drop-shadow(0 8px 12px rgba(39, 44, 48, 0.12));
+}
 .art-editor { fill: #1d2226; }
 html.hm-dark .art-editor { stroke: #333333; stroke-width: 1; }
 
@@ -454,7 +538,6 @@ html.hm-dark .art-editor { stroke: #333333; stroke-width: 1; }
 
 .art-caret {
     fill: var(--primary);
-    animation: blink 1s steps(1) infinite;
 }
 
 .art-label {
@@ -474,12 +557,6 @@ html.hm-dark .art-editor { stroke: #333333; stroke-width: 1; }
 .art-float-a,
 .art-float-b {
     filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.22));
-    animation: float 6s ease-in-out infinite;
-}
-
-.art-float-b {
-    animation-duration: 5s;
-    animation-delay: -2s;
 }
 
 .hero-person {
@@ -962,7 +1039,7 @@ html.hm-dark .site-footer {
 
 @keyframes float {
     50% {
-        transform: translateY(-8px);
+        translate: 0 -8px;
     }
 }
 
@@ -1106,6 +1183,12 @@ html.theme-anim *::after {
     .grid,
     .grid.cols-4 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .hero-deco {
+        display: none;
     }
 }
 

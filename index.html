@@ -8,6 +8,7 @@
     <meta name="description" content="Maksim Tsikvasvili veebirakenduste kursuse koduleht: HTML, CSS, JavaScript ja PHP tööd.">
     <!-- Ikoonid: Lucide (ISC litsents, https://lucide.dev/license) ja Simple Icons (CC0, https://simpleicons.org) -->
     <script>document.documentElement.classList.add("js");try{if(localStorage.getItem("hybridmagDarkMode")==="enabled")document.documentElement.classList.add("hm-dark")}catch(e){}</script>
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap">
@@ -21,7 +22,7 @@
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="index.html" rel="home">
-                <span class="brand-mark" aria-hidden="true">MT</span>
+                <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#65bc7b"/><path d="M13 47V19l14 15 14-15" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 19h24M41 19v28" fill="none" stroke="#272c30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
             </a>
 
@@ -78,7 +79,7 @@
 
                         <!-- lehe päis -->
                         <rect class="art-dark" x="60" y="60" width="460" height="34"/>
-                        <rect class="art-green" x="76" y="69" width="16" height="16" rx="4"/>
+                        <g transform="translate(76 69) scale(0.25)"><rect width="64" height="64" rx="16" fill="#65bc7b"/><path d="M13 47V19l14 15 14-15" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 19h24M41 19v28" fill="none" stroke="#272c30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
                         <rect class="art-navtext" x="100" y="74" width="70" height="6" rx="3"/>
                         <rect class="art-navtext" x="318" y="74" width="34" height="6" rx="3"/>
                         <rect class="art-navtext" x="362" y="74" width="40" height="6" rx="3"/>
@@ -93,8 +94,19 @@
                         <rect class="art-line" x="84" y="192" width="214" height="6" rx="3"/>
                         <rect class="art-green" x="84" y="210" width="78" height="22" rx="11"/>
                         <rect class="art-outline" x="170" y="211" width="64" height="20" rx="10"/>
-                        <circle class="art-soft-strong" cx="430" cy="170" r="48"/>
-                        <path class="art-green-stroke" d="M412 170l12 12 22-24"/>
+                        <!-- hõljuvad ikoonipaanid, nagu saidi alamlehtedel (Lucide ikoonid) -->
+                        <g class="art-tile" transform="translate(398 166) rotate(-8)">
+                            <rect class="art-surface art-stroke" x="-30" y="-30" width="60" height="60" rx="15"/>
+                            <g class="art-icon" transform="translate(-13.2 -13.2) scale(1.1)"><path d="M10 10.5 8 13l2 2.5"/><path d="m14 10.5 2 2.5-2 2.5"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></g>
+                        </g>
+                        <g class="art-tile art-tile-b" transform="translate(466 130) rotate(7)">
+                            <rect class="art-green" x="-23" y="-23" width="46" height="46" rx="12"/>
+                            <g class="art-icon is-white" transform="translate(-10.2 -10.2) scale(0.85)"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></g>
+                        </g>
+                        <g class="art-tile art-tile-c" transform="translate(458 206) rotate(-3)">
+                            <rect class="art-surface art-stroke" x="-26" y="-26" width="52" height="52" rx="13"/>
+                            <g class="art-icon" transform="translate(-11.4 -11.4) scale(0.95)"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+                        </g>
 
                         <!-- kaardid -->
                         <g class="art-cards">
@@ -266,7 +278,7 @@
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a class="brand" href="index.html" rel="home">
-                <span class="brand-mark" aria-hidden="true">MT</span>
+                <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#65bc7b"/><path d="M13 47V19l14 15 14-15" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 19h24M41 19v28" fill="none" stroke="#272c30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
             </a>
                 <p>Veebirakenduste kursuse tööd Techno TLN-is. Konspektid ja kirjeldused on

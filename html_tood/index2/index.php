@@ -47,6 +47,7 @@ function pageUrl($page, $category)
     <meta name="description" content="PHP ja MySQL tööd veebirakenduste kursuselt.">
     <!-- Ikoonid: Lucide (ISC litsents, https://lucide.dev/license) ja Simple Icons (CC0, https://simpleicons.org) -->
     <script>document.documentElement.classList.add("js");try{if(localStorage.getItem("hybridmagDarkMode")==="enabled")document.documentElement.classList.add("hm-dark")}catch(e){}</script>
+    <link rel="icon" href="../../logo.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap">
@@ -60,7 +61,7 @@ function pageUrl($page, $category)
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="../../index.html" rel="home">
-                <span class="brand-mark" aria-hidden="true">MT</span>
+                <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#65bc7b"/><path d="M13 47V19l14 15 14-15" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 19h24M41 19v28" fill="none" stroke="#272c30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
             </a>
 
@@ -91,6 +92,7 @@ function pageUrl($page, $category)
                     <p class="eyebrow">Serveripoolne programmeerimine</p>
                     <h1>PHP tööd</h1>
                     <p class="lead"><?= count($phpWorks) ?> tööd PHP ja MySQLiga: andmebaasid, vormid, failid, XML ja mallid. HTML-i ja JavaScripti tööd on lehel <a href="../../tehtud_tood.html">Tehtud tööd</a>.</p>
+            <div class="hero-deco" aria-hidden="true"><span class="tile t1"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="8" x="2" y="2" rx="2" ry="2" /><rect width="20" height="8" x="2" y="14" rx="2" ry="2" /><line x1="6" x2="6.01" y1="6" y2="6" /><line x1="6" x2="6.01" y1="18" y2="18" /></svg></span><span class="tile t2"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5V19A9 3 0 0 0 21 19V5" /><path d="M3 12A9 3 0 0 0 21 12" /></svg></span><span class="tile t3"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="m5 16-3 3 3 3" /><path d="m9 22 3-3-3-3" /></svg></span></div>
         </div>
     </section>
 
@@ -148,7 +150,7 @@ function pageUrl($page, $category)
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a class="brand" href="../../index.html" rel="home">
-                <span class="brand-mark" aria-hidden="true">MT</span>
+                <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#65bc7b"/><path d="M13 47V19l14 15 14-15" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 19h24M41 19v28" fill="none" stroke="#272c30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
             </a>
                 <p>Veebirakenduste kursuse tööd Techno TLN-is. Konspektid ja kirjeldused on
