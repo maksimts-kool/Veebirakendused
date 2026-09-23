@@ -85,6 +85,61 @@
         });
     }
 
+    // --- Avalehe pealkiri: sõnad vahetuvad kirjutusmasina efektiga ---
+    document.querySelectorAll("[data-rotate]").forEach(function (el) {
+        var words;
+        try {
+            words = JSON.parse(el.getAttribute("data-rotate"));
+        } catch (e) {
+            return;
+        }
+        if (reduceMotion || !Array.isArray(words) || words.length < 2) {
+            return;
+        }
+
+        // Pealkirja kõrgus pikima sõna järgi, et leht ei hüppaks, kui sõna murdub uuele reale
+        var title = el.closest("h1") || el.parentElement;
+        function lockHeight() {
+            title.style.minHeight = "";
+            var original = el.textContent;
+            var max = 0;
+            words.forEach(function (word) {
+                el.textContent = word;
+                max = Math.max(max, title.offsetHeight);
+            });
+            el.textContent = original;
+            title.style.minHeight = max + "px";
+        }
+        lockHeight();
+        window.addEventListener("resize", lockHeight);
+
+        var index = 0;
+        var text = words[0];
+        var deleting = true;
+
+        function tick() {
+            var target = words[index];
+            if (deleting) {
+                text = text.slice(0, -1);
+                el.textContent = text;
+                if (text === "") {
+                    deleting = false;
+                    index = (index + 1) % words.length;
+                    return window.setTimeout(tick, 300);
+                }
+                return window.setTimeout(tick, 45);
+            }
+            text = target.slice(0, text.length + 1);
+            el.textContent = text;
+            if (text === target) {
+                deleting = true;
+                return window.setTimeout(tick, 2000);
+            }
+            window.setTimeout(tick, 85);
+        }
+        window.setTimeout(tick, 2200);
+    });
+
     // --- Mobiilimenüü ---
     var menuToggle = document.querySelector(".menu-toggle");
 

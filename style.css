@@ -1004,6 +1004,23 @@ html.hm-dark .site-footer {
     animation-name: pop;
 }
 
+/* Avalehe pealkirja vahetuv sõna (kirjutusmasina efekt, site.js) */
+.rotator {
+    white-space: nowrap;
+}
+
+.rotator::after {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    margin-left: 4px;
+    border-radius: 2px;
+    background: var(--primary);
+    vertical-align: -0.05em;
+    animation: blink 1s steps(1) infinite;
+}
+
 /* Kerimisel ilmuvad kaardid (klass lisatakse site.js-is) */
 .js .reveal {
     opacity: 0;
