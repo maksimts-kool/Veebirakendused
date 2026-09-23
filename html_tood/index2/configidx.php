@@ -4,15 +4,6 @@
  * Add or remove entries as needed
  */
 
-// Category colors configuration
-$categoryColors = [
-    'Andmebaasid' => '#7c3aed',
-    'Mobilimall' => '#059669',
-    'Funktsioonid' => '#0ea5e9',
-    'Veebileht' => '#f59e0b',
-    'Muu' => '#ef4444',
-];
-
 $phpWorks = [
     [
         'title' => 'Jalgratta Eksami Veebileht',
@@ -128,75 +119,12 @@ function getCategories($works) {
     return $categories;
 }
 
-// Get category color
-function getCategoryColor($category, $categoryColors) {
-    return isset($categoryColors[$category]) ? $categoryColors[$category] : '#2563eb';
-}
-
-function normalizeHexColor($hex, $fallback = '#2563eb') {
-    if (!is_string($hex)) return $fallback;
-    $hex = trim($hex);
-
-    if (preg_match('/^#([0-9a-fA-F]{3})$/', $hex, $m)) {
-        $r = str_repeat($m[1][0], 2);
-        $g = str_repeat($m[1][1], 2);
-        $b = str_repeat($m[1][2], 2);
-        return '#' . strtolower($r . $g . $b);
-    }
-
-    if (preg_match('/^#([0-9a-fA-F]{6})$/', $hex, $m)) {
-        return '#' . strtolower($m[1]);
-    }
-
-    return $fallback;
-}
-
-function hexToRgb($hex) {
-    $hex = normalizeHexColor($hex);
-    $hex = ltrim($hex, '#');
-
-    return [
-        hexdec(substr($hex, 0, 2)),
-        hexdec(substr($hex, 2, 2)),
-        hexdec(substr($hex, 4, 2)),
-    ];
-}
-
-function rgbToHex($r, $g, $b) {
-    $r = max(0, min(255, (int)$r));
-    $g = max(0, min(255, (int)$g));
-    $b = max(0, min(255, (int)$b));
-    return sprintf('#%02x%02x%02x', $r, $g, $b);
-}
-
-function mixHexColors($hexA, $hexB, $weightB) {
-    $weightB = max(0, min(1, (float)$weightB));
-    $weightA = 1 - $weightB;
-
-    [$ar, $ag, $ab] = hexToRgb($hexA);
-    [$br, $bg, $bb] = hexToRgb($hexB);
-
-    return rgbToHex(
-        round($ar * $weightA + $br * $weightB),
-        round($ag * $weightA + $bg * $weightB),
-        round($ab * $weightA + $bb * $weightB)
-    );
-}
-
-// Get category theme colors for CSS variables.
-// Returns: ['color' => '#rrggbb', 'bg' => '#rrggbb', 'border' => '#rrggbb']
-function getCategoryTheme($category, $categoryColors) {
-    $base = normalizeHexColor(getCategoryColor($category, $categoryColors));
-
-    // Pastel background + border derived from the base color.
-    $bg = mixHexColors($base, '#ffffff', 0.92);
-    $border = mixHexColors($base, '#ffffff', 0.75);
-
-    return [
-        'color' => $base,
-        'bg' => $bg,
-        'border' => $border,
-    ];
+// Kuupäev eesti keeles, nt "12. jaanuar 2026"
+function formatWorkDate($date) {
+    $months = ['jaanuar', 'veebruar', 'märts', 'aprill', 'mai', 'juuni', 'juuli',
+        'august', 'september', 'oktoober', 'november', 'detsember'];
+    $time = strtotime($date);
+    return date('j', $time) . '. ' . $months[(int)date('n', $time) - 1] . ' ' . date('Y', $time);
 }
 
 // Get works by category

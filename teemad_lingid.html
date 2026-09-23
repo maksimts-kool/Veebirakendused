@@ -1,59 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Maksim veebirakenduste koduleht</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teemad / Lingid – Maksim Tsikvasvili</title>
+    <meta name="description" content="Veebirakenduste kursuse teemad koos tööde, blogipostituste ja kasulike linkidega.">
+    <!-- Ikoonid: Lucide (ISC litsents, https://lucide.dev/license) ja Simple Icons (CC0, https://simpleicons.org) -->
+    <script>document.documentElement.classList.add("js");try{if(localStorage.getItem("hybridmagDarkMode")==="enabled")document.documentElement.classList.add("hm-dark")}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+    <script src="site.js" defer></script>
 </head>
 
 <body>
-  <header>
-    <img src="generated-image(2).png" alt="Logo">
-    <h1>Maksim veebirakenduste koduleht</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Kodu</a></li>
-      <li><a href="teemad_lingid.html">Teemad / Lingid</a></li>
-      <li><a href="tehtud_tood.html">Tehtud tööd</a></li>
-      <li><a href="html_tood/index2/index.php">PHP tööd</a></li>
-      <li><a href="meedia.html">Meedia</a></li>
-      <li><a href="minust.html">Minust</a></li>
-      <li><a href="./wp">Wordpress</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section>
-      <h2>Teemad</h2>
-      <div>
-        <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>PHP</li>
-          <li>MySQL</li>
-        </ul>
-      </div>
+    <a class="skip-link screen-reader-text" href="#sisu">Liigu sisu juurde</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" rel="home">
+                <span class="brand-mark" aria-hidden="true">MT</span>
+                <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
+            </a>
+
+            <nav class="main-nav" id="peamenyy" aria-label="Peamenüü">
+                <ul>
+                    <li><a href="index.html">Kodu</a></li>
+                    <li><a href="teemad_lingid.html" aria-current="page">Teemad / Lingid</a></li>
+                    <li><a href="tehtud_tood.html">Tehtud tööd</a></li>
+                    <li><a href="html_tood/index2/index.php">PHP tööd</a></li>
+                    <li><a href="minust.html">Minust</a></li>
+                    <li class="nav-blog"><a href="https://maksimtsikvasvili24.thkit.ee/wp/">Blogi <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-button dark-toggle" type="button" aria-pressed="false" aria-label="Lülita tume režiim">
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></svg><svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+                </button>
+                <a class="button blog-link" href="https://maksimtsikvasvili24.thkit.ee/wp/">Blogi <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a>
+                <button class="icon-button menu-toggle" type="button" aria-expanded="false" aria-controls="peamenyy" aria-label="Menüü"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="sisu">
+    <section class="hero">
+        <div class="container">
+                    <p class="eyebrow">Kursuse sisu</p>
+                    <h1>Teemad ja lingid</h1>
+                    <p class="lead">14 teemat veebirakenduste ja hajusrakenduste kursustelt. Iga teema juures on tööd sellel saidil, lähtekood GitHubis ja blogipostitused.</p>
+        </div>
     </section>
-    <section>
-      <h2>Lingid</h2>
-      <ul>
-        <li><a href="https://www.w3schools.com/" target="_blank">🌐 W3Schools</a></li>
-        <li><a href="https://moodle.edu.ee/" target="_blank">📚 Moodle</a></li>
-        <li><a href="https://tahvel.edu.ee/" target="_blank">⚡ Tahvel</a></li>
-        <li><a href="https://wordpress.com/" target="_blank">📱 Wordpress</a></li>
-        <li><a href="https://google.com/" target="_blank">🟢 Google</a></li>
-      </ul>
-    </section>
-  </main>
-  <footer>
-    <p>
-      <strong>Kontakteeri minuga:</strong> maksimtsitkool@gmail.com <br>
-      &copy; Maksim Tsikvasvili
-    </p>
-  </footer>
+
+        <div class="container site-main">
+            <section class="section">
+                <div class="section-head">
+                    <h2 class="section-title">Teemad</h2>
+                </div>
+            <div class="grid">
+                <article class="card" id="teema-html">
+                    <h3>HTML</h3>
+                    <p class="card-text">Lehe struktuur, semantilised elemendid, tekst, tabelid, vormid ja pildikaardid.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/veeb1/index.html">Sissejuhatus</a><a href="html_tood/veeb2/index.html">Harjutused</a><a href="html_tood/veeb3/tabelid.html">Tabelid</a><a href="html_tood/veeb5/map.html">Interaktiivne kaart</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb1">veeb1</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb3">veeb3</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb5">veeb5</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1179/">Teemad</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-css">
+                    <h3>CSS</h3>
+                    <p class="card-text">Stiilid, Flexbox ja Grid, meediapäringud, kohanduv disain ja tume režiim.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/veeb11/ruhmaleht.html">Rühmaleht</a><a href="html_tood/veeb18/index.html">Meedia</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb11">veeb11</a><a href="https://github.com/maksimts-kool/Veebirakendused/blob/master/style.css">selle saidi style.css</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/2102/">Web Design</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-javascript">
+                    <h3>JavaScript</h3>
+                    <p class="card-text">DOM, sündmused, vormid, objektid, kuupäevad, anonüümsed funktsioonid ja canvas.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/veeb6/vorm.html">JS vorm</a><a href="html_tood/veeb9/index.html">Veebikalkulaator</a><a href="html_tood/veeb10/raamatukogu.html">Raamatukogu</a><a href="html_tood/veeb14/index.html">Jõulukaart</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb9">veeb9</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb10">veeb10</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb14">veeb14</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1210/">Javascript</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1239/">Kuupäev ja aeg</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1471/">Objektid</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1721/">Anonüümsed funktsioonid</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-jquery">
+                    <h3>jQuery</h3>
+                    <p class="card-text">Selektorid, sündmused, animatsioonid ja jQuery UI (lohistamine, efektid).</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/veeb7/kysimustik.html">Muusika küsimustik</a><a href="html_tood/veeb12/naidiseLeht.html">jQuery näidis</a><a href="html_tood/veeb17/index.html">jQuery ja aeg</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb7">veeb7</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb12">veeb12</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb17">veeb17</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1221/">Muusika ankeet</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-php">
+                    <h3>PHP</h3>
+                    <p class="card-text">Serveripoolne kood: funktsioonid, vormid, sessioonid, failid ja mallid.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/index2/index.php">PHP tööd</a><a href="html_tood/index2/content/matem-funk/index.php">Matem. funktsioonid</a><a href="html_tood/index2/content/post5/index.php">Tekstifunktsioonid</a><a href="html_tood/index2/content/anekdoot/index.php">Anekdoodid</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/index2">index2</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/index2/content/anekdoot">anekdoot</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/php/1972/">PHP Test</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/category/php/">PHP kategooria</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-mysql">
+                    <h3>MySQL</h3>
+                    <p class="card-text">Andmebaasi tabelid, päringud, sisselogimine ja CRUD-rakendused PHP ja MySQLi abil.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/index2/content/valimised/index.php">Valimised</a><a href="html_tood/index2/content/php-ab2/index.php">Toidupood</a><a href="html_tood/index2/content/jalgratta-eksam/index.php">Jalgratta eksam</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/index2/content/valimised">valimised</a><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/index2/content/php-ab2">php-ab2</a><a href="https://github.com/maksimts-kool/jalgratta-eksam">jalgratta-eksam</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/php/1963/">Jalgratta eksam</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/category/andmebaasid/">Andmebaasid</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-xml-ja-rss">
+                    <h3>XML ja RSS</h3>
+                    <p class="card-text">XML-andmete lugemine ja kuvamine PHP-ga, RSS-voog.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/index2/content/xmlphp/index.php">XML ja PHP</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/index2/content/xmlphp">xmlphp</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/php/1947/">RSS paigaldamine</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-kaardid">
+                    <h3>Kaardid</h3>
+                    <p class="card-text">KML-fail Google Earthist ja selle kuvamine LeafletJS-i, OpenLayersi ja CesiumJS-i 3D gloobusel.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/veeb15/index.html">Kool ja kodu kaardil</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb15">veeb15</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/hajusrakendused/2552/">KML ja kaardid</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-rest-api">
+                    <h3>REST API</h3>
+                    <p class="card-text">Express.js REST API: GET, POST ja DELETE päringud, filtreerimine ja sortimine, HTTP olekukoodid ning dokumentatsioon.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/rest-api-hajus">rest-api-hajus</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/hajusrakendused/2359/">Veebiteenused</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/hajusrakendused/2367/">Harjutused</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-hajusrakendused">
+                    <h3>Hajusrakendused</h3>
+                    <p class="card-text">Hajussüsteemi alused, sõnavara kontroll ning LiteTrackeri sidumine GitHubiga (webhook, harud, commit'id).</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/veeb16/index.html">Sõnavara kontroll</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused/tree/master/html_tood/veeb16">veeb16</a><a href="https://github.com/maksimts-kool/litetracker">litetracker</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/hajusrakendused/2356/">Alused</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/hajusrakendused/2521/">LiteTracker</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-docker-ja-veebiserver">
+                    <h3>Docker ja veebiserver</h3>
+                    <p class="card-text">Meeskonnaprojekt KawaiiEmoji: Apache/PHP veebiserver, MySQL, Docker Compose ja logid Kibanas. Minu roll: veebiserveri admin ja rakenduse arendaja.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Apache-project">Apache-project</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-wordpress">
+                    <h3>WordPress</h3>
+                    <p class="card-text">Oma blogi haldamine: pluginad, tagasisidevorm, H5P ja SEO.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/">Minu blogi</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1455/">H5P plugin</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1303/">Tagasiside</a><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1657/">SEO</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-react">
+                    <h3>React</h3>
+                    <p class="card-text">Komponentidel põhinev kasutajaliides JavaScripti teegiga React.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/2021/">React projekt</a></dd></div></dl>
+                </article>
+                <article class="card" id="teema-git-ja-github">
+                    <h3>Git ja GitHub</h3>
+                    <p class="card-text">Versioonihaldus, harud, pull requestid ja automaatne avaldamine GitHub Actionsiga.</p>
+                    <dl class="link-rows"><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /></svg>Tööd</dt><dd><a href="html_tood/index2/content/post4/index.php">Git käsud</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</dt><dd><a href="https://github.com/maksimts-kool/Veebirakendused">Veebirakendused</a><a href="https://github.com/maksimts-kool/Veebirakendused/blob/master/.github/workflows/deploy.yml">deploy.yml</a></dd></div><div><dt><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg>Blogis</dt><dd><a href="https://maksimtsikvasvili24.thkit.ee/wp/tarkvaraarendus/2241/">Git harjutus</a></dd></div></dl>
+                </article>
+            </div>
+            </section>
+
+            <div id="lingid"></div>
+            <section class="section">
+                <div class="section-head">
+                    <h2 class="section-title">Lingid</h2>
+                    <p>Kool, dokumentatsioon ja minu teised lehed.</p>
+                </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Kool</h3>
+                    <ul class="link-list"><li><a href="https://techno.ee/">Techno TLN</a></li><li><a href="https://tahvel.edu.ee/">Tahvel – õppeinfosüsteem</a></li><li><a href="https://moodle.edu.ee/">Moodle – kursuste materjalid</a></li></ul>
+                </div>
+                <div class="card">
+                    <h3>Dokumentatsioon</h3>
+                    <ul class="link-list"><li><a href="https://developer.mozilla.org/">MDN Web Docs</a></li><li><a href="https://www.w3schools.com/">W3Schools</a></li><li><a href="https://www.php.net/manual/en/">PHP käsiraamat</a></li><li><a href="https://api.jquery.com/">jQuery API</a></li><li><a href="https://leafletjs.com/">LeafletJS</a></li><li><a href="https://openlayers.org/">OpenLayers</a></li><li><a href="https://cesium.com/platform/cesiumjs/">CesiumJS</a></li></ul>
+                </div>
+                <div class="card">
+                    <h3>Minu lehed</h3>
+                    <ul class="link-list"><li><a href="https://maksimtsikvasvili24.thkit.ee/wp/">WordPressi blogi</a></li><li><a href="https://github.com/maksimts-kool">GitHubi profiil</a></li><li><a href="https://maksimtsikvasvili24.thkit.ee/wp/sonastik/">Sõnastik</a></li><li><a href="https://github.com/maksimts-kool/Veebirakendused">Selle saidi lähtekood</a></li></ul>
+                </div>
+            </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a class="brand" href="index.html" rel="home">
+                <span class="brand-mark" aria-hidden="true">MT</span>
+                <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
+            </a>
+                <p>Veebirakenduste kursuse tööd Techno TLN-is. Konspektid ja kirjeldused on
+                    <a href="https://maksimtsikvasvili24.thkit.ee/wp/">blogis</a>.</p>
+            </div>
+            <div>
+                <h2>Lehed</h2>
+                <ul><li><a href="index.html">Kodu</a></li><li><a href="teemad_lingid.html">Teemad / Lingid</a></li><li><a href="tehtud_tood.html">Tehtud tööd</a></li><li><a href="html_tood/index2/index.php">PHP tööd</a></li><li><a href="minust.html">Minust</a></li></ul>
+            </div>
+            <div>
+                <h2>Kontakt</h2>
+                <ul>
+                    <li><a href="mailto:maksimtsitkool@gmail.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg> maksimtsitkool@gmail.com</a></li>
+                    <li><a href="https://techno.ee/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg> Techno TLN</a></li>
+                    <li><a href="https://github.com/maksimts-kool"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© 2026 Maksim Tsikvasvili</span>
+            <span>Õppekava: 3 aastat · TARpv24</span>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -2,117 +2,203 @@
 <html lang="et">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Maksim veebirakenduste koduleht</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tehtud tööd – Maksim Tsikvasvili</title>
+    <meta name="description" content="HTML, CSS, JavaScripti ja jQuery tööd veebirakenduste kursuselt.">
+    <!-- Ikoonid: Lucide (ISC litsents, https://lucide.dev/license) ja Simple Icons (CC0, https://simpleicons.org) -->
+    <script>document.documentElement.classList.add("js");try{if(localStorage.getItem("hybridmagDarkMode")==="enabled")document.documentElement.classList.add("hm-dark")}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+    <script src="site.js" defer></script>
 </head>
 
 <body>
-  <header>
-    <img src="generated-image(2).png" alt="Logo">
-    <h1>Maksim veebirakenduste koduleht</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Kodu</a></li>
-      <li><a href="teemad_lingid.html">Teemad / Lingid</a></li>
-      <li><a href="tehtud_tood.html" class="active">Tehtud tööd</a></li>
-      <li><a href="html_tood/index2/index.php">PHP tööd</a></li>
-      <li><a href="meedia.html">Meedia</a></li>
-      <li><a href="minust.html">Minust</a></li>
-      <li><a href="./wp">Wordpress</a></li>
-    </ul>
-  </nav>
+    <a class="skip-link screen-reader-text" href="#sisu">Liigu sisu juurde</a>
 
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" rel="home">
+                <span class="brand-mark" aria-hidden="true">MT</span>
+                <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
+            </a>
 
-  <main>
-    <section>
-      <h2>HTML / CSS / JS Tööd</h2>
+            <nav class="main-nav" id="peamenyy" aria-label="Peamenüü">
+                <ul>
+                    <li><a href="index.html">Kodu</a></li>
+                    <li><a href="teemad_lingid.html">Teemad / Lingid</a></li>
+                    <li><a href="tehtud_tood.html" aria-current="page">Tehtud tööd</a></li>
+                    <li><a href="html_tood/index2/index.php">PHP tööd</a></li>
+                    <li><a href="minust.html">Minust</a></li>
+                    <li class="nav-blog"><a href="https://maksimtsikvasvili24.thkit.ee/wp/">Blogi <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></li>
+                </ul>
+            </nav>
 
-      <div class="grid-container">
-        <a href="html_tood/veeb1/index.html" class="grid-item">
-          <h3>Sissejuhatus</h3>
-          <p>Teksti manipuleerimise näide</p>
-        </a>
+            <div class="header-actions">
+                <button class="icon-button dark-toggle" type="button" aria-pressed="false" aria-label="Lülita tume režiim">
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></svg><svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+                </button>
+                <a class="button blog-link" href="https://maksimtsikvasvili24.thkit.ee/wp/">Blogi <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a>
+                <button class="icon-button menu-toggle" type="button" aria-expanded="false" aria-controls="peamenyy" aria-label="Menüü"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            </div>
+        </div>
+    </header>
 
-        <a href="html_tood/veeb2/index.html" class="grid-item">
-          <h3>Harjutused</h3>
-          <p>Teksti osad ja vormindamine</p>
-        </a>
-
-        <a href="html_tood/veeb3/tabelid.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Tabelid</h3>
-          <p>Lihtne ja keeruline tabel</p>
-        </a>
-
-        <a href="html_tood/veeb4/kysimustik.html" class="grid-item">
-          <h3>Viktoriin</h3>
-          <p>Matemaatika küsimused</p>
-        </a>
-
-        <a href="html_tood/veeb5/map.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Interaktiivne kaart</h3>
-          <p>Auto erinevate osade tutvustus</p>
-        </a>
-        <a href="html_tood/veeb6/vorm.html" class="grid-item">
-          <h3>Javascript vorm</h3>
-          <p>JS-faili loomine, et näiteks nupud töötaksid</p>
-        </a>
-        <a href="html_tood/veeb7/kysimustik.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Muusika küsimustik</h3>
-          <p>Nüüd töötab koos Javascript-iga! Kasutatakse ka jQuery</p>
-        </a>
-        <a href="html_tood/veeb8/JPilt.html" class="grid-item">
-          <h3>Juhuslik pilt</h3>
-          <p>Vali juhuslik pilt või allolevast valikust</p>
-        </a>
-        <a href="html_tood/veeb9/index.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Veebikalkulaator</h3>
-          <p>Osta tooteid ja arvuta kokku hind</p>
-        </a>
-        <a href="html_tood/veeb10/raamatukogu.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Raamatukogu</h3>
-          <p>Kuva erinevaid objektid ja meetodid</p>
-        </a>
-        <a href="html_tood/veeb11/ruhmaleht.html" class="grid-item">
-          <h3>Rühmaleht</h3>
-          <p>Kõik õpilased TARpv24 gruppis</p>
-        </a>
-        <a href="html_tood/veeb12/naidiseLeht.html" class="grid-item">
-          <h3>jQuery Näidis</h3>
-          <p>jQuery kasutamise näide</p>
-        </a>
-        <a href="html_tood/veeb14/index.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Jõulukaart</h3>
-          <p>Jõulukaarti loomine js canvas abil</p>
-        </a>
-        <a href="html_tood/veeb15/index.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Kool ja kodu kaardil</h3>
-          <p>Sama KML-fail LeafletJS ja OpenLayers kaardil</p>
-        </a>
-        <a href="html_tood/veeb16/index.html" class="grid-item">
-          <div class="hindeline-badge">Hindeline</div>
-          <h3>Sõnavara kontroll</h3>
-          <p>Hajusrakenduste terminid eesti ja vene keeles</p>
-        </a>
-      </div>
+    <main id="sisu">
+    <section class="hero">
+        <div class="container">
+                    <p class="eyebrow">Portfoolio</p>
+                    <h1>Tehtud tööd</h1>
+                    <p class="lead">17 HTML-i, CSS-i ja JavaScripti tööd veebirakenduste kursuselt, neist 8 hindelised. PHP ja andmebaaside tööd on eraldi lehel <a href="html_tood/index2/index.php">PHP tööd</a>.</p>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>
-      <strong>Kontakteeri minuga:</strong> maksimtsitkool@gmail.com <br>
-      &copy; Maksim Tsikvasvili
-    </p>
-  </footer>
+        <div class="container site-main">
+            <ul class="filters" data-filter-nav="tood" aria-label="Filtreeri töid">
+                <li><button class="filter" type="button" data-filter="all" aria-pressed="true">Kõik</button></li>
+                <li><button class="filter" type="button" data-filter="html" aria-pressed="false">HTML ja CSS</button></li>
+                <li><button class="filter" type="button" data-filter="js" aria-pressed="false">JavaScript</button></li>
+                <li><button class="filter" type="button" data-filter="jquery" aria-pressed="false">jQuery</button></li>
+                <li><button class="filter" type="button" data-filter="api" aria-pressed="false">Kaardid ja API</button></li>
+                <li><button class="filter" type="button" data-filter="graded" aria-pressed="false">Hindelised</button></li>
+            </ul>
+            <div class="grid" id="tood">
+                <article class="card is-linked" data-cat="api graded">
+                    <ul class="tags"><li class="tag">Kaardid ja API</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb16/index.html">Sõnavara kontroll</a></h3>
+                    <p class="card-text">Hajusrakenduste terminid eesti ja vene keeles – kontrolli, kas tead neid.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2026-09-18">18. september 2026</time></span><a class="go" href="https://maksimtsikvasvili24.thkit.ee/wp/category/hajusrakendused/">Loe blogist <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></div>
+                </article>
+                <article class="card is-linked" data-cat="api graded">
+                    <ul class="tags"><li class="tag">Kaardid ja API</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb15/index.html">Kool ja kodu kaardil</a></h3>
+                    <p class="card-text">Sama KML-fail LeafletJS, OpenLayers ja CesiumJS 3D gloobusel.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2026-09-18">18. september 2026</time></span><a class="go" href="https://maksimtsikvasvili24.thkit.ee/wp/hajusrakendused/2552/">Loe blogist <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></div>
+                </article>
+                <article class="card is-linked" data-cat="js graded">
+                    <ul class="tags"><li class="tag">JavaScript</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb14/index.html">Jõulukaart</a></h3>
+                    <p class="card-text">Jõulukaardi joonistamine JavaScripti canvas'e abil.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-12-15">15. detsember 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="js jquery">
+                    <ul class="tags"><li class="tag">JavaScript</li><li class="tag">jQuery</li></ul>
+                    <h3><a href="html_tood/veeb17/index.html">jQuery ja aeg</a></h3>
+                    <p class="card-text">Endine avaleht: kuupäev, kellaaeg ja päevad sünnipäevani; lohistatav ja hüppav pilt, peidetavad sektsioonid ja animeeritud menüü.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-11-11">11. november 2025</time></span><a class="go" href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1239/">Loe blogist <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></div>
+                </article>
+                <article class="card is-linked" data-cat="jquery">
+                    <ul class="tags"><li class="tag">jQuery</li></ul>
+                    <h3><a href="html_tood/veeb12/naidiseLeht.html">jQuery näidis</a></h3>
+                    <p class="card-text">jQuery selektorite, sündmuste ja efektide näide.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-11-11">11. november 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html js">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li><li class="tag">JavaScript</li></ul>
+                    <h3><a href="html_tood/veeb11/ruhmaleht.html">Rühmaleht</a></h3>
+                    <p class="card-text">Kõik TARpv24 grupi õpilased ühel lehel.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-10-28">28. oktoober 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="js graded">
+                    <ul class="tags"><li class="tag">JavaScript</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb10/raamatukogu.html">Raamatukogu</a></h3>
+                    <p class="card-text">JavaScripti objektid ja meetodid raamatukogu näitel.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-10-28">28. oktoober 2025</time></span><a class="go" href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1471/">Loe blogist <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></div>
+                </article>
+                <article class="card is-linked" data-cat="js graded">
+                    <ul class="tags"><li class="tag">JavaScript</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb9/index.html">Veebikalkulaator</a></h3>
+                    <p class="card-text">Vali tooted, kogus ja tarneviis ning arvuta koguhind.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-10-14">14. oktoober 2025</time></span><a class="go" href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1285/">Loe blogist <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></div>
+                </article>
+                <article class="card is-linked" data-cat="js">
+                    <ul class="tags"><li class="tag">JavaScript</li></ul>
+                    <h3><a href="html_tood/veeb8/JPilt.html">Juhuslik pilt</a></h3>
+                    <p class="card-text">Vali juhuslik pilt või pilt allolevast valikust.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-10-14">14. oktoober 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="js jquery graded">
+                    <ul class="tags"><li class="tag">JavaScript</li><li class="tag">jQuery</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb7/kysimustik.html">Muusika küsimustik</a></h3>
+                    <p class="card-text">Küsitlusvorm, mis töötab JavaScripti ja jQueryga.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-10-07">7. oktoober 2025</time></span><a class="go" href="https://maksimtsikvasvili24.thkit.ee/wp/veebirakendused/1221/">Loe blogist <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a></div>
+                </article>
+                <article class="card is-linked" data-cat="js">
+                    <ul class="tags"><li class="tag">JavaScript</li></ul>
+                    <h3><a href="html_tood/veeb6/vorm.html">JavaScripti vorm</a></h3>
+                    <p class="card-text">Esimene JS-fail: nupud ja vormi sündmused.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-10-02">2. oktoober 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html graded">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb5/map.html">Interaktiivne kaart</a></h3>
+                    <p class="card-text">Auto osade tutvustus klikitava pildikaardiga.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-09-25">25. september 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li></ul>
+                    <h3><a href="html_tood/veeb4/kysimustik.html">Viktoriin</a></h3>
+                    <p class="card-text">Matemaatika küsimused HTML-vormina.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-09-23">23. september 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html graded">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li><li class="tag is-graded">Hindeline</li></ul>
+                    <h3><a href="html_tood/veeb3/tabelid.html">Tabelid</a></h3>
+                    <p class="card-text">Lihtne ja keeruline tabel ühendatud lahtritega.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-09-23">23. september 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li></ul>
+                    <h3><a href="html_tood/veeb2/index.html">Harjutused</a></h3>
+                    <p class="card-text">Teksti osad ja vormindamine.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-09-23">23. september 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li></ul>
+                    <h3><a href="html_tood/veeb1/index.html">Sissejuhatus</a></h3>
+                    <p class="card-text">Esimene leht: teksti manipuleerimise näide.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-09-23">23. september 2025</time></span></div>
+                </article>
+                <article class="card is-linked" data-cat="html">
+                    <ul class="tags"><li class="tag">HTML ja CSS</li></ul>
+                    <h3><a href="html_tood/veeb18/index.html">Meedia</a></h3>
+                    <p class="card-text">Pildigalerii, YouTube'i video, SoundCloudi muusika ja Google Maps iframe'idega.</p>
+                    <div class="card-foot"><span class="meta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></svg><time datetime="2025-09-23">23. september 2025</time></span></div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a class="brand" href="index.html" rel="home">
+                <span class="brand-mark" aria-hidden="true">MT</span>
+                <span class="brand-text"><strong>Maksim Tsikvasvili</strong><small>Veebirakendused</small></span>
+            </a>
+                <p>Veebirakenduste kursuse tööd Techno TLN-is. Konspektid ja kirjeldused on
+                    <a href="https://maksimtsikvasvili24.thkit.ee/wp/">blogis</a>.</p>
+            </div>
+            <div>
+                <h2>Lehed</h2>
+                <ul><li><a href="index.html">Kodu</a></li><li><a href="teemad_lingid.html">Teemad / Lingid</a></li><li><a href="tehtud_tood.html">Tehtud tööd</a></li><li><a href="html_tood/index2/index.php">PHP tööd</a></li><li><a href="minust.html">Minust</a></li></ul>
+            </div>
+            <div>
+                <h2>Kontakt</h2>
+                <ul>
+                    <li><a href="mailto:maksimtsitkool@gmail.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg> maksimtsitkool@gmail.com</a></li>
+                    <li><a href="https://techno.ee/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg> Techno TLN</a></li>
+                    <li><a href="https://github.com/maksimts-kool"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© 2026 Maksim Tsikvasvili</span>
+            <span>Õppekava: 3 aastat · TARpv24</span>
+        </div>
+    </footer>
 </body>
 
 </html>
